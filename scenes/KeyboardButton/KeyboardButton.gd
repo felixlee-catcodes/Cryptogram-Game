@@ -13,4 +13,4 @@ func _ready():
 
 
 func _on_pressed():
-	Log.pr("keyboard key pressed: ", key)
+	EventHub.keys.keyboard_input.emit(key)
