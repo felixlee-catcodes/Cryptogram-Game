@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Crypt-O-Grams"
+run/main_scene="uid://dkiygmqaod1tf"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [display]

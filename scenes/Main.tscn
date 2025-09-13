@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://dkiygmqaod1tf"]
+[gd_scene load_steps=2 format=3 uid="uid://dkiygmqaod1tf"]
+
+[ext_resource type="PackedScene" uid="uid://d2gisthngsrbm" path="res://scenes/KeyboardPanelContainer/KeyboardPanelContainer.tscn" id="1_elqb8"]
 
 [node name="Main" type="Node"]
+
+[node name="KeyboardPanelContainer" parent="." instance=ExtResource("1_elqb8")]

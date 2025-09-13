@@ -1,19 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpw8yv3kp17am"]
+[gd_scene load_steps=2 format=3 uid="uid://bpw8yv3kp17am"]
 
 [ext_resource type="Script" uid="uid://p32h3hwkfeyn" path="res://scenes/KeyboardButton/KeyboardButton.gd" id="1_1mqtu"]
-[ext_resource type="Texture2D" uid="uid://b240ibmvb60cl" path="res://assets/keyboard/BlueButtons.png" id="2_gxdhr"]
-[ext_resource type="Texture2D" uid="uid://eooedvk35pd3" path="res://assets/keyboard/BlackButtons.png" id="3_fjhsv"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w6w4a"]
-atlas = ExtResource("2_gxdhr")
-region = Rect2(96, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7m2t"]
-atlas = ExtResource("3_fjhsv")
-region = Rect2(96, 16, 16, 16)
 
 [node name="KeyboardButton" type="TextureButton"]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(64, 64)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,8 +16,8 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
 stretch_mode = 0
 script = ExtResource("1_1mqtu")
-unpressed_png = SubResource("AtlasTexture_w6w4a")
-pressed_png = SubResource("AtlasTexture_p7m2t")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
