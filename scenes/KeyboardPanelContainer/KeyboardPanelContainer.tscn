@@ -1,0 +1,448 @@
+[gd_scene load_steps=58 format=3 uid="uid://d2gisthngsrbm"]
+
+[ext_resource type="PackedScene" uid="uid://bpw8yv3kp17am" path="res://scenes/KeyboardButton/KeyboardButton.tscn" id="1_w4pwe"]
+[ext_resource type="Texture2D" uid="uid://eooedvk35pd3" path="res://assets/keyboard/BlackButtons.png" id="2_bd8mq"]
+[ext_resource type="Texture2D" uid="uid://b240ibmvb60cl" path="res://assets/keyboard/BlueButtons.png" id="2_iocgc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t06la"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4cwc"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8c64"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ithm7"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qr8g"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2amqh"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6awha"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gtok"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iocgc"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd8mq"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3jdh"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kklou"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shipb"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aixi"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rppoy"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ppd2"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1br3q"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t23n"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw0mk"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xef3p"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmwjq"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keoq6"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27d8q"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25vrw"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne6fr"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giv0d"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aoyh"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bejv"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrnxk"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wnop"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5k6q"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgve6"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odq1e"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37vsf"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oenbj"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6sp7"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv7gk"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gktmh"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocj1d"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ccl"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieqy"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rldnx"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d0q4"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58cxo"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxj06"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a25su"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_608mm"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgpft"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y52t7"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6xye"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qc7u"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn6p0"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvlmy"]
+atlas = ExtResource("2_iocgc")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1twy2"]
+atlas = ExtResource("2_bd8mq")
+region = Rect2(96, 16, 16, 16)
+
+[node name="KeyboardPanelContainer" type="PanelContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -425.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TopRowKeys" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+alignment = 1
+
+[node name="Q" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_t06la")
+pressed_png = SubResource("AtlasTexture_p4cwc")
+key = "Q"
+
+[node name="W" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_d8c64")
+pressed_png = SubResource("AtlasTexture_ithm7")
+key = "W"
+
+[node name="E" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_7qr8g")
+pressed_png = SubResource("AtlasTexture_2amqh")
+key = "E"
+
+[node name="R" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_6awha")
+pressed_png = SubResource("AtlasTexture_4gtok")
+key = "R"
+
+[node name="T" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_iocgc")
+pressed_png = SubResource("AtlasTexture_bd8mq")
+key = "T"
+
+[node name="Y" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_l3jdh")
+pressed_png = SubResource("AtlasTexture_kklou")
+key = "Y"
+
+[node name="U" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_shipb")
+pressed_png = SubResource("AtlasTexture_2aixi")
+key = "U"
+
+[node name="I" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_rppoy")
+pressed_png = SubResource("AtlasTexture_4ppd2")
+key = "I"
+
+[node name="O" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_1br3q")
+pressed_png = SubResource("AtlasTexture_7t23n")
+key = "O"
+
+[node name="P" parent="VBoxContainer/TopRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+unpressed_png = SubResource("AtlasTexture_cw0mk")
+pressed_png = SubResource("AtlasTexture_xef3p")
+key = "P"
+
+[node name="MiddleRowKeys" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+alignment = 1
+
+[node name="A" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_tmwjq")
+pressed_png = SubResource("AtlasTexture_keoq6")
+key = "A"
+
+[node name="S" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_27d8q")
+pressed_png = SubResource("AtlasTexture_25vrw")
+key = "S"
+
+[node name="D" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_ne6fr")
+pressed_png = SubResource("AtlasTexture_giv0d")
+key = "D"
+
+[node name="F" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_0aoyh")
+pressed_png = SubResource("AtlasTexture_4bejv")
+key = "F"
+
+[node name="G" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_yrnxk")
+pressed_png = SubResource("AtlasTexture_5wnop")
+key = "G"
+
+[node name="H" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_s5k6q")
+pressed_png = SubResource("AtlasTexture_dgve6")
+key = "H"
+
+[node name="J" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_odq1e")
+pressed_png = SubResource("AtlasTexture_37vsf")
+key = "J"
+
+[node name="K" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_oenbj")
+pressed_png = SubResource("AtlasTexture_d6sp7")
+key = "K"
+
+[node name="L" parent="VBoxContainer/MiddleRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 12
+unpressed_png = SubResource("AtlasTexture_lv7gk")
+pressed_png = SubResource("AtlasTexture_gktmh")
+key = "L"
+
+[node name="BottomRowKeys" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+alignment = 1
+
+[node name="Z" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_ocj1d")
+pressed_png = SubResource("AtlasTexture_d0ccl")
+key = "Z"
+
+[node name="X" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_2ieqy")
+pressed_png = SubResource("AtlasTexture_rldnx")
+key = "X"
+
+[node name="C" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_3d0q4")
+pressed_png = SubResource("AtlasTexture_58cxo")
+key = "C"
+
+[node name="V" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_bxj06")
+pressed_png = SubResource("AtlasTexture_a25su")
+key = "V"
+
+[node name="B" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_608mm")
+pressed_png = SubResource("AtlasTexture_lgpft")
+key = "B"
+
+[node name="N" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_y52t7")
+pressed_png = SubResource("AtlasTexture_q6xye")
+key = "N"
+
+[node name="M" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_5qc7u")
+pressed_png = SubResource("AtlasTexture_dn6p0")
+key = "M"
+
+[node name="ClearInput" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+unpressed_png = SubResource("AtlasTexture_rvlmy")
+pressed_png = SubResource("AtlasTexture_1twy2")
