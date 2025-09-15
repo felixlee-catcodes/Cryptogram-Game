@@ -8,7 +8,6 @@ var regEx = RegEx.new()
 # This will be where various types of cipher algorithms are written; to be called by PuzzleManager
 func _ready():
 	regEx.compile("[A-Za-z]")
-	shuffle_caesar_encrypt(quote)
 
 
 func basic_caesar_encrypt(text) -> String:
@@ -31,7 +30,7 @@ func basic_caesar_encrypt(text) -> String:
 	return encrypted_quote
 
 
-func shuffle_caesar_encrypt(_quote) -> String:
+func pop_random_encrypt(_quote) -> String:
 	var encrypted_text : String = ""
 	var cipher : Dictionary = {}
 	var unique_chars = count_unique(_quote)
@@ -55,11 +54,9 @@ func shuffle_caesar_encrypt(_quote) -> String:
 		elif not match: 
 			encrypted_text += _char
 
-	#Log.pr("plaintext: ", quote, "\nencrypted text: ", encrypted_text)
-	Log.prn("cipher: ", cipher)
 	return encrypted_text
 
-
+#region HELPER FUNCTIONS:
 func count_unique(text) -> Array:
 	var unique_chars : Array = []
 	for _char in text:
@@ -76,3 +73,4 @@ func apply_shift(letter, shift) -> String:
 		shifted_idx = (letter_idx + shift) - (alphabet.size() - 1) - 1
 	var shifted_letter : String = alphabet[shifted_idx]
 	return shifted_letter
+#endregion
