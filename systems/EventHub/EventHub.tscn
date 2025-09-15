@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crlpp8l3qitpl"]
 
-[ext_resource type="Script" uid="uid://bqynn521hpmld" path="res://systems/EventHub/EventHub.gd" id="1_wsjn8"]
+[ext_resource type="Script" uid="uid://bqynn521hpmld" path="res://systems/EventHub/EventHub.gd" id="1_4llgd"]
 
 [node name="EventHub" type="Node"]
-script = ExtResource("1_wsjn8")
+script = ExtResource("1_4llgd")
