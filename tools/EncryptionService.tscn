@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcxngunsmmyv"]
+
+[ext_resource type="Script" uid="uid://c8gsjl7dgth18" path="res://tools/EncryptionService.gd" id="1_cjya7"]
+
+[node name="EncryptionService" type="Node"]
+script = ExtResource("1_cjya7")
+quote = "Testing again!"
