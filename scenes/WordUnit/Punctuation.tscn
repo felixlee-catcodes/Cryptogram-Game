@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bb4je14puxort"]
+
+[node name="Punctuation" type="Control"]
+custom_minimum_size = Vector2(32, 128)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Symbol" type="Label" parent="."]
+custom_minimum_size = Vector2(32, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
