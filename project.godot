@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Mobile")
 [autoload]
 
 EventHub="*res://systems/EventHub/EventHub.tscn"
+InputManager="*res://systems/InputManager/InputManager.tscn"
 
 [display]
 
@@ -31,6 +32,12 @@ naming/scene_name_casing=1
 naming/script_name_casing=1
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[global_group]
+
+letter_cells=""
+punctuation_cells=""
+word_units=""
 
 [rendering]
 
