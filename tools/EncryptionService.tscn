@@ -4,4 +4,4 @@
 
 [node name="EncryptionService" type="Node"]
 script = ExtResource("1_cjya7")
-quote = "Testing again!"
+quote = "Testing puzzle output!"
