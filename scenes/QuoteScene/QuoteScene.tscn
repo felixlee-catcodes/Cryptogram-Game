@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpl7w0hrpj28q"]
+
+[ext_resource type="Script" uid="uid://d181eg3584ibd" path="res://scenes/QuoteScene/QuoteScene.gd" id="1_kjhg6"]
+
+[node name="QuoteScene" type="HFlowContainer"]
+custom_minimum_size = Vector2(700, 700)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_kjhg6")
