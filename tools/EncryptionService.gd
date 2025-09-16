@@ -9,7 +9,7 @@ var regEx = RegEx.new()
 func _ready():
 	regEx.compile("[A-Za-z]")
 
-
+#region Basic Caesar Cipher:
 func basic_caesar_encrypt(text) -> String:
 	var encrypted_quote : String = ""
 	var shift_amt = randi_range(1, alphabet.size() - 1)
@@ -28,34 +28,34 @@ func basic_caesar_encrypt(text) -> String:
 			encrypted_quote += _char
 
 	return encrypted_quote
-
-
-func pop_random_encrypt(_quote) -> String:
+#endregion
+#region Pop Random:
+func pop_random_encrypt(_quote) -> Dictionary:
 	var encrypted_text : String = ""
 	var cipher : Dictionary = {}
 	var unique_chars = count_unique(_quote)
-	var used_indices : Array = []
 	var pool = alphabet.duplicate(true)
 	
 	# BUILDING THE CIPHER:
-	for char in unique_chars:
-		var choice = char
-		while choice == char:
+	for _char in unique_chars:
+		var choice = _char
+		while choice == _char:
 			choice = pool.pop_at(randi_range(0, pool.size() - 1))
-		cipher[char] = choice
-	
+		cipher[_char] = choice
+
 	#ENCRYPTING THE INPUT TEXT:	
-	for _char : String in quote:
+	for _char : String in _quote:
+		#Log.pr("char? ", _char)
 		var match = regEx.search(_char)
 		if match:
+			#Log.pr("match!")
 			_char = _char.to_upper()
 			var crypt_char = cipher[_char]
 			encrypted_text += crypt_char
 		elif not match: 
 			encrypted_text += _char
-
-	return encrypted_text
-
+	return {"cipher": cipher, "encrypted_text":encrypted_text, "unique_chars": unique_chars}
+#endregion
 #region HELPER FUNCTIONS:
 func count_unique(text) -> Array:
 	var unique_chars : Array = []
