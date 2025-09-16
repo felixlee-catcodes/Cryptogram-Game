@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkhdlwnxli8st"]
+
+[ext_resource type="Script" uid="uid://0rcp8jd3cxe4" path="res://tools/QuoteApiManager.gd" id="1_vnfje"]
+
+[node name="QuoteAPIManager" type="Node"]
+script = ExtResource("1_vnfje")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

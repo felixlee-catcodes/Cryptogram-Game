@@ -1,0 +1,36 @@
+extends Node
+class_name GameManager
+
+var current_puzzle : Dictionary
+var current_cipher : Dictionary
+var solved_cells : Dictionary
+func _ready():
+	EventHub.inputs.text_input.connect(_update_progress)
+	
+#WHAT ARE SOME FUNC THE GAMEMANAGER NEEDS?
+func start_game():
+	pass
+
+func _update_progress(cell: LetterCell, key: String):
+	var cipher_letter = cell.encoded_letter
+	var cipher_keys = current_cipher.keys()
+	
+	if key == "Clear":
+		solved_cells.erase(cipher_letter)
+
+	if cipher_keys.has(key) and current_cipher[key] == cipher_letter:
+		solved_cells.get_or_add(cipher_letter, key)
+	check_completion()
+
+
+func new_puzzle():
+	var puzzle_data = PuzzleManager.process_plain_text("Some text for testing.")
+	current_puzzle = puzzle_data
+	current_cipher = puzzle_data["cipher"]
+
+	return puzzle_data
+
+
+func check_completion():
+	if solved_cells.size() == current_cipher.size():
+		solved_cells.clear()

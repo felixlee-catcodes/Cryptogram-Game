@@ -4,6 +4,7 @@ extends Node
 
 var keys = KeyboardEvents.new()
 var cells = LetterCellEvents.new()
+var inputs = InputEvents.new()
 
 
 class LetterCellEvents:
@@ -12,3 +13,7 @@ class LetterCellEvents:
 
 class KeyboardEvents:
 	signal keyboard_input(key)
+
+
+class InputEvents:
+	signal text_input(cell: LetterCell, key: String)

@@ -16,7 +16,9 @@ config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
 
+QuoteApiManager="*res://tools/QuoteAPIManager.tscn"
 EventHub="*res://systems/EventHub/EventHub.tscn"
+PuzzleManager="*res://systems/PuzzleManager/PuzzleManager.tscn"
 InputManager="*res://systems/InputManager/InputManager.tscn"
 
 [display]

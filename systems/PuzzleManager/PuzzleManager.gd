@@ -1,14 +1,16 @@
 extends Node
-
+# PUZZLE MANAGER
 @onready var encryption_service : EncryptionService = $EncryptionService
 
 
-func _ready():
-	get_puzzle("Testing puzzle output!")
+#func _ready():
+	#process_plain_text("Testing puzzle output!")
 
-func get_puzzle(plain_text: String) -> Dictionary:
+func process_plain_text(plain_text: String) -> Dictionary:
 	var puzzle_data : Dictionary
+	var cipher_and_chars = encryption_service.pop_random_encrypt(plain_text)
 	puzzle_data["plainText"] = plain_text
-	puzzle_data["cipherText"] = encryption_service.basic_caesar_encrypt(plain_text)
-	Log.prn("puzzle manager output: ", puzzle_data)
+	puzzle_data["cipherText"] = cipher_and_chars["encrypted_text"]
+	puzzle_data["unique_chars"] = cipher_and_chars["unique_chars"]
+	puzzle_data["cipher"] = cipher_and_chars["cipher"]
 	return puzzle_data

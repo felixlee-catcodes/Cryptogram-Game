@@ -42,3 +42,4 @@ vertical_alignment = 1
 
 [connection signal="focus_entered" from="VBoxContainer/DecodedLetterInput" to="." method="_on_decoded_letter_input_focus_entered"]
 [connection signal="focus_exited" from="VBoxContainer/DecodedLetterInput" to="." method="_on_decoded_letter_input_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/DecodedLetterInput" to="." method="_on_decoded_letter_input_text_changed"]

@@ -1,9 +1,9 @@
 extends HFlowContainer
-
+# QUOTE SCENE
 @onready var word_unit_scene = preload("res://scenes/WordUnit/WordUnit.tscn")
 @export var word_array : Array
 
-func compile_quote():
+func compile_text():
 	
 	if word_array.size() == 0:
 		return

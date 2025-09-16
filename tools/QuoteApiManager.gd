@@ -1,0 +1,70 @@
+extends Node
+
+@onready var http_request = $HTTPRequest
+
+const CACHE_PATH : String = "user://quote_cache.json"
+const MIN_CACHE_SIZE : int = 7
+
+var URL : String = "https://zenquotes.io/api/quotes"
+var cached_quotes : Array = []
+
+func _ready():
+	http_request.use_threads = true
+	_load_cache()
+	if cached_quotes.size() < MIN_CACHE_SIZE:
+		fetch_and_add_quotes()
+
+#region Cache Handling
+func _load_cache() -> void:
+	if FileAccess.file_exists(CACHE_PATH):
+		var file = FileAccess.open(CACHE_PATH, FileAccess.READ)
+		var data = JSON.parse_string(file.get_as_text())
+		if typeof(data) == TYPE_ARRAY:
+			cached_quotes = data
+		file.close()
+
+
+func _save_cache() -> void:
+	var file = FileAccess.open(CACHE_PATH, FileAccess.WRITE)
+	file.store_string(JSON.stringify(cached_quotes))
+	file.close()
+
+#endregion
+
+#region Quote retrieval
+func get_random_quote() -> Dictionary:
+	if cached_quotes.is_empty():
+		await fetch_and_add_quotes()
+	
+	#API failure case:
+	if cached_quotes.is_empty():
+		return {}
+	
+	var idx = randi() % cached_quotes.size()
+	return cached_quotes[idx]
+	
+
+func mark_quote_solved(quote: Dictionary):
+	pass
+#endregion
+
+#region Fetch from API
+func fetch_and_add_quotes() -> void:
+	Log.pr("fetch function called")
+	var err = http_request.request(URL)
+	if err != OK:
+		push_error("Request failed: %s" % err)
+		return
+	
+	var result = await http_request.request_completed
+	var response_code = result[1]
+	var body = result[3].get_string_from_utf8()
+	Log.pr("successful body retrieval", response_code)
+	if response_code == 200:
+		var new_quotes = JSON.parse_string(body).map(func(quote):
+			return {"quote": quote["q"], "author": quote["a"], "char_count": quote["c"]})
+		if typeof(new_quotes) == TYPE_ARRAY:
+			cached_quotes += new_quotes
+			_save_cache()
+		
+#endregion

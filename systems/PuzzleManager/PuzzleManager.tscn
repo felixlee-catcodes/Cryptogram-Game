@@ -7,3 +7,4 @@
 script = ExtResource("1_is0ii")
 
 [node name="EncryptionService" parent="." instance=ExtResource("2_vkxd0")]
+quote = ""
