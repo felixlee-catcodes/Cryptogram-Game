@@ -1,9 +1,20 @@
-[gd_scene format=3 uid="uid://cu2j1q7hqlx4u"]
+[gd_scene load_steps=2 format=3 uid="uid://cu2j1q7hqlx4u"]
 
-[node name="HeaderUI" type="Control"]
-layout_mode = 3
-anchors_preset = 15
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwb83"]
+bg_color = Color(0.298306, 0.566289, 0.559593, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.133333, 0.294118, 0.290196, 0.756863)
+shadow_color = Color(0.133333, 0.294118, 0.290196, 0.721569)
+shadow_size = 2
+shadow_offset = Vector2(0, 3)
+
+[node name="HeaderUI" type="PanelContainer"]
+custom_minimum_size = Vector2(720, 130)
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 130.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lwb83")

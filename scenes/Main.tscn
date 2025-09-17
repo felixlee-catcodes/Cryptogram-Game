@@ -38,3 +38,5 @@ clip_contents = true
 layout_mode = 2
 
 [node name="GameManager" parent="." instance=ExtResource("4_rarhs")]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
