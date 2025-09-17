@@ -4,9 +4,10 @@ class_name GameManager
 var current_puzzle : Dictionary
 var current_cipher : Dictionary
 var solved_cells : Dictionary
+
 func _ready():
 	EventHub.inputs.text_input.connect(_update_progress)
-	
+
 #WHAT ARE SOME FUNC THE GAMEMANAGER NEEDS?
 func start_game():
 	pass
@@ -23,8 +24,13 @@ func _update_progress(cell: LetterCell, key: String):
 	check_completion()
 
 
-func new_puzzle():
-	var puzzle_data = PuzzleManager.process_plain_text("Some text for testing.")
+func get_new_puzzle():
+	var quote: Dictionary = await QuoteApiManager.get_random_quote()
+	if quote.is_empty():
+		await QuoteApiManager.fetch_and_add_quotes()
+		quote = await QuoteApiManager.get_random_quote()
+	Log.pr("quote? ", quote)
+	var puzzle_data = PuzzleManager.process_plain_text(quote.quote)
 	current_puzzle = puzzle_data
 	current_cipher = puzzle_data["cipher"]
 

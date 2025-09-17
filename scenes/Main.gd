@@ -7,7 +7,7 @@ extends Node
 var test_sentence : String = "This is just a test."
 
 func _ready():
-	var puzzle = game_manager.new_puzzle()
+	var puzzle = game_manager.get_new_puzzle()
 	var cipher_text = split_text(puzzle.cipherText)
 	quote_scene.word_array = cipher_text
 	quote_scene.compile_text()

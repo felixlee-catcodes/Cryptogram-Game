@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bb4je14puxort"]
 
 [node name="Punctuation" type="Control"]
-custom_minimum_size = Vector2(32, 128)
+custom_minimum_size = Vector2(32, 100)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

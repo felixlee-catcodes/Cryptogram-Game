@@ -2,11 +2,13 @@ extends Node
 
 var cell_in_focus : LetterCell = null
 var ordered_cells : Array = [LetterCell]
+var prev_cell_in_focus : LetterCell = null
 
 
 func _ready():
 	EventHub.keys.keyboard_input.connect(_register_key)
 	EventHub.cells.cell_focused.connect(_update_focused_cell)
+	EventHub.cells.exit_focus.connect(_revert_focused_cells)
 
 
 func register_cell(cell: LetterCell):
@@ -67,5 +69,28 @@ func update_sister_cells(cell: LetterCell, key: String) -> void:
 	get_tree().call_group(group, "_update_text", key)
 
 
-func _update_focused_cell(cell):
+func highlight_sister_cells(group):
+	Log.pr("focus entered on group: ", group)
+	get_tree().call_group(group, "highlight_sister_cell")
+
+
+#func revert_sister_cells(cell):
+	#var focus_group = cell_in_focus.get_groups()[0]
+	#get_tree().call_group(focus_group, "revert_unfocused_cells")
+#
+
+func _update_focused_cell(cell: LetterCell):
 	cell_in_focus = cell
+	prev_cell_in_focus = cell
+	var group = cell_in_focus.get_groups()[0]
+	Log.pr("previous cell group: ", prev_cell_in_focus.get_groups()[0])
+	
+	highlight_sister_cells(group)
+
+
+func _revert_focused_cells(_cell):
+	get_tree().call_group(cell_in_focus.get_groups()[0], "revert_unfocused_cells")
+
+
+	
+	

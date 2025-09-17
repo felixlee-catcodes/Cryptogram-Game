@@ -26,12 +26,14 @@ func set_focus_styling():
 	style.bg_color = Color(1, 1, 0.5, 0.5)
 	decoded_letter_input.add_theme_stylebox_override("focus", style)
 
+
 func _on_text_input(cell: LetterCell, key):
 	if cell == self:
 		if key == "Clear":
 			has_text = false
 		else: 
 			has_text = true
+
 
 func _on_decoded_letter_input_focus_entered():
 	is_focused = true
@@ -40,6 +42,8 @@ func _on_decoded_letter_input_focus_entered():
 
 func _on_decoded_letter_input_focus_exited():
 	is_focused = false
+	var parent = get_node("../LetterCell")
+	EventHub.cells.exit_focus.emit(parent)
 
 
 func move_focus_to_next():
@@ -53,9 +57,17 @@ func move_focus_to_prev():
 	if prev_cell:
 		prev_cell.decoded_letter_input.grab_focus()
 
+
 func _update_text(text: String) -> void:
 	self.decoded_letter_input.text = text
 	self.has_text = true
 
-#func _on_decoded_letter_input_text_changed(new_text):
-	#Log.pr("new text? ", new_text)
+
+func highlight_sister_cell():
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(1.0 ,0.5, 0.5, 0.5)
+	self.decoded_letter_input.add_theme_stylebox_override("normal", style)
+
+
+func revert_unfocused_cells():
+	self.decoded_letter_input.remove_theme_stylebox_override("normal")

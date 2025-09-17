@@ -57,13 +57,15 @@
 [ext_resource type="Texture2D" uid="uid://d3vtoeyh3ssea" path="res://assets/keyboard/black keys/black_key58.png" id="55_tbhrm"]
 
 [node name="KeyboardPanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 300)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -425.0
+offset_top = -214.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_vertical = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

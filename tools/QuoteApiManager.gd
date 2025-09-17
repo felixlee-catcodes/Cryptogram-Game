@@ -45,7 +45,11 @@ func get_random_quote() -> Dictionary:
 	
 
 func mark_quote_solved(quote: Dictionary):
-	pass
+	cached_quotes.erase(quote)
+	_save_cache()
+	
+	if cached_quotes.size() < MIN_CACHE_SIZE:
+		fetch_and_add_quotes()
 #endregion
 
 #region Fetch from API

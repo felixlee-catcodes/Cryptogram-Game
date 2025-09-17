@@ -9,6 +9,7 @@ var inputs = InputEvents.new()
 
 class LetterCellEvents:
 	signal cell_focused(cell)
+	signal exit_focus(cell)
 
 
 class KeyboardEvents:
