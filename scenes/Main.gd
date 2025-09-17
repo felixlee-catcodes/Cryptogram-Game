@@ -14,5 +14,4 @@ func _ready():
 	quote_scene.compile_quote()
 
 func split_text(quote: String) -> Array:
-		
 	return quote.split(" ")
