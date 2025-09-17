@@ -33,6 +33,7 @@ func get_new_puzzle():
 	var puzzle_data = PuzzleManager.process_plain_text(quote.quote)
 	current_puzzle = puzzle_data
 	current_cipher = puzzle_data["cipher"]
+	puzzle_data["author"] = quote["author"]
 
 	return puzzle_data
 

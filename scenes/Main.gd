@@ -10,7 +10,8 @@ func _ready():
 	var puzzle = game_manager.get_new_puzzle()
 	var cipher_text = split_text(puzzle.cipherText)
 	quote_scene.word_array = cipher_text
-	quote_scene.compile_text()
+	quote_scene.author = puzzle.author
+	quote_scene.compile_quote()
 
 func split_text(quote: String) -> Array:
 		

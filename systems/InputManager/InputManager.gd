@@ -74,11 +74,6 @@ func highlight_sister_cells(group):
 	get_tree().call_group(group, "highlight_sister_cell")
 
 
-#func revert_sister_cells(cell):
-	#var focus_group = cell_in_focus.get_groups()[0]
-	#get_tree().call_group(focus_group, "revert_unfocused_cells")
-#
-
 func _update_focused_cell(cell: LetterCell):
 	cell_in_focus = cell
 	prev_cell_in_focus = cell
@@ -90,7 +85,3 @@ func _update_focused_cell(cell: LetterCell):
 
 func _revert_focused_cells(_cell):
 	get_tree().call_group(cell_in_focus.get_groups()[0], "revert_unfocused_cells")
-
-
-	
-	
