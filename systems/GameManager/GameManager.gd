@@ -1,16 +1,24 @@
 extends Node
 class_name GameManager
 
+@onready var timer = $Timer
+
 var current_puzzle : Dictionary
 var current_cipher : Dictionary
 var solved_cells : Dictionary
-
+var elapsed_time : int
 func _ready():
 	EventHub.inputs.text_input.connect(_update_progress)
 
 #WHAT ARE SOME FUNC THE GAMEMANAGER NEEDS?
 func start_game():
-	pass
+	timer.start()
+
+
+func _on_timer_timeout():
+	elapsed_time += 1
+	Log.pr("elasped time: ", elapsed_time)
+
 
 func _update_progress(cell: LetterCell, key: String):
 	var cipher_letter = cell.encoded_letter

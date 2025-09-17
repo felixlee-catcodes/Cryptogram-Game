@@ -12,6 +12,7 @@ func _ready():
 	quote_scene.word_array = cipher_text
 	quote_scene.author = puzzle.author
 	quote_scene.compile_quote()
+	game_manager.start_game()
 
 func split_text(quote: String) -> Array:
 	return quote.split(" ")

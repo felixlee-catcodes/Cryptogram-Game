@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkiygmqaod1tf"]
+[gd_scene load_steps=7 format=3 uid="uid://dkiygmqaod1tf"]
 
 [ext_resource type="PackedScene" uid="uid://d2gisthngsrbm" path="res://scenes/KeyboardPanelContainer/KeyboardPanelContainer.tscn" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://40dsee7fcaa8" path="res://scenes/Main.gd" id="1_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://dpl7w0hrpj28q" path="res://scenes/QuoteScene/QuoteScene.tscn" id="3_rarhs"]
 [ext_resource type="PackedScene" uid="uid://2jompf5pjecl" path="res://systems/GameManager/GameManager.tscn" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://cu2j1q7hqlx4u" path="res://scenes/HeaderUI/HeaderUI.tscn" id="5_vcsgt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvslj"]
 bg_color = Color(0.907073, 0.907073, 0.907073, 1)
@@ -24,9 +25,7 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -515.0
-offset_right = 2.0
+offset_top = -529.0
 offset_bottom = 335.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -40,3 +39,5 @@ layout_mode = 2
 [node name="GameManager" parent="." instance=ExtResource("4_rarhs")]
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HeaderUI" parent="UILayer" instance=ExtResource("5_vcsgt")]

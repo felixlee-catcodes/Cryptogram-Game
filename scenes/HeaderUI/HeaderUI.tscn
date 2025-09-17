@@ -15,10 +15,10 @@ shadow_size = 2
 shadow_offset = Vector2(0, 3)
 
 [node name="HeaderUI" type="PanelContainer"]
-custom_minimum_size = Vector2(720, 130)
+custom_minimum_size = Vector2(720, 110)
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 130.0
+offset_bottom = 110.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lwb83")
 
