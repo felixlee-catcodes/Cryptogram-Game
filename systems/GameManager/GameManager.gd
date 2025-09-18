@@ -17,7 +17,7 @@ func start_game():
 
 func _on_timer_timeout():
 	elapsed_time += 1
-	Log.pr("elasped time: ", elapsed_time)
+	EventHub.ui_events.update_timer.emit(elapsed_time)
 
 
 func _update_progress(cell: LetterCell, key: String):

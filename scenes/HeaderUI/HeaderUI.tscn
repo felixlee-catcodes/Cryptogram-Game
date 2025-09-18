@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu2j1q7hqlx4u"]
+[gd_scene load_steps=5 format=3 uid="uid://cu2j1q7hqlx4u"]
 
 [ext_resource type="Texture2D" uid="uid://ccfoe21ry6gvt" path="res://assets/ui-icons/account_circle_100.png" id="1_2i62g"]
+[ext_resource type="Script" uid="uid://3rlp8fhn242" path="res://scenes/HeaderUI/HeaderUi.gd" id="1_6qeqc"]
 [ext_resource type="Texture2D" uid="uid://c03exp0q4o2fn" path="res://assets/ui-icons/menu_100.png" id="2_6qeqc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwb83"]
@@ -21,23 +22,26 @@ anchor_right = 1.0
 offset_bottom = 110.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lwb83")
+script = ExtResource("1_6qeqc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="UIContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 200
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="UIContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("1_2i62g")
 
-[node name="TimerDisplay" type="Label" parent="HBoxContainer"]
+[node name="TimerDisplay" type="Label" parent="UIContainer"]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "0:00"
+text = "00:00"
+horizontal_alignment = 1
 
-[node name="Settings" type="TextureButton" parent="HBoxContainer"]
+[node name="Settings" type="TextureButton" parent="UIContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
