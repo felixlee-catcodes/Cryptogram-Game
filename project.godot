@@ -13,6 +13,9 @@ config_version=5
 config/name="Crypt-O-Grams"
 run/main_scene="uid://dkiygmqaod1tf"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(0, 0.628893, 0.703541, 1)
+config/icon="uid://d2dryaryxtkw0"
+boot_splash/minimum_display_time=4
 
 [autoload]
 
@@ -20,11 +23,13 @@ QuoteApiManager="*res://tools/QuoteAPIManager.tscn"
 EventHub="*res://systems/EventHub/EventHub.tscn"
 InputManager="*res://systems/InputManager/InputManager.tscn"
 PuzzleManager="*res://systems/PuzzleManager/PuzzleManager.tscn"
+SaveManager="*res://systems/SaveManager/SaveManager.gd"
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
+window/size/initial_position_type=2
 window/size/always_on_top=true
 window/handheld/orientation=1
 
@@ -44,3 +49,4 @@ word_units=""
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
