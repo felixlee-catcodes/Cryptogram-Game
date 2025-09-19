@@ -6,6 +6,7 @@ var keys = KeyboardEvents.new()
 var cells = LetterCellEvents.new()
 var inputs = InputEvents.new()
 var ui_events = UserInterfaceEvents.new()
+var game = GameEvents.new()
 
 class LetterCellEvents:
 	signal cell_focused(cell)
@@ -22,3 +23,8 @@ class InputEvents:
 
 class UserInterfaceEvents: 
 	signal update_timer(time)
+
+
+class GameEvents:
+	signal game_over(time)
+	signal new_game
