@@ -70,16 +70,13 @@ func update_sister_cells(cell: LetterCell, key: String) -> void:
 
 
 func highlight_sister_cells(group):
-	Log.pr("focus entered on group: ", group)
 	get_tree().call_group(group, "highlight_sister_cell")
 
 
 func _update_focused_cell(cell: LetterCell):
 	cell_in_focus = cell
 	prev_cell_in_focus = cell
-	var group = cell_in_focus.get_groups()[0]
-	Log.pr("previous cell group: ", prev_cell_in_focus.get_groups()[0])
-	
+	var group = cell_in_focus.get_groups()[0]	
 	highlight_sister_cells(group)
 
 

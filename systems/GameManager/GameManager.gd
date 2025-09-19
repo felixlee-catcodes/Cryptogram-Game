@@ -7,6 +7,8 @@ var current_puzzle : Dictionary
 var current_cipher : Dictionary
 var solved_cells : Dictionary
 var elapsed_time : int
+var raw_data : Dictionary
+
 func _ready():
 	EventHub.inputs.text_input.connect(_update_progress)
 
@@ -37,9 +39,11 @@ func get_new_puzzle():
 	if quote.is_empty():
 		await QuoteApiManager.fetch_and_add_quotes()
 		quote = await QuoteApiManager.get_random_quote()
-	Log.pr("quote? ", quote)
+	raw_data = quote
+
 	var puzzle_data = PuzzleManager.process_plain_text(quote.quote)
 	current_puzzle = puzzle_data
+	Log.pr(current_puzzle.plainText)
 	current_cipher = puzzle_data["cipher"]
 	puzzle_data["author"] = quote["author"]
 
@@ -48,4 +52,13 @@ func get_new_puzzle():
 
 func check_completion():
 	if solved_cells.size() == current_cipher.size():
+		timer.stop()
+		EventHub.game.game_over.emit(elapsed_time)
+		update_player_stats(elapsed_time)
+		#Log.pr(SaveManager.stats.completion_record)
+		#QuoteApiManager.mark_quote_solved(raw_data)
 		solved_cells.clear()
+		
+		
+func update_player_stats(time: int):
+	SaveManager.record_solve(time)
