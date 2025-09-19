@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuoteEntry" load_steps=2 format=3 uid="uid://ctcergktm3yn4"]
+
+[ext_resource type="Script" uid="uid://beb12ff0ucu4n" path="res://resources/QuoteBook/QuoteEntry.gd" id="1_pg0yr"]
+
+[resource]
+script = ExtResource("1_pg0yr")
+text = ""
+author = ""
+date_added = ""
+tags = Array[String]([])
+solve_time = 0
