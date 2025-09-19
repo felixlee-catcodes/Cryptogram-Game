@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bs4xnsmwc8ebj"]
+
+[ext_resource type="Script" uid="uid://beb12ff0ucu4n" path="res://resources/QuoteBook/QuoteEntry.gd" id="1_6tjua"]
+[ext_resource type="Script" uid="uid://bjswblysbjojf" path="res://resources/QuoteBook/QuoteBook.gd" id="2_ha8q5"]
+
+[resource]
+script = ExtResource("2_ha8q5")
+quotes = Array[ExtResource("1_6tjua")]([])
