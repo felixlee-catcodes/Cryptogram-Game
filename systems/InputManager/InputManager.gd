@@ -10,6 +10,12 @@ func _ready():
 	EventHub.cells.cell_focused.connect(_update_focused_cell)
 	EventHub.cells.exit_focus.connect(_revert_focused_cells)
 
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		var code = event.keycode
+		if code >= KEY_A and code <= KEY_Z:
+			var key = OS.get_keycode_string(code)
+			EventHub.keys.keyboard_input.emit(key)
 
 func register_cell(cell: LetterCell):
 	ordered_cells.append(cell)
@@ -61,6 +67,7 @@ func _register_key(key_text):
 		line_edit.text = key_text
 		EventHub.inputs.text_input.emit(cell_in_focus, key_text)
 		update_sister_cells(cell_in_focus, key_text)
+		line_edit.grab_focus()
 		cell_in_focus.move_focus_to_next()
 
 

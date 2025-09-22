@@ -1,0 +1,44 @@
+extends VBoxContainer
+#GAME OVER SCENE
+
+# need access to finished puzzle data: author, quote, solve -> send via signal?
+@export var finished_puzzle : Dictionary
+# need access to stats: best and average times
+@onready var solved_quote = $SolvedQuote
+
+# need reference to the quote book for saving@onready var curr_time_label = $StatsDisplay/CurrentTime/CurrTimeLabel
+@onready var curr_time_value = $StatsDisplay/CurrentTime/CurrTimeValue
+@onready var best_time_value = $StatsDisplay/BestTime/BestTimeValue
+@onready var avg_time_value = $StatsDisplay/AverageTime/AvgTimeValue
+
+var quote_book : QuoteBook
+
+func _ready():
+	EventHub.game.game_over.connect(_on_game_over)
+	quote_book = QuoteBook.new().load_book()
+
+
+func _on_game_over(puzzle, time):
+	finished_puzzle = puzzle
+	solved_quote.text = puzzle["plainText"]
+	curr_time_value.text = _convert_time(time)
+	best_time_value.text = _convert_time(SaveManager.stats.best_time)
+	avg_time_value.text = _convert_time(SaveManager.stats.all_time_avg)
+
+
+func _convert_time(time) -> String:
+	var m = int(time / 60.0)
+	var s = time - m * 60
+	var t = "%02d:%02d" % [m, s]
+	return t
+
+
+func _on_new_game_pressed():
+	EventHub.game.new_game.emit()
+
+
+func _on_save_text_pressed():
+	var quote = finished_puzzle["plainText"]
+	var author = finished_puzzle["author"]
+	
+	quote_book.add_quote(quote, author, curr_time_value.text)

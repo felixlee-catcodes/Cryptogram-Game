@@ -5,7 +5,7 @@ extends ScrollContainer
 @onready var quote_container = $VBoxContainer/MarginContainer/FlowContainer
 @onready var credit_label = $VBoxContainer/CreditLabel
 @export var author : String
-
+@export var quote : String
 func compile_quote():
 	credit_label.text = author
 	if word_array.size() == 0:

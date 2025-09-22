@@ -1,0 +1,150 @@
+[gd_scene load_steps=5 format=3 uid="uid://guasebrnvr6r"]
+
+[ext_resource type="Script" uid="uid://cge5j2vnp37q" path="res://scenes/GameOver/GameOverDisplay.gd" id="1_apt3b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjhg6"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.144942, 0.623675, 0.698477, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.113171, 0.5171, 0.580183, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la8sq"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.144942, 0.623675, 0.698477, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.113171, 0.5171, 0.580183, 1)
+border_blend = true
+shadow_color = Color(0.0425717, 0.272998, 0.30887, 0.796078)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3dcf"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.116656, 0.529178, 0.593598, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.397621, 0.447025, 1)
+border_blend = true
+shadow_color = Color(0.0425717, 0.272998, 0.30887, 0.796078)
+shadow_size = 3
+shadow_offset = Vector2(0, 1)
+
+[node name="GameOverDisplay" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+script = ExtResource("1_apt3b")
+
+[node name="SolvedQuote" type="Label" parent="."]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatsDisplay" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentTime" type="HBoxContainer" parent="StatsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="CurrTimeLabel" type="Label" parent="StatsDisplay/CurrentTime"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Current:"
+
+[node name="CurrTimeValue" type="Label" parent="StatsDisplay/CurrentTime"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+
+[node name="BestTime" type="HBoxContainer" parent="StatsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="BestTimeLabel" type="Label" parent="StatsDisplay/BestTime"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Best: "
+horizontal_alignment = 2
+
+[node name="BestTimeValue" type="Label" parent="StatsDisplay/BestTime"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+
+[node name="AverageTime" type="HBoxContainer" parent="StatsDisplay"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="AvgTimeLabel" type="Label" parent="StatsDisplay/AverageTime"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Avg: "
+horizontal_alignment = 2
+
+[node name="AvgTimeValue" type="Label" parent="StatsDisplay/AverageTime"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="NewGame" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_kjhg6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_la8sq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o3dcf")
+text = "NEW GAME"
+
+[node name="SaveText" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_kjhg6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_la8sq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o3dcf")
+text = "SAVE QUOTE"
+
+[connection signal="pressed" from="Buttons/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Buttons/SaveText" to="." method="_on_save_text_pressed"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cknekm0ak1bku"]
+
+[ext_resource type="Script" uid="uid://cfxsxsusmc42j" path="res://scenes/SettingsPanel/SettingsPanel.gd" id="1_acape"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vajxm"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.961229, 0.961229, 0.961229, 1)
+
+[node name="SettingsContainer" type="MarginContainer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_top = 110
+script = ExtResource("1_acape")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NewGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vajxm")
+text = "New Game"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 110
+
+[connection signal="pressed" from="VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]

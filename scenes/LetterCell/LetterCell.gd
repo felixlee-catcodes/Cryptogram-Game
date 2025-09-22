@@ -14,6 +14,7 @@ func _ready():
 	InputManager.register_cell(self)
 	EventHub.inputs.text_input.connect(_on_text_input)
 	add_to_group(encoded_letter)
+	decoded_letter_input.editable = false
 	decoded_letter_input.focus_mode = Control.FOCUS_CLICK
 	decoded_letter_input.max_length = 1
 	encrypted_letter.append_text(encoded_letter)

@@ -2,6 +2,7 @@ extends PanelContainer
 
 @onready var timer_display = $UIContainer/TimerDisplay
 @onready var ui_container = $UIContainer
+@onready var settings : MenuButton = $UIContainer/Settings
 
 func _ready():
 	EventHub.ui_events.update_timer.connect(_update_timer_display)

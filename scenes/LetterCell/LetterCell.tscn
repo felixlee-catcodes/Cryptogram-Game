@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnob1urpjdvb6"]
+[gd_scene load_steps=3 format=3 uid="uid://bnob1urpjdvb6"]
 
 [ext_resource type="Script" uid="uid://bpgxshl176f85" path="res://scenes/LetterCell/LetterCell.gd" id="1_mr6lv"]
+[ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="1_v5lss"]
 
 [node name="LetterCell" type="Control"]
 custom_minimum_size = Vector2(40, 100)
@@ -16,6 +17,7 @@ offset_right = 20.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_v5lss")
 script = ExtResource("1_mr6lv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
