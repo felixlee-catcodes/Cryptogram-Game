@@ -32,6 +32,7 @@ alignment = 1
 custom_minimum_size = Vector2(40, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 0
+theme = ExtResource("1_v5lss")
 theme_override_colors/caret_color = Color(0, 0, 0, 0.0196078)
 theme_override_constants/minimum_character_width = 1
 theme_override_font_sizes/font_size = 32

@@ -3,7 +3,7 @@ extends Node
 var cell_in_focus : LetterCell = null
 var ordered_cells : Array = [LetterCell]
 var prev_cell_in_focus : LetterCell = null
-
+var letter_to_groups : Dictionary = {}
 
 func _ready():
 	EventHub.keys.keyboard_input.connect(_register_key)
@@ -16,6 +16,7 @@ func _input(event):
 		if code >= KEY_A and code <= KEY_Z:
 			var key = OS.get_keycode_string(code)
 			EventHub.keys.keyboard_input.emit(key)
+
 
 func register_cell(cell: LetterCell):
 	ordered_cells.append(cell)
@@ -56,6 +57,8 @@ func get_prev(cell: LetterCell) -> LetterCell:
 func _register_key(key_text):
 	if not cell_in_focus:
 		return
+	if not letter_to_groups.has(key_text):
+		pass
 	var line_edit = cell_in_focus.decoded_letter_input
 	if key_text == "Clear":
 		EventHub.inputs.text_input.emit(cell_in_focus, key_text)
@@ -72,17 +75,22 @@ func _register_key(key_text):
 
 
 func update_sister_cells(cell: LetterCell, key: String) -> void:
+	Log.pr("update_sister_cells called")
 	var group = cell.get_groups()[0]
 	get_tree().call_group(group, "_update_text", key)
 
 
 func highlight_sister_cells(group):
 	get_tree().call_group(group, "highlight_sister_cell")
+	Log.pr("highlight_sister_cells called")
 
 
 func _update_focused_cell(cell: LetterCell):
 	cell_in_focus = cell
 	prev_cell_in_focus = cell
+	
+	cell_in_focus.decoded_letter_input.grab_focus()
+	
 	var group = cell_in_focus.get_groups()[0]	
 	highlight_sister_cells(group)
 
