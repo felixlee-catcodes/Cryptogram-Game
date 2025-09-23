@@ -66,12 +66,18 @@ func _update_text(text: String) -> void:
 
 
 func highlight_sister_cell():
-	
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color("#5a9470")
 	self.decoded_letter_input.add_theme_stylebox_override("read_only", style)
-	Log.pr("highlight_sister_CELL called")
 
 
 func revert_unfocused_cells():
 	self.decoded_letter_input.remove_theme_stylebox_override("read_only")
+
+
+func warn_duplicated_letter():
+	encrypted_letter.add_theme_color_override("default_color", Color.RED)
+
+
+func undo_warn_duplicate():
+	encrypted_letter.add_theme_color_override("default_color", Color.BLACK)
