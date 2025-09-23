@@ -1,5 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://d2gisthngsrbm"]
+[gd_scene load_steps=58 format=3 uid="uid://d2gisthngsrbm"]
 
+[ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="1_dn6p0"]
 [ext_resource type="PackedScene" uid="uid://bpw8yv3kp17am" path="res://scenes/KeyboardButton/KeyboardButton.tscn" id="1_w4pwe"]
 [ext_resource type="Texture2D" uid="uid://cqgub22a4cv4j" path="res://assets/keyboard/black keys/black_key33.png" id="2_w4pwe"]
 [ext_resource type="Texture2D" uid="uid://c86pk8qoel2oq" path="res://assets/keyboard/black keys/black_key34.png" id="3_iocgc"]
@@ -56,6 +57,9 @@
 [ext_resource type="Texture2D" uid="uid://ct07rf0ncvg4c" path="res://assets/keyboard/black keys/black_key57.png" id="54_wcyyy"]
 [ext_resource type="Texture2D" uid="uid://d3vtoeyh3ssea" path="res://assets/keyboard/black keys/black_key58.png" id="55_tbhrm"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umbgi"]
+bg_color = Color(0.0980392, 0.0666667, 0.109804, 1)
+
 [node name="KeyboardPanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 300)
 anchors_preset = 12
@@ -66,6 +70,8 @@ offset_top = -214.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 10
+theme = ExtResource("1_dn6p0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_umbgi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

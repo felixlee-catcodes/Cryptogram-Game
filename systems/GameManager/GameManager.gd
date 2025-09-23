@@ -8,6 +8,7 @@ var current_cipher : Dictionary
 var solved_cells : Dictionary
 var elapsed_time : int
 var raw_data : Dictionary
+var hints_used : int = 0
 
 func _ready():
 	EventHub.inputs.text_input.connect(_update_progress)
@@ -59,7 +60,7 @@ func check_completion():
 		EventHub.game.game_over.emit(elapsed_time, current_puzzle)
 		update_player_stats(elapsed_time)
 		#Log.pr(SaveManager.stats.completion_record)
-		#QuoteApiManager.mark_quote_solved(raw_data)
+		QuoteApiManager.mark_quote_solved(raw_data)
 		solved_cells.clear()
 		
 		
@@ -79,13 +80,14 @@ func _on_get_hint():
 	var chosen_cell: LetterCell = empty_cells[randIdx]
 	var cipher_char = chosen_cell.encoded_letter
 	var cipher_group = chosen_cell.get_groups()[0]
-## compare cell's cipher to plaintext
+
 	var plain_text_char : String = current_cipher.find_key(cipher_char)
-	#EventHub.keys.keyboard_input.emit(plain_text_char)
-	Log.pr("cipher correct? ", current_cipher[plain_text_char] == cipher_char)
-	Log.pr("group: ", cipher_group)
+
 	get_tree().call_group(cipher_group, "_update_text", plain_text_char)
 	EventHub.inputs.text_input.emit(chosen_cell, plain_text_char)
+	
+	elapsed_time += 5
+	hints_used += 1
 ##
 ##
 ##

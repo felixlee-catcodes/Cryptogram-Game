@@ -5,6 +5,7 @@ extends Resource
 @export var completion_record : Array[Dictionary]
 @export var best_time : int
 @export var all_time_avg : int
+@export var hints_used : int
 
 func update_best_time(new_time: int):
 	if best_time == 0 or new_time < best_time:

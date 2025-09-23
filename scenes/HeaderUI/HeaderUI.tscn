@@ -6,13 +6,8 @@
 [ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="3_tfxx0"]
 [ext_resource type="Script" uid="uid://1dfltqej1qkh" path="res://scenes/HeaderUI/SettingsMenuButton.gd" id="4_sflaj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwb83"]
-bg_color = Color(0.298306, 0.566289, 0.559593, 1)
-border_width_bottom = 2
-border_color = Color(0.133333, 0.294118, 0.290196, 0.756863)
-shadow_color = Color(0.133333, 0.294118, 0.290196, 0.721569)
-shadow_size = 2
-shadow_offset = Vector2(0, 3)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfxx0"]
+bg_color = Color(0.099476, 0.065803, 0.109375, 1)
 
 [node name="HeaderUI" type="PanelContainer"]
 custom_minimum_size = Vector2(720, 110)
@@ -20,7 +15,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 110.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lwb83")
+theme_override_styles/panel = SubResource("StyleBoxFlat_tfxx0")
 script = ExtResource("1_6qeqc")
 
 [node name="UIContainer" type="HBoxContainer" parent="."]
@@ -36,6 +31,7 @@ texture_normal = ExtResource("1_2i62g")
 [node name="TimerDisplay" type="Label" parent="UIContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
+theme = ExtResource("3_tfxx0")
 theme_override_font_sizes/font_size = 50
 text = "00:00"
 horizontal_alignment = 1

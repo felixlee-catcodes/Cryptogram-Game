@@ -5,6 +5,9 @@ var is_focused : bool = false
 var has_text : bool = false
 
 @export var encoded_letter : String
+@export var base_color : Color
+@export var focus_color : Color
+@export var alt_focus_color : Color
 
 @onready var decoded_letter_input = $VBoxContainer/DecodedLetterInput
 @onready var encrypted_letter = $VBoxContainer/EncryptedLetter
@@ -25,7 +28,7 @@ func _ready():
 
 func set_focus_styling():
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color("#2f7571")
+	style.bg_color = focus_color
 	decoded_letter_input.add_theme_stylebox_override("focus", style)
 
 
@@ -67,11 +70,12 @@ func _update_text(text: String) -> void:
 	self.decoded_letter_input.text = text
 	self.has_text = true
 	self.remove_from_group("empty_cells")
+	play_input_animation()
 
 
 func highlight_sister_cell():
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color("#5a9470")
+	style.bg_color = alt_focus_color
 	self.decoded_letter_input.add_theme_stylebox_override("read_only", style)
 
 
@@ -89,3 +93,16 @@ func undo_warn_duplicate():
 
 func clear_cell():
 	self.decoded_letter_input.text = ""
+
+
+func play_input_animation() -> void:
+	var tween : Tween = create_tween()
+	tween.set_parallel(true)
+	
+	# scale pop
+	var base_size : int = decoded_letter_input.get_theme_default_font_size()
+	Log.pr(base_size)
+	tween.tween_property(decoded_letter_input, "theme_override_font_size", base_size + 10, 0.2)
+	tween.tween_property(decoded_letter_input, "theme_override_font_size", base_size, 0.15)
+	
+	

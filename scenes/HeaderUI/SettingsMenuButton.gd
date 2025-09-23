@@ -10,6 +10,8 @@ enum MenuItems {
 }
 
 var menu : PopupMenu
+var last_hint_time : float = 0.0
+var hint_cooldown : float = 5.0
 
 func _ready():
 	button_pressed = false
@@ -23,12 +25,13 @@ func _ready():
 	menu.id_pressed.connect(_on_id_pressed)
 
 func _on_id_pressed(id):
-	Log.pr("id: ", id)
-	
+	var now = Time.get_ticks_msec() / 1000.0
 	match id:
 		MenuItems.NEW_GAME:
 			EventHub.game.new_game.emit()
 		MenuItems.RESET_GAME:
 			EventHub.game.reset_game.emit()
 		MenuItems.GET_HINT: 
-			EventHub.game.get_hint.emit()
+			if now - last_hint_time >= hint_cooldown:
+				EventHub.game.get_hint.emit()
+				last_hint_time = now
