@@ -30,3 +30,5 @@ func _on_id_pressed(id):
 			EventHub.game.new_game.emit()
 		MenuItems.RESET_GAME:
 			EventHub.game.reset_game.emit()
+		MenuItems.GET_HINT: 
+			EventHub.game.get_hint.emit()

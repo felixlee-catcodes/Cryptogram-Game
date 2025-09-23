@@ -91,7 +91,6 @@ func _register_key(key_text):
 
 	# apply warning if duplicate:
 	if letter_to_groups[key_text].size() > 1:
-		Log.pr(letter_to_groups[key_text].size())
 		for g in letter_to_groups[key_text]:
 			get_tree().call_group(group, "warn_duplicated_letter")
 	else: 

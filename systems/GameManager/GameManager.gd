@@ -12,6 +12,7 @@ var raw_data : Dictionary
 func _ready():
 	EventHub.inputs.text_input.connect(_update_progress)
 	EventHub.game.reset_game.connect(_on_reset_game)
+	EventHub.game.get_hint.connect(_on_get_hint)
 
 #WHAT ARE SOME FUNC THE GAMEMANAGER NEEDS?
 func start_game():
@@ -70,14 +71,21 @@ func _on_reset_game():
 	get_tree().call_group("letter_cells", "clear_cell")
 
 ## GET HINT:
-## get list of empty cells
+
 func _on_get_hint():
-	var letterCells = get_tree().get_nodes_in_group("letter_cells")
-## pick a random cell
+	var empty_cells = get_tree().get_nodes_in_group("empty_cells")
+
+	var randIdx = randi_range(0, empty_cells.size() - 1)
+	var chosen_cell: LetterCell = empty_cells[randIdx]
+	var cipher_char = chosen_cell.encoded_letter
+	var cipher_group = chosen_cell.get_groups()[0]
 ## compare cell's cipher to plaintext
-## enter plaintext via signal so it updates sister cells
-##
-##
+	var plain_text_char : String = current_cipher.find_key(cipher_char)
+	#EventHub.keys.keyboard_input.emit(plain_text_char)
+	Log.pr("cipher correct? ", current_cipher[plain_text_char] == cipher_char)
+	Log.pr("group: ", cipher_group)
+	get_tree().call_group(cipher_group, "_update_text", plain_text_char)
+	EventHub.inputs.text_input.emit(chosen_cell, plain_text_char)
 ##
 ##
 ##

@@ -19,6 +19,7 @@ func _ready():
 	decoded_letter_input.max_length = 1
 	encrypted_letter.append_text(encoded_letter)
 	add_to_group("letter_cells")
+	add_to_group("empty_cells")
 	set_focus_styling()
 
 
@@ -32,8 +33,10 @@ func _on_text_input(cell: LetterCell, key):
 	if cell == self:
 		if key == "Clear":
 			has_text = false
+			self.add_to_group("empty_cells")
 		else: 
 			has_text = true
+			self.remove_from_group("empty_cells")
 
 
 func _on_decoded_letter_input_focus_entered():
@@ -63,6 +66,7 @@ func move_focus_to_prev():
 func _update_text(text: String) -> void:
 	self.decoded_letter_input.text = text
 	self.has_text = true
+	self.remove_from_group("empty_cells")
 
 
 func highlight_sister_cell():
@@ -81,6 +85,7 @@ func warn_duplicated_letter():
 
 func undo_warn_duplicate():
 	encrypted_letter.add_theme_color_override("default_color", Color.BLACK)
+
 
 func clear_cell():
 	self.decoded_letter_input.text = ""
