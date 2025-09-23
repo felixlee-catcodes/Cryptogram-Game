@@ -130,3 +130,4 @@ func _revert_focused_cells(_cell):
 
 func _on_reset_game():
 	letter_to_groups.clear()
+	get_tree().call_group("letter_cells", "undo_warn_duplicate")
