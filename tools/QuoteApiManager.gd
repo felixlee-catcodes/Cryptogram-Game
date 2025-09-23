@@ -3,7 +3,7 @@ extends Node
 @onready var http_request = $HTTPRequest
 
 const CACHE_PATH : String = "user://quote_cache.json"
-const MIN_CACHE_SIZE : int = 7
+const MIN_CACHE_SIZE : int = 15
 
 var URL : String = "https://zenquotes.io/api/quotes"
 var cached_quotes : Array = []

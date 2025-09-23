@@ -30,7 +30,7 @@ func save_stats() -> void:
 		Log.pr("save stats called")
 
 
-func record_solve(solve_time: int) -> void:
+func record_solve(solve_time: int, num_hints: int) -> void:
 	Log.pr("solve time: ", solve_time)
 	var date : String = "%d-%02d-%02d" % [
 		Time.get_datetime_dict_from_system()["year"],
@@ -42,5 +42,6 @@ func record_solve(solve_time: int) -> void:
 	stats.completion_record.append(record)
 	stats.all_time_avg_calc()
 	stats.total_games += 1
+	stats.hints_used += num_hints
 	stats.update_best_time(solve_time)
 	save_stats()

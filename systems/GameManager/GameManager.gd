@@ -57,22 +57,23 @@ func get_new_puzzle():
 func check_completion():
 	if solved_cells.size() == current_cipher.size():
 		timer.stop()
+		current_puzzle["hints_used"] = hints_used
 		EventHub.game.game_over.emit(elapsed_time, current_puzzle)
-		update_player_stats(elapsed_time)
+		update_player_stats(elapsed_time, hints_used)
 		#Log.pr(SaveManager.stats.completion_record)
 		QuoteApiManager.mark_quote_solved(raw_data)
 		solved_cells.clear()
 		
 		
-func update_player_stats(time: int):
-	SaveManager.record_solve(time)
+func update_player_stats(time: int, num_hints: int = 0):
+	SaveManager.record_solve(time, num_hints)
 
 
 func _on_reset_game():
 	get_tree().call_group("letter_cells", "clear_cell")
 
-## GET HINT:
 
+## GET HINT:
 func _on_get_hint():
 	var empty_cells = get_tree().get_nodes_in_group("empty_cells")
 
@@ -88,6 +89,3 @@ func _on_get_hint():
 	
 	elapsed_time += 5
 	hints_used += 1
-##
-##
-##

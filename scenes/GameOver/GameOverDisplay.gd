@@ -11,6 +11,7 @@ extends CenterContainer
 @onready var best_time_value = $VBoxContainer/StatsDisplay/BestTime/BestTimeValue
 @onready var avg_time_value = $VBoxContainer/StatsDisplay/AverageTime/AvgTimeValue
 
+@onready var hints_used = $VBoxContainer/HintsUsed
 @onready var quotes_left = $VBoxContainer/QuotesLeft
 
 var quote_book : QuoteBook
@@ -27,6 +28,7 @@ func _on_game_over(time, puzzle):
 	best_time_value.text = _convert_time(SaveManager.stats.best_time)
 	avg_time_value.text = _convert_time(SaveManager.stats.all_time_avg)
 	quotes_left.text = "Quotes left: %02d" % QuoteApiManager.cached_quotes.size()
+	hints_used.text = "Hints used: %02d" % puzzle["hints_used"]
 
 
 func _convert_time(time) -> String:
