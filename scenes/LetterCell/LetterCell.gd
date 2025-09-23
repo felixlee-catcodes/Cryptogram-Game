@@ -101,7 +101,6 @@ func play_input_animation() -> void:
 	
 	# scale pop
 	var base_size : int = decoded_letter_input.get_theme_default_font_size()
-	Log.pr(base_size)
 	tween.tween_property(decoded_letter_input, "theme_override_font_size", base_size + 10, 0.2)
 	tween.tween_property(decoded_letter_input, "theme_override_font_size", base_size, 0.15)
 	

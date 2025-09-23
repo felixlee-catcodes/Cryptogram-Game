@@ -9,6 +9,7 @@ func _ready():
 	EventHub.keys.keyboard_input.connect(_register_key)
 	EventHub.cells.cell_focused.connect(_update_focused_cell)
 	EventHub.cells.exit_focus.connect(_revert_focused_cells)
+	EventHub.game.reset_game.connect(_on_reset_game)
 
 
 func _input(event):
@@ -58,6 +59,7 @@ func get_prev(cell: LetterCell) -> LetterCell:
 func _register_key(key_text):
 	if not cell_in_focus:
 		return
+	SoundManager.play_typing()
 
 	var line_edit = cell_in_focus.decoded_letter_input
 	var prev_text = line_edit.text
@@ -124,3 +126,7 @@ func _update_focused_cell(cell: LetterCell):
 
 func _revert_focused_cells(_cell):
 	get_tree().call_group(cell_in_focus.get_groups()[0], "revert_unfocused_cells")
+
+
+func _on_reset_game():
+	letter_to_groups.clear()

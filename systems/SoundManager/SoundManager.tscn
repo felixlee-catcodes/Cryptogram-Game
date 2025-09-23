@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d153fim8lu8sq"]
+
+[ext_resource type="Script" uid="uid://bp2gqvyga8nd" path="res://systems/SoundManager/SoundManager.gd" id="1_628xo"]
+[ext_resource type="AudioStream" uid="uid://mjudat472pqu" path="res://assets/sfx/mech-keyboard-02.mp3" id="2_0u5h5"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_628xo")
+typing_sfx_stream = ExtResource("2_0u5h5")

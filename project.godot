@@ -24,6 +24,7 @@ EventHub="*res://systems/EventHub/EventHub.tscn"
 InputManager="*res://systems/InputManager/InputManager.tscn"
 PuzzleManager="*res://systems/PuzzleManager/PuzzleManager.tscn"
 SaveManager="*res://systems/SaveManager/SaveManager.gd"
+SoundManager="*res://systems/SoundManager/SoundManager.tscn"
 
 [display]
 
@@ -31,6 +32,7 @@ window/size/viewport_width=720
 window/size/viewport_height=1280
 window/size/initial_position_type=2
 window/size/always_on_top=true
+window/stretch/mode="viewport"
 window/handheld/orientation=1
 
 [editor]

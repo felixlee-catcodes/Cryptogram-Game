@@ -14,10 +14,9 @@ bg_color = Color(0.907073, 0.907073, 0.907073, 1)
 script = ExtResource("1_vcsgt")
 
 [node name="KeyboardPanelContainer" parent="." instance=ExtResource("1_elqb8")]
-offset_left = 6.0
-offset_top = -301.0
+offset_top = -306.0
 offset_right = 1.0
-offset_bottom = -1.0
+offset_bottom = 2.0
 
 [node name="EncryptedMessageDisplay" type="PanelContainer" parent="."]
 clip_contents = true
@@ -30,6 +29,7 @@ offset_top = -529.0
 offset_bottom = 335.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_rvslj")
 
 [node name="QuoteScene" parent="EncryptedMessageDisplay" instance=ExtResource("3_rarhs")]
@@ -42,6 +42,7 @@ layout_mode = 2
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverDisplay" parent="UILayer" instance=ExtResource("6_c01mt")]
+offset_bottom = 1.0
 
 [node name="HeaderUI" parent="UILayer" instance=ExtResource("5_vcsgt")]
 offset_left = -3.0
