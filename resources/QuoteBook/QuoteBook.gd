@@ -21,15 +21,15 @@ func save() -> void:
 
 func load_book():
 	Log.pr("Load quote book")
-	#var loaded = ResourceLoader.load(SAVE_PATH) as QuoteBook
-	#if loaded:
-		#Log.pr("existing boiok found and loaded")
-		#return loaded
-	#else: 
-		#var new_book = QuoteBook.new()
-		#new_book.save()
-		#Log.pr("no existing book found; new book created")
-		#return new_book
+	var loaded = ResourceLoader.load(SAVE_PATH) as QuoteBook
+	if loaded:
+		Log.pr("existing boiok found and loaded")
+		return loaded
+	else: 
+		var new_book = QuoteBook.new()
+		new_book.save()
+		Log.pr("no existing book found; new book created")
+		return new_book
 
 
 func add_quote(text: String, author: String, solve_time: String) -> void:

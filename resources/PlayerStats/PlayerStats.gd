@@ -19,7 +19,7 @@ func all_time_avg_calc() -> int:
 	Log.pr("calculate avg called")
 	var total_time : int = 0
 	for record in completion_record:
-		record["time"] += total_time
+		total_time += record["time"]
 	all_time_avg = int(total_time/completion_record.size())
 	
 	return all_time_avg

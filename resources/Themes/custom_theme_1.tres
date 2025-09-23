@@ -34,3 +34,4 @@ PopupMenu/font_sizes/font_separator_size = 28
 PopupMenu/font_sizes/font_size = 32
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_qapan")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_tyqih")
+VBoxContainer/constants/separation = 30

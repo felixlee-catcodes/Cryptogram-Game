@@ -26,6 +26,7 @@ class UserInterfaceEvents:
 
 
 class GameEvents:
-	signal game_over(time)
+	signal game_over(time, solved_puzzle)
 	signal new_game
 	signal reset_game
+	signal get_hint

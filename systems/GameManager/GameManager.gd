@@ -15,6 +15,7 @@ func _ready():
 
 #WHAT ARE SOME FUNC THE GAMEMANAGER NEEDS?
 func start_game():
+	InputManager.letter_to_groups.clear()
 	timer.start()
 
 
@@ -54,7 +55,7 @@ func get_new_puzzle():
 func check_completion():
 	if solved_cells.size() == current_cipher.size():
 		timer.stop()
-		EventHub.game.game_over.emit(elapsed_time)
+		EventHub.game.game_over.emit(elapsed_time, current_puzzle)
 		update_player_stats(elapsed_time)
 		#Log.pr(SaveManager.stats.completion_record)
 		#QuoteApiManager.mark_quote_solved(raw_data)
@@ -67,3 +68,16 @@ func update_player_stats(time: int):
 
 func _on_reset_game():
 	get_tree().call_group("letter_cells", "clear_cell")
+
+## GET HINT:
+## get list of empty cells
+func _on_get_hint():
+	var letterCells = get_tree().get_nodes_in_group("letter_cells")
+## pick a random cell
+## compare cell's cipher to plaintext
+## enter plaintext via signal so it updates sister cells
+##
+##
+##
+##
+##

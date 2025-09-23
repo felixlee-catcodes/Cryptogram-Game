@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://guasebrnvr6r"]
+[gd_scene load_steps=6 format=3 uid="uid://guasebrnvr6r"]
 
 [ext_resource type="Script" uid="uid://cge5j2vnp37q" path="res://scenes/GameOver/GameOverDisplay.gd" id="1_apt3b"]
+[ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="2_ru2gw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjhg6"]
 content_margin_left = 10.0
@@ -47,52 +48,56 @@ shadow_color = Color(0.0425717, 0.272998, 0.30887, 0.796078)
 shadow_size = 3
 shadow_offset = Vector2(0, 1)
 
-[node name="GameOverDisplay" type="VBoxContainer"]
+[node name="GameOverDisplay" type="CenterContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
-alignment = 1
+theme = ExtResource("2_ru2gw")
 script = ExtResource("1_apt3b")
 
-[node name="SolvedQuote" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("2_ru2gw")
+
+[node name="SolvedQuote" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 42
+horizontal_alignment = 3
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="StatsDisplay" type="VBoxContainer" parent="."]
+[node name="StatsDisplay" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="CurrentTime" type="HBoxContainer" parent="StatsDisplay"]
+[node name="CurrentTime" type="HBoxContainer" parent="VBoxContainer/StatsDisplay"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="CurrTimeLabel" type="Label" parent="StatsDisplay/CurrentTime"]
+[node name="CurrTimeLabel" type="Label" parent="VBoxContainer/StatsDisplay/CurrentTime"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Current:"
 
-[node name="CurrTimeValue" type="Label" parent="StatsDisplay/CurrentTime"]
+[node name="CurrTimeValue" type="Label" parent="VBoxContainer/StatsDisplay/CurrentTime"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "00:00"
 
-[node name="BestTime" type="HBoxContainer" parent="StatsDisplay"]
+[node name="BestTime" type="HBoxContainer" parent="VBoxContainer/StatsDisplay"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="BestTimeLabel" type="Label" parent="StatsDisplay/BestTime"]
+[node name="BestTimeLabel" type="Label" parent="VBoxContainer/StatsDisplay/BestTime"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -100,18 +105,18 @@ theme_override_font_sizes/font_size = 40
 text = "Best: "
 horizontal_alignment = 2
 
-[node name="BestTimeValue" type="Label" parent="StatsDisplay/BestTime"]
+[node name="BestTimeValue" type="Label" parent="VBoxContainer/StatsDisplay/BestTime"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "00:00"
 
-[node name="AverageTime" type="HBoxContainer" parent="StatsDisplay"]
+[node name="AverageTime" type="HBoxContainer" parent="VBoxContainer/StatsDisplay"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="AvgTimeLabel" type="Label" parent="StatsDisplay/AverageTime"]
+[node name="AvgTimeLabel" type="Label" parent="VBoxContainer/StatsDisplay/AverageTime"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -119,18 +124,18 @@ theme_override_font_sizes/font_size = 40
 text = "Avg: "
 horizontal_alignment = 2
 
-[node name="AvgTimeValue" type="Label" parent="StatsDisplay/AverageTime"]
+[node name="AvgTimeValue" type="Label" parent="VBoxContainer/StatsDisplay/AverageTime"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "00:00"
 
-[node name="Buttons" type="HBoxContainer" parent="."]
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="NewGame" type="Button" parent="Buttons"]
+[node name="NewGame" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/hover = SubResource("StyleBoxFlat_kjhg6")
@@ -138,7 +143,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_la8sq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_o3dcf")
 text = "NEW GAME"
 
-[node name="SaveText" type="Button" parent="Buttons"]
+[node name="SaveText" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/hover = SubResource("StyleBoxFlat_kjhg6")
@@ -146,5 +151,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_la8sq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_o3dcf")
 text = "SAVE QUOTE"
 
-[connection signal="pressed" from="Buttons/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="Buttons/SaveText" to="." method="_on_save_text_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/SaveText" to="." method="_on_save_text_pressed"]

@@ -1,15 +1,15 @@
-extends VBoxContainer
+extends CenterContainer
 #GAME OVER SCENE
 
 # need access to finished puzzle data: author, quote, solve -> send via signal?
 @export var finished_puzzle : Dictionary
 # need access to stats: best and average times
-@onready var solved_quote = $SolvedQuote
+@onready var solved_quote = $VBoxContainer/SolvedQuote
 
 # need reference to the quote book for saving@onready var curr_time_label = $StatsDisplay/CurrentTime/CurrTimeLabel
-@onready var curr_time_value = $StatsDisplay/CurrentTime/CurrTimeValue
-@onready var best_time_value = $StatsDisplay/BestTime/BestTimeValue
-@onready var avg_time_value = $StatsDisplay/AverageTime/AvgTimeValue
+@onready var curr_time_value = $VBoxContainer/StatsDisplay/CurrentTime/CurrTimeValue
+@onready var best_time_value = $VBoxContainer/StatsDisplay/BestTime/BestTimeValue
+@onready var avg_time_value = $VBoxContainer/StatsDisplay/AverageTime/AvgTimeValue
 
 var quote_book : QuoteBook
 
@@ -18,7 +18,7 @@ func _ready():
 	quote_book = QuoteBook.new().load_book()
 
 
-func _on_game_over(puzzle, time):
+func _on_game_over(time, puzzle):
 	finished_puzzle = puzzle
 	solved_quote.text = puzzle["plainText"]
 	curr_time_value.text = _convert_time(time)
