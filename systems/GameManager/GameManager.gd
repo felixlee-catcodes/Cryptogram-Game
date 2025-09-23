@@ -11,6 +11,7 @@ var raw_data : Dictionary
 
 func _ready():
 	EventHub.inputs.text_input.connect(_update_progress)
+	EventHub.game.reset_game.connect(_on_reset_game)
 
 #WHAT ARE SOME FUNC THE GAMEMANAGER NEEDS?
 func start_game():
@@ -62,3 +63,7 @@ func check_completion():
 		
 func update_player_stats(time: int):
 	SaveManager.record_solve(time)
+
+
+func _on_reset_game():
+	get_tree().call_group("letter_cells", "clear_cell")

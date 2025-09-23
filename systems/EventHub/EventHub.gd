@@ -28,3 +28,4 @@ class UserInterfaceEvents:
 class GameEvents:
 	signal game_over(time)
 	signal new_game
+	signal reset_game

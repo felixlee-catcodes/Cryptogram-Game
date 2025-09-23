@@ -56,7 +56,6 @@ func get_prev(cell: LetterCell) -> LetterCell:
 
 
 func _register_key(key_text):
-	Log.pr(letter_to_groups)
 	if not cell_in_focus:
 		return
 
@@ -91,7 +90,6 @@ func _register_key(key_text):
 	letter_to_groups[key_text].append(group)
 
 	# apply warning if duplicate:
-	Log.pr(letter_to_groups[key_text].size())
 	if letter_to_groups[key_text].size() > 1:
 		Log.pr(letter_to_groups[key_text].size())
 		for g in letter_to_groups[key_text]:
@@ -107,7 +105,6 @@ func _register_key(key_text):
 
 
 func update_sister_cells(cell: LetterCell, key: String) -> void:
-	Log.pr("update_sister_cells called")
 	var group = cell.get_groups()[0]
 	get_tree().call_group(group, "_update_text", key)
 

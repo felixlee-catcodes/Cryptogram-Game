@@ -81,3 +81,6 @@ func warn_duplicated_letter():
 
 func undo_warn_duplicate():
 	encrypted_letter.add_theme_color_override("default_color", Color.BLACK)
+
+func clear_cell():
+	self.decoded_letter_input.text = ""
