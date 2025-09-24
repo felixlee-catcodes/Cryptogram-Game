@@ -1,9 +1,10 @@
 extends Node
 
 var cell_in_focus : LetterCell = null
-var ordered_cells : Array = [LetterCell]
+var ordered_cells : Array[LetterCell] = []
 var prev_cell_in_focus : LetterCell = null
 var letter_to_groups : Dictionary = {}
+
 
 func _ready():
 	EventHub.keys.keyboard_input.connect(_register_key)
@@ -26,6 +27,7 @@ func register_cell(cell: LetterCell):
 
 func get_next_empty(cell: LetterCell) -> LetterCell:
 	var idx = ordered_cells.find(cell)
+	Log.pr("what cell is going into get-next-empty?", cell.encoded_letter)
 	if idx == -1:
 		return null
 	for i in range(idx + 1, ordered_cells.size()):
@@ -34,6 +36,7 @@ func get_next_empty(cell: LetterCell) -> LetterCell:
 			continue
 		if candidate.has_text:
 			continue
+		Log.pr("next empty idx: ", i)
 		return candidate
 	return null
 
@@ -125,9 +128,23 @@ func _update_focused_cell(cell: LetterCell):
 
 
 func _revert_focused_cells(_cell):
-	get_tree().call_group(cell_in_focus.get_groups()[0], "revert_unfocused_cells")
+	if not cell_in_focus:
+		Log.pr("no cell in focus post reset")
+	else: get_tree().call_group(cell_in_focus.get_groups()[0], "revert_unfocused_cells")
 
 
 func _on_reset_game():
 	letter_to_groups.clear()
 	get_tree().call_group("letter_cells", "undo_warn_duplicate")
+	get_tree().call_group("letter_cells", "revert_unfocused_cells")
+	
+	cell_in_focus = null
+	prev_cell_in_focus = null
+	
+	if ordered_cells.size() > 0:
+		for cell in ordered_cells:
+			cell.has_text = false
+		Log.pr("1st ordered cell: ", ordered_cells[0])
+		cell_in_focus = ordered_cells[0]
+		prev_cell_in_focus = ordered_cells[0]
+		ordered_cells[0].decoded_letter_input.grab_focus()

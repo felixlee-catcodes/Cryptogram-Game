@@ -55,8 +55,10 @@ func _on_decoded_letter_input_focus_exited():
 
 
 func move_focus_to_next():
+	Log.pr("what is SELF pointing to? ", self.encoded_letter)
 	var next_cell : LetterCell = InputManager.get_next_empty(self)
 	if next_cell:
+		Log.pr("next cell: ", next_cell.encoded_letter)
 		next_cell.decoded_letter_input.grab_focus()
 
 
@@ -100,8 +102,8 @@ func play_input_animation() -> void:
 	tween.set_parallel(true)
 	
 	# scale pop
-	var base_size : int = decoded_letter_input.get_theme_default_font_size()
-	tween.tween_property(decoded_letter_input, "theme_override_font_size", base_size + 10, 0.2)
-	tween.tween_property(decoded_letter_input, "theme_override_font_size", base_size, 0.15)
+	var base_size : int = 32
+	tween.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size + 10, 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size, 0.15)
 	
 	

@@ -28,7 +28,7 @@ func _on_new_game():
 	get_tree().reload_current_scene()
 
 
-func _on_game_over(time, puzzle):
+func _on_game_over(_time, puzzle):
 	quote_scene.visible = false
 	game_over_display.finished_puzzle = puzzle
 	game_over_display.visible = true
