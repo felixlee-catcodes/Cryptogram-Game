@@ -14,17 +14,25 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("ui_right"):
+	if event.is_action_pressed("ui_up"):
 		ThemeManager.next_theme()
-	if event.is_action_pressed("ui_left"):
+	if event.is_action_pressed("ui_down"):
 		ThemeManager.prev_theme()
 		
 	if event is InputEventKey and event.pressed:
 		var code = event.keycode
 		if code >= KEY_A and code <= KEY_Z:
 			var key = OS.get_keycode_string(code)
+			Log.pr("key? ", key)
 			EventHub.keys.keyboard_input.emit(key)
-
+		if event.is_action_pressed("ui_text_backspace"):
+			EventHub.keys.keyboard_input.emit("Clear")
+		if event.is_action_pressed("ui_right"):
+			if cell_in_focus:
+				cell_in_focus.move_focus_to_next()
+		if event.is_action_pressed("ui_left"):
+			if cell_in_focus:
+				cell_in_focus.move_focus_to_prev()
 
 func register_cell(cell: LetterCell):
 	ordered_cells.append(cell)
@@ -32,7 +40,6 @@ func register_cell(cell: LetterCell):
 
 func get_next_empty(cell: LetterCell) -> LetterCell:
 	var idx = ordered_cells.find(cell)
-	Log.pr("what cell is going into get-next-empty?", cell.encoded_letter)
 	if idx == -1:
 		return null
 	for i in range(idx + 1, ordered_cells.size()):
@@ -41,7 +48,6 @@ func get_next_empty(cell: LetterCell) -> LetterCell:
 			continue
 		if candidate.has_text:
 			continue
-		Log.pr("next empty idx: ", i)
 		return candidate
 	return null
 
@@ -65,6 +71,7 @@ func get_prev(cell: LetterCell) -> LetterCell:
 
 
 func _register_key(key_text):
+	Log.pr("key text: ",key_text)
 	if not cell_in_focus:
 		return
 	SoundManager.play_typing()
@@ -148,7 +155,8 @@ func _on_reset_game():
 	
 	if ordered_cells.size() > 0:
 		for cell in ordered_cells:
-			cell.has_text = false
+			if cell:
+				cell.has_text = false
 		Log.pr("1st ordered cell: ", ordered_cells[0])
 		cell_in_focus = ordered_cells[0]
 		prev_cell_in_focus = ordered_cells[0]
