@@ -55,10 +55,8 @@ func _on_decoded_letter_input_focus_exited():
 
 
 func move_focus_to_next():
-	Log.pr("what is SELF pointing to? ", self.encoded_letter)
 	var next_cell : LetterCell = InputManager.get_next_empty(self)
 	if next_cell:
-		Log.pr("next cell: ", next_cell.encoded_letter)
 		next_cell.decoded_letter_input.grab_focus()
 
 

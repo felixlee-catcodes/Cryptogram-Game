@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=2 format=3 uid="uid://dfug1qfaqqy6n"]
+
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_8chdd"]
+
+[resource]
+script = ExtResource("1_8chdd")
+base_color = Color(0, 0.745098, 0.568627, 1)
+focus_color = Color(0.94902, 1, 0.4, 1)
+alt_focus_color = Color(0.603922, 0.941176, 0.537255, 1)
+basic_ui_color = Color(0.0313726, 0.333333, 0.384314, 1)
+panel_color = Color(0, 0.113725, 0.164706, 1)
+addtl_accent_color = Color(0.219608, 0.847059, 0.556863, 1)
+font_color = Color(0, 0.04375, 0.0305301, 1)
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"
