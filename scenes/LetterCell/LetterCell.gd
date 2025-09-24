@@ -8,6 +8,7 @@ var has_text : bool = false
 @export var base_color : Color
 @export var focus_color : Color
 @export var alt_focus_color : Color
+@export var font_color : Color
 
 @onready var decoded_letter_input = $VBoxContainer/DecodedLetterInput
 @onready var encrypted_letter = $VBoxContainer/EncryptedLetter
@@ -34,6 +35,7 @@ func _on_theme_changed(theme : ColorTheme):
 	base_color = theme.base_color
 	focus_color = theme.focus_color
 	alt_focus_color = theme.alt_focus_color
+	font_color = theme.font_color
 	
 
 func set_focus_styling():
@@ -113,12 +115,19 @@ func clear_cell():
 
 
 func play_input_animation() -> void:
-	var tween : Tween = create_tween()
-	tween.set_parallel(true)
+	var t_font : Tween = create_tween()
+	#t_font.set_parallel(true)
 	
 	# scale pop
 	var base_size : int = 32
-	tween.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size + 10, 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size, 0.15)
+	t_font.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size + 10, 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t_font.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size, 0.15)
+	
+	var t_color : Tween = create_tween()
+	
+	t_color.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", font_color, 0.08)
+	t_color.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", alt_focus_color, 0.08)
+	
+	
 	
 	
