@@ -31,7 +31,6 @@ func save_stats() -> void:
 
 
 func record_solve(solve_time: int, num_hints: int) -> void:
-	Log.pr("solve time: ", solve_time)
 	var date : String = "%d-%02d-%02d" % [
 		Time.get_datetime_dict_from_system()["year"],
 		Time.get_datetime_dict_from_system()["month"], 
