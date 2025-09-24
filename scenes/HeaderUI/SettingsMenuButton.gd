@@ -6,6 +6,7 @@ enum MenuItems {
 	RESET_GAME, 
 	GET_HINT,
 	NEW_GAME, 
+	CHANGE_THEME,
 	QUIT_GAME
 }
 
@@ -20,6 +21,7 @@ func _ready():
 	menu.add_item("Reset Game", MenuItems.RESET_GAME)
 	menu.add_item("Get Hint", MenuItems.GET_HINT)
 	menu.add_item("New Game", MenuItems.NEW_GAME)
+	menu.add_item("Switch Theme", MenuItems.CHANGE_THEME)
 	menu.add_item("Quit Game", MenuItems.QUIT_GAME)
 	menu.hide_on_item_selection = false
 	menu.id_pressed.connect(_on_id_pressed)
@@ -35,3 +37,5 @@ func _on_id_pressed(id):
 			if now - last_hint_time >= hint_cooldown:
 				EventHub.game.get_hint.emit()
 				last_hint_time = now
+		MenuItems.CHANGE_THEME:
+			ThemeManager.next_theme()

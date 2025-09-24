@@ -14,6 +14,11 @@ func _ready():
 
 
 func _input(event):
+	if event.is_action_pressed("ui_right"):
+		ThemeManager.next_theme()
+	if event.is_action_pressed("ui_left"):
+		ThemeManager.prev_theme()
+		
 	if event is InputEventKey and event.pressed:
 		var code = event.keycode
 		if code >= KEY_A and code <= KEY_Z:

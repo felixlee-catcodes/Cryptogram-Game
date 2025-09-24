@@ -14,6 +14,10 @@ var has_text : bool = false
 
 
 func _ready():
+	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
+	if ThemeManager.active_theme != null:
+		_on_theme_changed(ThemeManager.active_theme)
+		
 	InputManager.register_cell(self)
 	EventHub.inputs.text_input.connect(_on_text_input)
 	add_to_group(encoded_letter)
@@ -26,10 +30,20 @@ func _ready():
 	set_focus_styling()
 
 
+func _on_theme_changed(theme : ColorTheme):
+	base_color = theme.base_color
+	focus_color = theme.focus_color
+	alt_focus_color = theme.alt_focus_color
+	
+
 func set_focus_styling():
-	var style = StyleBoxFlat.new()
-	style.bg_color = focus_color
-	decoded_letter_input.add_theme_stylebox_override("focus", style)
+	var focus_style = StyleBoxFlat.new()
+	focus_style.bg_color = focus_color
+	decoded_letter_input.add_theme_stylebox_override("focus", focus_style)
+	
+	var normal_style = StyleBoxFlat.new()
+	normal_style.bg_color = base_color
+	decoded_letter_input.add_theme_stylebox_override("read_only", normal_style)
 
 
 func _on_text_input(cell: LetterCell, key):
@@ -81,6 +95,9 @@ func highlight_sister_cell():
 
 func revert_unfocused_cells():
 	self.decoded_letter_input.remove_theme_stylebox_override("read_only")
+	var normal_style = StyleBoxFlat.new()
+	normal_style.bg_color = base_color
+	decoded_letter_input.add_theme_stylebox_override("read_only", normal_style)
 
 
 func warn_duplicated_letter():
