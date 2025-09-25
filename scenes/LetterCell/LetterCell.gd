@@ -22,10 +22,12 @@ func _ready():
 	InputManager.register_cell(self)
 	EventHub.inputs.text_input.connect(_on_text_input)
 	add_to_group(encoded_letter)
+
 	decoded_letter_input.editable = false
 	decoded_letter_input.focus_mode = Control.FOCUS_CLICK
 	decoded_letter_input.max_length = 1
 	encrypted_letter.append_text(encoded_letter)
+
 	add_to_group("letter_cells")
 	add_to_group("empty_cells")
 	set_focus_styling()
@@ -36,13 +38,13 @@ func _on_theme_changed(theme : ColorTheme):
 	focus_color = theme.focus_color
 	alt_focus_color = theme.alt_focus_color
 	font_color = theme.font_color
-	
+
 
 func set_focus_styling():
 	var focus_style = StyleBoxFlat.new()
 	focus_style.bg_color = focus_color
 	decoded_letter_input.add_theme_stylebox_override("focus", focus_style)
-	
+
 	var normal_style = StyleBoxFlat.new()
 	normal_style.bg_color = base_color
 	decoded_letter_input.add_theme_stylebox_override("read_only", normal_style)
@@ -134,7 +136,3 @@ func play_input_animation() -> void:
 	
 	#t_color.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", font_color, 0.08)
 	#t_color.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", alt_focus_color, 0.08)
-	
-	
-	
-	

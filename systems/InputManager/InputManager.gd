@@ -18,17 +18,21 @@ func _input(event):
 		ThemeManager.next_theme()
 	if event.is_action_pressed("ui_down"):
 		ThemeManager.prev_theme()
-		
+
 	if event is InputEventKey and event.pressed:
 		var code = event.keycode
 		if code >= KEY_A and code <= KEY_Z:
 			var key = OS.get_keycode_string(code)
 			EventHub.keys.keyboard_input.emit(key)
+			EventHub.inputs.simulate_input.emit(key)
+
 		if event.is_action_pressed("ui_text_backspace"):
 			EventHub.keys.keyboard_input.emit("Clear")
+			Log.pr(prev_cell_in_focus.decoded_letter_input.text)
 		if event.is_action_pressed("ui_right"):
 			if cell_in_focus:
 				cell_in_focus.move_focus_to_next()
+
 		if event.is_action_pressed("ui_left"):
 			if cell_in_focus:
 				cell_in_focus.move_focus_to_prev()
@@ -78,41 +82,48 @@ func _register_key(key_text):
 	var line_edit = cell_in_focus.decoded_letter_input
 	var prev_text = line_edit.text
 	var group = cell_in_focus.get_groups()[0]
-	
-	# remove old mapping if text is changing:
+
+
+	if prev_text != "" and key_text != prev_text:
+		EventHub.inputs.input_changed.emit(prev_text)
+
+	## remove old mapping if text is changing:
 	if prev_text != "" and letter_to_groups.has(prev_text):
 		letter_to_groups[prev_text].erase(group)
-		
+
 		if letter_to_groups[prev_text].size() == 1:
-			#only 1 group left, clear warning:
+			##only 1 group left, clear warning:
 			var lone_group = letter_to_groups[prev_text][0]
 			get_tree().call_group(lone_group, "undo_warn_duplicate")
-		
-		# no groups left, clear entry
+
+		## no groups left, clear entry
 		if letter_to_groups[prev_text].is_empty():
 			letter_to_groups.erase(prev_text)
-		
+
 	if key_text == "Clear":
+		Log.pr("previous input: ", prev_cell_in_focus.decoded_letter_input.text)
+		
 		EventHub.inputs.text_input.emit(cell_in_focus, key_text)
+		EventHub.inputs.input_changed.emit(prev_text)
 		line_edit.text = ""
 		cell_in_focus.decoded_letter_input.grab_focus()
 		update_sister_cells(cell_in_focus, "")
 		return
 
-	# add new mapping:
+	## add new mapping:
 	line_edit.text = key_text
 	if not letter_to_groups.has(key_text):
 		letter_to_groups[key_text] = []
 	letter_to_groups[key_text].append(group)
 
-	# apply warning if duplicate:
+	## apply warning if duplicate:
 	if letter_to_groups[key_text].size() > 1:
 		for g in letter_to_groups[key_text]:
 			get_tree().call_group(group, "warn_duplicated_letter")
 	else: 
 		get_tree().call_group(group, "undo_warn_duplicate")
-		
-	# propagate event
+
+	## propagate event
 	EventHub.inputs.text_input.emit(cell_in_focus, key_text)
 	update_sister_cells(cell_in_focus, key_text)
 	line_edit.grab_focus()

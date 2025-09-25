@@ -254,6 +254,7 @@ key = "M"
 
 [node name="ClearInput" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
 layout_mode = 2
+toggle_mode = false
 unpressed_png = ExtResource("54_wcyyy")
 pressed_png = ExtResource("55_tbhrm")
 key = "Clear"

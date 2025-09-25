@@ -19,6 +19,8 @@ class KeyboardEvents:
 
 class InputEvents:
 	signal text_input(cell: LetterCell, key: String)
+	signal input_changed(key: String)
+	signal simulate_input(key: String)
 
 
 class UserInterfaceEvents: 

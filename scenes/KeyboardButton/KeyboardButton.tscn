@@ -17,7 +17,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 size_flags_stretch_ratio = 0.0
+toggle_mode = true
 stretch_mode = 0
 script = ExtResource("1_1mqtu")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

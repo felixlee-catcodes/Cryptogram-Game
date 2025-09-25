@@ -80,11 +80,11 @@ func get_new_puzzle():
 	return puzzle_data
 
 func _on_check_game():
-	#Log.prn("incorrect cells: ", get_incorrect_cells())
 	var incorrect_cells = get_incorrect_cells()
 	for c in incorrect_cells:
 		get_tree().call_group(c, "show_incorrect")
-	
+
+
 func check_completion():
 	if cell_states.size() == current_cipher.size():
 		timer.stop()
