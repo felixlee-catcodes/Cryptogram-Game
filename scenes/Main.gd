@@ -5,13 +5,29 @@ extends Node
 @onready var quote_scene = %QuoteScene
 @onready var encrypted_message_display = $EncryptedMessageDisplay
 @onready var game_over_display = $UILayer/GameOverDisplay
+@onready var keyboard_panel_container : PanelContainer = $KeyboardPanelContainer
+@export var keyboard_panel_color : Color
 
 func _ready():
+	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
+	if ThemeManager.active_theme != null:
+		_on_theme_changed(ThemeManager.active_theme)
+		
+	set_panel_styling()
 	game_over_display.visible = false
 	EventHub.game.new_game.connect(_on_new_game)
 	EventHub.game.game_over.connect(_on_game_over)
 	setup_puzzle()
 	game_manager.start_game()
+
+
+func set_panel_styling() -> void:
+	var style = StyleBoxFlat.new()
+	style.bg_color = keyboard_panel_color
+	keyboard_panel_container.add_theme_stylebox_override("panel", style)
+	
+func _on_theme_changed(theme: ColorTheme):
+	keyboard_panel_color = theme.panel_color
 
 
 func setup_puzzle():

@@ -10,12 +10,12 @@ func _ready():
 	#Log.pr("load player stats")
 
 func load_stats() -> void:
-	Log.pr("load stats called")
+	#Log.pr("load stats called")
 	stats = load(SAVE_PATH) as PlayerStats
 	if not stats:
 		stats = PlayerStats.new()
 		save_stats()
-	Log.pr("stats loaded? ", stats.total_games)
+	#Log.pr("stats loaded? ", stats.total_games)
 
 func save_stats() -> void:
 	var dir := DirAccess.open("user://")

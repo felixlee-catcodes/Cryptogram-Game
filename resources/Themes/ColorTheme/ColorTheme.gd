@@ -1,6 +1,7 @@
 extends Resource
 class_name ColorTheme
 
+@export var theme_name : String
 @export var base_color : Color
 @export var focus_color : Color
 @export var alt_focus_color : Color

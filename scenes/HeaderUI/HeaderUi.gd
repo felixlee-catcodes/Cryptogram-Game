@@ -9,6 +9,7 @@ func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
+		
 	set_header_styling()
 	EventHub.ui_events.update_timer.connect(_update_timer_display)
 	EventHub.game.get_hint.connect(_on_get_hint)
@@ -21,7 +22,7 @@ func _on_theme_changed(_theme : ColorTheme):
 func set_header_styling():
 	var style = StyleBoxFlat.new()
 	style.bg_color = header_color
-	self.add_theme_stylebox_override("bg_color", style)
+	self.add_theme_stylebox_override("panel", style)
 
 
 func _on_get_hint() -> void:

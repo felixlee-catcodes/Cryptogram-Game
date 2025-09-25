@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu2j1q7hqlx4u"]
+[gd_scene load_steps=6 format=3 uid="uid://cu2j1q7hqlx4u"]
 
 [ext_resource type="Texture2D" uid="uid://ccfoe21ry6gvt" path="res://assets/ui-icons/account_circle_100.png" id="1_2i62g"]
 [ext_resource type="Script" uid="uid://3rlp8fhn242" path="res://scenes/HeaderUI/HeaderUi.gd" id="1_6qeqc"]
@@ -6,16 +6,12 @@
 [ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="3_tfxx0"]
 [ext_resource type="Script" uid="uid://1dfltqej1qkh" path="res://scenes/HeaderUI/SettingsMenuButton.gd" id="4_sflaj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfxx0"]
-bg_color = Color(0.099476, 0.065803, 0.109375, 1)
-
 [node name="HeaderUI" type="PanelContainer"]
 custom_minimum_size = Vector2(720, 110)
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 110.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tfxx0")
 script = ExtResource("1_6qeqc")
 
 [node name="UIContainer" type="HBoxContainer" parent="."]

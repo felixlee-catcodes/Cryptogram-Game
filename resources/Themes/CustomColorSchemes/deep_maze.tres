@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_8chdd")
+theme_name = "Deep Maze"
 base_color = Color(0, 0.745098, 0.568627, 1)
 focus_color = Color(0.94902, 1, 0.4, 1)
 alt_focus_color = Color(0.603922, 0.941176, 0.537255, 1)

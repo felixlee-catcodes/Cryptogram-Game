@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_4a87b")
+theme_name = "Vintage Voltage"
 base_color = Color(0.960784, 0.839216, 0.537255, 1)
 focus_color = Color(0.921569, 0.635294, 0.329412, 1)
 alt_focus_color = Color(1, 0.960784, 0.85098, 1)
