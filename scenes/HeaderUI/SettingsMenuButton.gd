@@ -41,5 +41,6 @@ func _on_id_pressed(id):
 				last_hint_time = now
 		MenuItems.CHECK_GAME:
 			EventHub.game.check_game.emit()
+			menu.hide()
 		MenuItems.CHANGE_THEME:
 			ThemeManager.next_theme()
