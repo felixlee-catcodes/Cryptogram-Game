@@ -14,8 +14,8 @@ func _ready():
 	EventHub.game.get_hint.connect(_on_get_hint)
 
 
-func _on_theme_changed(theme : ColorTheme):
-	header_color = theme.basic_ui_color
+func _on_theme_changed(_theme : ColorTheme):
+	header_color = _theme.basic_ui_color
 
 
 func set_header_styling():

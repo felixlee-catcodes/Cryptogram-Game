@@ -82,6 +82,13 @@ func move_focus_to_prev():
 		prev_cell.decoded_letter_input.grab_focus()
 
 
+func show_incorrect():
+	var tween : Tween = create_tween()
+	tween.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", Color.RED, 0.1)
+	tween.tween_interval(4)
+	tween.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", Color.BLACK, 0.5)
+
+
 func _update_text(text: String) -> void:
 	self.decoded_letter_input.text = text
 	self.has_text = true

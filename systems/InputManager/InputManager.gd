@@ -12,7 +12,7 @@ func _ready():
 	EventHub.cells.exit_focus.connect(_revert_focused_cells)
 	EventHub.game.reset_game.connect(_on_reset_game)
 
-
+#region INPUT
 func _input(event):
 	if event.is_action_pressed("ui_up"):
 		ThemeManager.next_theme()
@@ -32,11 +32,12 @@ func _input(event):
 		if event.is_action_pressed("ui_left"):
 			if cell_in_focus:
 				cell_in_focus.move_focus_to_prev()
+#endregion
 
 func register_cell(cell: LetterCell):
 	ordered_cells.append(cell)
 
-
+#region CELL NAVIGATION
 func get_next_empty(cell: LetterCell) -> LetterCell:
 	var idx = ordered_cells.find(cell)
 	if idx == -1:
@@ -67,7 +68,7 @@ func get_prev(cell: LetterCell) -> LetterCell:
 	if idx - 1 >= 0:
 		return ordered_cells[idx - 1]
 	return null
-
+#endregion
 
 func _register_key(key_text):
 	if not cell_in_focus:
@@ -117,7 +118,7 @@ func _register_key(key_text):
 	line_edit.grab_focus()
 	cell_in_focus.move_focus_to_next()
 
-
+#region HANDLE SISTER CELLS/GROUP CALLS
 func update_sister_cells(cell: LetterCell, key: String) -> void:
 	var group = cell.get_groups()[0]
 	get_tree().call_group(group, "_update_text", key)
@@ -141,8 +142,9 @@ func _revert_focused_cells(_cell):
 	if not cell_in_focus:
 		Log.pr("no cell in focus post reset")
 	else: get_tree().call_group(cell_in_focus.get_groups()[0], "revert_unfocused_cells")
+#endregion
 
-
+#region RESET GAME
 func _on_reset_game():
 	letter_to_groups.clear()
 	get_tree().call_group("letter_cells", "undo_warn_duplicate")
@@ -159,3 +161,4 @@ func _on_reset_game():
 		cell_in_focus = ordered_cells[0]
 		prev_cell_in_focus = ordered_cells[0]
 		ordered_cells[0].decoded_letter_input.grab_focus()
+#endregion

@@ -30,3 +30,4 @@ class GameEvents:
 	signal new_game
 	signal reset_game
 	signal get_hint
+	signal check_game
