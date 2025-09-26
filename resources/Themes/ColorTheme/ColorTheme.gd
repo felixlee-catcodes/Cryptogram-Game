@@ -10,3 +10,4 @@ class_name ColorTheme
 @export var addtl_accent_color : Color
 @export var font_color : Color
 @export var warning_color : Color
+@export var bg_texture : Texture2D

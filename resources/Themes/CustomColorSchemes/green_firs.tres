@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=3 format=3 uid="uid://cyscelnuarybg"]
+
+[ext_resource type="Texture2D" uid="uid://qb2xtsxnjbex" path="res://assets/bg_images/Green Minimalist Simple Aesthetics Nature Phone Wallpaper.png" id="1_7waok"]
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_dmh8i"]
+
+[resource]
+script = ExtResource("1_dmh8i")
+theme_name = "Green Firs"
+base_color = Color(0.184547, 0.46875, 0.354331, 1)
+focus_color = Color(0.894118, 0.85098, 0.498039, 1)
+alt_focus_color = Color(0.707813, 0.909375, 0.534375, 1)
+basic_ui_color = Color(0.211765, 0.431373, 0.321569, 0.866667)
+panel_color = Color(0.105882, 0.168627, 0.156863, 0.921569)
+addtl_accent_color = Color(0.0901961, 0.247059, 0.180392, 1)
+font_color = Color(0.937255, 1, 0.968627, 1)
+warning_color = Color(1, 0.145098, 0.196078, 1)
+bg_texture = ExtResource("1_7waok")
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"

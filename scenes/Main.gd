@@ -6,13 +6,16 @@ extends Node
 @onready var encrypted_message_display = $EncryptedMessageDisplay
 @onready var game_over_display = $UILayer/GameOverDisplay
 @onready var keyboard_panel_container : PanelContainer = $KeyboardPanelContainer
+@onready var texture_rect: TextureRect = $TextureRect
+
+@export var bg_image_texture : Texture2D
 @export var keyboard_panel_color : Color
 
 func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
-		
+	texture_rect.texture = ThemeManager.active_theme.bg_texture
 	set_panel_styling()
 	game_over_display.visible = false
 	EventHub.game.new_game.connect(_on_new_game)
@@ -25,8 +28,10 @@ func set_panel_styling() -> void:
 	var style = StyleBoxFlat.new()
 	style.bg_color = keyboard_panel_color
 	keyboard_panel_container.add_theme_stylebox_override("panel", style)
-	
+	texture_rect.set_texture(bg_image_texture)
+
 func _on_theme_changed(theme: ColorTheme):
+	bg_image_texture = theme.bg_texture
 	keyboard_panel_color = theme.panel_color
 
 

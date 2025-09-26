@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=3 format=3 uid="uid://b1wyhmb0ppjd2"]
+
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_ifra1"]
+[ext_resource type="Texture2D" uid="uid://cb8fo6rmumai" path="res://assets/bg_images/Calm_ocean.png" id="1_safwf"]
+
+[resource]
+script = ExtResource("1_ifra1")
+theme_name = "Calm Ocean"
+base_color = Color(0.454902, 0.623529, 0.729412, 1)
+focus_color = Color(0.12549, 0.392157, 0.545098, 1)
+alt_focus_color = Color(0.631373, 0.701961, 0.772549, 1)
+basic_ui_color = Color(0, 0.25098, 0.388235, 0.890196)
+panel_color = Color(0, 0.133333, 0.231373, 0.890196)
+addtl_accent_color = Color(0.0509804, 0.592157, 0.509804, 1)
+font_color = Color(0.780392, 0.870588, 1, 1)
+warning_color = Color(0.721569, 0.196078, 0, 1)
+bg_texture = ExtResource("1_safwf")
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"

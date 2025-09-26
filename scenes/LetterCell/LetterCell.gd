@@ -9,6 +9,7 @@ var has_text : bool = false
 @export var focus_color : Color
 @export var alt_focus_color : Color
 @export var font_color : Color
+@export var warning_color : Color
 
 @onready var decoded_letter_input = $VBoxContainer/DecodedLetterInput
 @onready var encrypted_letter = $VBoxContainer/EncryptedLetter
@@ -38,6 +39,7 @@ func _on_theme_changed(theme : ColorTheme):
 	focus_color = theme.focus_color
 	alt_focus_color = theme.alt_focus_color
 	font_color = theme.font_color
+	warning_color = theme.warning_color
 
 
 func set_focus_styling():
@@ -48,6 +50,8 @@ func set_focus_styling():
 	var normal_style = StyleBoxFlat.new()
 	normal_style.bg_color = base_color
 	decoded_letter_input.add_theme_stylebox_override("read_only", normal_style)
+	
+	encrypted_letter.add_theme_color_override("default_color", font_color)
 
 
 func _on_text_input(cell: LetterCell, key):
@@ -86,9 +90,9 @@ func move_focus_to_prev():
 
 func show_incorrect():
 	var tween : Tween = create_tween()
-	tween.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", Color.RED, 0.1)
+	tween.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", warning_color, 0.1)
 	tween.tween_interval(4)
-	tween.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", Color.BLACK, 0.5)
+	tween.tween_property(decoded_letter_input, "theme_override_colors/font_uneditable_color", font_color, 0.5)
 
 
 func _update_text(text: String) -> void:
@@ -112,11 +116,11 @@ func revert_unfocused_cells():
 
 
 func warn_duplicated_letter():
-	encrypted_letter.add_theme_color_override("default_color", Color.RED)
+	encrypted_letter.add_theme_color_override("default_color", warning_color)
 
 
 func undo_warn_duplicate():
-	encrypted_letter.add_theme_color_override("default_color", Color.BLACK)
+	encrypted_letter.add_theme_color_override("default_color", font_color)
 
 
 func clear_cell():

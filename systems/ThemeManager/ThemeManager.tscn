@@ -1,12 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://s604iasa60dt"]
+[gd_scene load_steps=6 format=3 uid="uid://s604iasa60dt"]
 
 [ext_resource type="Script" uid="uid://d0vrej2sfpwv7" path="res://systems/ThemeManager/ThemeManager.gd" id="1_fi61t"]
 [ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="2_qr6oj"]
-[ext_resource type="Resource" uid="uid://dfug1qfaqqy6n" path="res://resources/Themes/CustomColorSchemes/deep_maze.tres" id="3_6fiu6"]
-[ext_resource type="Resource" uid="uid://blc6ooh7hhnnx" path="res://resources/Themes/CustomColorSchemes/ice_cream_spice.tres" id="4_hbu83"]
-[ext_resource type="Resource" uid="uid://c8446nmk8yefr" path="res://resources/Themes/CustomColorSchemes/vintage_voltage.tres" id="5_mhp8y"]
-[ext_resource type="Resource" uid="uid://cs06gakbdn78o" path="res://resources/Themes/CustomColorSchemes/stormy_6.tres" id="6_gshok"]
+[ext_resource type="Resource" uid="uid://cgu3u4wyxv8qf" path="res://resources/Themes/CustomColorSchemes/purple_sky.tres" id="3_hbu83"]
+[ext_resource type="Resource" uid="uid://cyscelnuarybg" path="res://resources/Themes/CustomColorSchemes/green_firs.tres" id="3_p8h00"]
+[ext_resource type="Resource" uid="uid://b1wyhmb0ppjd2" path="res://resources/Themes/CustomColorSchemes/calm_ocean.tres" id="4_2osjx"]
 
 [node name="ThemeManager" type="Node"]
 script = ExtResource("1_fi61t")
-themes = Array[ExtResource("2_qr6oj")]([ExtResource("3_6fiu6"), ExtResource("4_hbu83"), ExtResource("5_mhp8y"), ExtResource("6_gshok")])
+themes = Array[ExtResource("2_qr6oj")]([ExtResource("3_p8h00"), ExtResource("3_hbu83"), ExtResource("4_2osjx")])

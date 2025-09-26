@@ -12,4 +12,5 @@ basic_ui_color = Color(0.227451, 0.313726, 0.262745, 1)
 panel_color = Color(0.141176, 0.156863, 0.156863, 1)
 addtl_accent_color = Color(0.498039, 0.596078, 0.376471, 1)
 font_color = Color(0.0421875, 0.0400132, 0.0405219, 1)
+warning_color = Color(0.811765, 0.150257, 0.198754, 1)
 metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"

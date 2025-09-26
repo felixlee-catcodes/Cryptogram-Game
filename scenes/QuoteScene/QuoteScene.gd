@@ -3,11 +3,14 @@ extends ScrollContainer
 @onready var word_unit_scene = preload("res://scenes/WordUnit/WordUnit.tscn")
 @export var word_array : Array
 @onready var quote_container = $VBoxContainer/MarginContainer/FlowContainer
-@onready var credit_label = $VBoxContainer/CreditLabel
+@onready var credit_label: Label = $VBoxContainer/CreditLabel
 @export var author : String
 @export var quote : String
+
 func compile_quote():
 	credit_label.text = author
+	credit_label.add_theme_color_override("font_color", ThemeManager.active_theme.font_color)
+	credit_label.add_theme_font_size_override("font_size", 36)
 	if word_array.size() == 0:
 		return
 	for word in word_array:

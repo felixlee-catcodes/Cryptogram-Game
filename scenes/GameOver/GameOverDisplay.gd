@@ -11,19 +11,70 @@ extends CenterContainer
 @onready var best_time_value = $VBoxContainer/StatsDisplay/BestTime/BestTimeValue
 @onready var avg_time_value = $VBoxContainer/StatsDisplay/AverageTime/AvgTimeValue
 
+@onready var curr_time_label = $VBoxContainer/StatsDisplay/CurrentTime/CurrTimeLabel
+@onready var best_time_label = $VBoxContainer/StatsDisplay/BestTime/BestTimeLabel
+@onready var avg_time_label = $VBoxContainer/StatsDisplay/AverageTime/AvgTimeLabel
+
 @onready var hints_used = $VBoxContainer/HintsUsed
 @onready var quotes_left = $VBoxContainer/QuotesLeft
+
+@onready var new_game : Button = $VBoxContainer/Buttons/NewGame
+@onready var save_text : Button = $VBoxContainer/Buttons/SaveText
+
+@export var button_normal : Color
+@export var button_hover : Color
+@export var button_pressed : Color
+@export var theme_font_color : Color
 
 var quote_book : QuoteBook
 
 func _ready():
+	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
+	if ThemeManager.active_theme != null:
+		_on_theme_changed(ThemeManager.active_theme)
+
+	apply_theme_styling()
 	EventHub.game.game_over.connect(_on_game_over)
+
 	quote_book = QuoteBook.new().load_book()
 
+#region APPLY THEME STYLING
+func apply_theme_styling() -> void:
+	var normal_style = StyleBoxFlat.new()
+	normal_style.bg_color = button_normal
+	normal_style.set_content_margin_all(15)
+	new_game.add_theme_stylebox_override("normal", normal_style)
+	save_text.add_theme_stylebox_override("normal", normal_style)
 
+	var hover_style = StyleBoxFlat.new()
+	hover_style.bg_color = button_hover
+	new_game.add_theme_stylebox_override("hover", hover_style)
+	save_text.add_theme_stylebox_override("hover", hover_style)
+	
+	var pressed_style = StyleBoxFlat.new()
+	pressed_style.bg_color = button_pressed
+	pressed_style.set_content_margin_all(15)
+	new_game.add_theme_stylebox_override("pressed", pressed_style)
+	save_text.add_theme_stylebox_override("pressed", pressed_style)
+	
+	solved_quote.add_theme_color_override("font_color", theme_font_color)
+	curr_time_label.add_theme_color_override("font_color", theme_font_color)
+	best_time_label.add_theme_color_override("font_color", theme_font_color)
+	avg_time_label.add_theme_color_override("font_color", theme_font_color)
+	curr_time_value.add_theme_color_override("font_color", theme_font_color)
+	best_time_value.add_theme_color_override("font_color", theme_font_color)
+	avg_time_value.add_theme_color_override("font_color", theme_font_color)
+
+
+func _on_theme_changed(theme: ColorTheme):
+	button_hover = theme.basic_ui_color
+	button_normal = theme.basic_ui_color
+	button_pressed = theme.addtl_accent_color
+	theme_font_color = theme.font_color
+#endregion
 func _on_game_over(time, puzzle):
 	finished_puzzle = puzzle
-	solved_quote.text = "%s" % puzzle["plainText"]
+	solved_quote.text = "\"%s\"" % puzzle["plainText"]
 	curr_time_value.text = _convert_time(time)
 	best_time_value.text = _convert_time(SaveManager.stats.best_time)
 	avg_time_value.text = _convert_time(SaveManager.stats.all_time_avg)

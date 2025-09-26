@@ -8,17 +8,21 @@ var active_theme : ColorTheme
 
 func _ready():
 	Log.pr("themes size: ", themes.size())
+	
 	if themes.size() > 0:
-		set_theme(1)
+		set_theme(0)
 
 
 func set_theme(index: int):
 	Log.pr("set theme called")
 	if index < 0 or themes.size() == 1:
+		active_theme = themes[0]
+		emit_signal("theme_changed", active_theme)
+		Log.pr("active theme: ",ThemeManager.active_theme.theme_name)
 		return
 	current_index = index
 	active_theme = themes[current_index]
-	Log.pr("active theme: ",ThemeManager.active_theme)
+	Log.pr("active theme: ",ThemeManager.active_theme.theme_name)
 	emit_signal("theme_changed", active_theme)
 
 

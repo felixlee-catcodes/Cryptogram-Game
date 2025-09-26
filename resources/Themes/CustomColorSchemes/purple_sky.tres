@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=3 format=3 uid="uid://cgu3u4wyxv8qf"]
+
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_0nhbw"]
+[ext_resource type="Texture2D" uid="uid://c431yoqer1lfb" path="res://assets/bg_images/Purple White Warm Simple Minimalist Beautiful Night Sky The Moon Is Beautiful Isn't It Love Quotes Phone Wallpaper.png" id="1_bihu6"]
+
+[resource]
+script = ExtResource("1_0nhbw")
+theme_name = "Purple Skies"
+base_color = Color(0.470588, 0.462745, 0.682353, 1)
+focus_color = Color(0.607843, 0.596078, 0.764706, 1)
+alt_focus_color = Color(0.380984, 0.380984, 0.596875, 1)
+basic_ui_color = Color(0.337255, 0.321569, 0.494118, 0.815686)
+panel_color = Color(0.235294, 0.235294, 0.368627, 0.886275)
+addtl_accent_color = Color(0.235294, 0.235294, 0.368627, 1)
+font_color = Color(0.0369016, 0.0369016, 0.0578125, 1)
+warning_color = Color(1, 0, 0.356863, 1)
+bg_texture = ExtResource("1_bihu6")
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"
