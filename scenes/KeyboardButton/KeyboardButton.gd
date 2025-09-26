@@ -12,15 +12,22 @@ func _ready():
 	texture_normal = unpressed_png
 	texture_pressed = pressed_png
 	scale = Vector2(3,3)
+	add_to_group("virtual_buttons")
+
+
+func reset_button() -> void:
+	self.button_pressed = false
+
 
 func _on_simulate_input(key):
 	if self.key == key:
 		button_pressed = true
 
 func _on_pressed():
-	if self.key == "Clear":
+	if self.key == "Clear" or self.key == "Right" or self.key == "Left":
 		EventHub.keys.keyboard_input.emit(key)
 		return
+
 
 func _on_input_changed(key):
 	if self.key == key:

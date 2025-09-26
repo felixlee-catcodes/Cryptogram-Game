@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://d2gisthngsrbm"]
+[gd_scene load_steps=63 format=3 uid="uid://d2gisthngsrbm"]
 
 [ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="1_dn6p0"]
 [ext_resource type="PackedScene" uid="uid://bpw8yv3kp17am" path="res://scenes/KeyboardButton/KeyboardButton.tscn" id="1_w4pwe"]
@@ -56,9 +56,26 @@
 [ext_resource type="Texture2D" uid="uid://voyk1302wh8" path="res://assets/keyboard/black keys/black_key26.png" id="53_1wi6r"]
 [ext_resource type="Texture2D" uid="uid://ct07rf0ncvg4c" path="res://assets/keyboard/black keys/black_key57.png" id="54_wcyyy"]
 [ext_resource type="Texture2D" uid="uid://d3vtoeyh3ssea" path="res://assets/keyboard/black keys/black_key58.png" id="55_tbhrm"]
+[ext_resource type="Texture2D" uid="uid://cbf56f25mnqna" path="res://assets/keyboard/keyboardIcons.png" id="57_umbgi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umbgi"]
 bg_color = Color(0.0980392, 0.0666667, 0.109804, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_767qe"]
+atlas = ExtResource("57_umbgi")
+region = Rect2(256, 647, 32, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcyuu"]
+atlas = ExtResource("57_umbgi")
+region = Rect2(288, 648, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0bnp"]
+atlas = ExtResource("57_umbgi")
+region = Rect2(448, 647, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umbgi"]
+atlas = ExtResource("57_umbgi")
+region = Rect2(480, 647, 32, 24)
 
 [node name="KeyboardPanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 300)
@@ -210,6 +227,13 @@ layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
+[node name="ArrowLeft" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+toggle_mode = false
+unpressed_png = SubResource("AtlasTexture_767qe")
+pressed_png = SubResource("AtlasTexture_jcyuu")
+key = "Left"
+
 [node name="Z" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
 layout_mode = 2
 unpressed_png = ExtResource("6_7qr8g")
@@ -258,3 +282,10 @@ toggle_mode = false
 unpressed_png = ExtResource("54_wcyyy")
 pressed_png = ExtResource("55_tbhrm")
 key = "Clear"
+
+[node name="ArrowRight" parent="VBoxContainer/BottomRowKeys" instance=ExtResource("1_w4pwe")]
+layout_mode = 2
+toggle_mode = false
+unpressed_png = SubResource("AtlasTexture_c0bnp")
+pressed_png = SubResource("AtlasTexture_umbgi")
+key = "Right"

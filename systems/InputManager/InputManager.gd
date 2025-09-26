@@ -29,6 +29,7 @@ func _input(event):
 		if event.is_action_pressed("ui_text_backspace"):
 			EventHub.keys.keyboard_input.emit("Clear")
 			Log.pr(prev_cell_in_focus.decoded_letter_input.text)
+
 		if event.is_action_pressed("ui_right"):
 			if cell_in_focus:
 				cell_in_focus.move_focus_to_next()
@@ -75,9 +76,20 @@ func get_prev(cell: LetterCell) -> LetterCell:
 #endregion
 
 func _register_key(key_text):
+	Log.pr("key: ", key_text)
 	if not cell_in_focus:
 		return
 	SoundManager.play_typing()
+	
+	if key_text == "Right":
+		Log.pr("key: ", key_text)
+		cell_in_focus.move_focus_to_next()
+		return
+	
+	if key_text == "Left":
+		Log.pr("key: ", key_text)
+		cell_in_focus.move_focus_to_prev()
+		return
 
 	var line_edit = cell_in_focus.decoded_letter_input
 	var prev_text = line_edit.text
@@ -160,6 +172,7 @@ func _on_reset_game():
 	letter_to_groups.clear()
 	get_tree().call_group("letter_cells", "undo_warn_duplicate")
 	get_tree().call_group("letter_cells", "revert_unfocused_cells")
+	get_tree().call_group("virtual_buttons", "reset_button")
 	
 	cell_in_focus = null
 	prev_cell_in_focus = null
