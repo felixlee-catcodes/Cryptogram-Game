@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=2 format=3 uid="uid://cp10j0o84cqpq"]
+
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_r17ig"]
+
+[resource]
+script = ExtResource("1_r17ig")
+theme_name = "Sunflower Painting"
+base_color = Color(0.976471, 0.831373, 0.431373, 1)
+focus_color = Color(0.968627, 0.701961, 0.172549, 1)
+alt_focus_color = Color(0.662745, 0.898039, 0.733333, 1)
+basic_ui_color = Color(0.101961, 0.360784, 0.419608, 1)
+panel_color = Color(0.172549, 0.207843, 0.235294, 1)
+addtl_accent_color = Color(0.968627, 0.701961, 0.172549, 1)
+font_color = Color(0, 0, 0, 1)
+warning_color = Color(0.968627, 0.257555, 0.193885, 1)
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"

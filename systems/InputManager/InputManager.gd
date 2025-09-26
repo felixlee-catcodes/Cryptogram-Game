@@ -95,7 +95,6 @@ func _register_key(key_text):
 	var prev_text = line_edit.text
 	var group = cell_in_focus.get_groups()[0]
 
-
 	if prev_text != "" and key_text != prev_text:
 		EventHub.inputs.input_changed.emit(prev_text)
 

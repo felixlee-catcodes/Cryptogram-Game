@@ -9,3 +9,4 @@ class_name ColorTheme
 @export var panel_color : Color
 @export var addtl_accent_color : Color
 @export var font_color : Color
+@export var warning_color : Color

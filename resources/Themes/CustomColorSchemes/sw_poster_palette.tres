@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=2 format=3 uid="uid://bke6nixaqqx04"]
+
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_eyqer"]
+
+[resource]
+script = ExtResource("1_eyqer")
+theme_name = "SW Poster"
+base_color = Color(0.352941, 0.396078, 0.486275, 1)
+focus_color = Color(0.282353, 0.211765, 0.34902, 1)
+alt_focus_color = Color(0.423529, 0.545098, 0.533333, 1)
+basic_ui_color = Color(0.705882, 0.541176, 0.376471, 1)
+panel_color = Color(0.105882, 0.0862745, 0.113725, 1)
+addtl_accent_color = Color(0.741176, 0.701961, 0.623529, 1)
+font_color = Color(0.0547168, 0.0460355, 0.0705882, 1)
+warning_color = Color(0.603922, 0.341176, 0.384314, 1)
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"

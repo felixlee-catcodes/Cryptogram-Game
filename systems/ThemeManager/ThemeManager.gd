@@ -7,6 +7,7 @@ var current_index : int = 0
 var active_theme : ColorTheme
 
 func _ready():
+	Log.pr("themes size: ", themes.size())
 	if themes.size() > 0:
 		set_theme(1)
 
