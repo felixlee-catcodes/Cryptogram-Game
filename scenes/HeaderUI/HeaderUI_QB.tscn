@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0k44oci1f8e3"]
+
+[ext_resource type="Script" uid="uid://bt2oqbs5tirio" path="res://scenes/HeaderUI/HeaderUI_QB.gd" id="1_cu8ed"]
+[ext_resource type="Texture2D" uid="uid://ccfoe21ry6gvt" path="res://assets/ui-icons/account_circle_100.png" id="2_kvgwt"]
+[ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="3_8i0kj"]
+[ext_resource type="Texture2D" uid="uid://c03exp0q4o2fn" path="res://assets/ui-icons/menu_100.png" id="4_nfx1l"]
+[ext_resource type="Script" uid="uid://jvesfh75ge2j" path="res://scenes/HeaderUI/Settings_Custom.gd" id="5_kvgwt"]
+
+[node name="HeaderUI" type="PanelContainer"]
+custom_minimum_size = Vector2(720, 110)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -3.0
+offset_right = 3.0
+offset_bottom = 110.0
+grow_horizontal = 2
+script = ExtResource("1_cu8ed")
+
+[node name="UIContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 145
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="UIContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("2_kvgwt")
+
+[node name="TitleLabel" type="Label" parent="UIContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme = ExtResource("3_8i0kj")
+theme_override_font_sizes/font_size = 50
+text = "My Saves"
+horizontal_alignment = 1
+
+[node name="Settings" type="MenuButton" parent="UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_8i0kj")
+toggle_mode = false
+icon = ExtResource("4_nfx1l")
+script = ExtResource("5_kvgwt")

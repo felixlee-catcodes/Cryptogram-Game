@@ -1,4 +1,5 @@
 extends TextureButton
+## KEYBOARD BUTTON
 
 @export var unpressed_png : Texture2D
 
@@ -19,8 +20,8 @@ func reset_button() -> void:
 	self.button_pressed = false
 
 
-func _on_simulate_input(key):
-	if self.key == key:
+func _on_simulate_input(_key):
+	if self.key == _key:
 		button_pressed = true
 
 func _on_pressed():

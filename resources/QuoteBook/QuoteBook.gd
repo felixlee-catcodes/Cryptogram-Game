@@ -8,15 +8,15 @@ const SAVE_PATH : String = "user://save/QuoteBook.tres"
 
 func save() -> void:
 	Log.pr("save quote")
-	#var dir := DirAccess.open("user://")
-	#if not dir.dir_exists("save"):
-		#dir.make_dir("save")
-		#
-	#var err = ResourceSaver.save(self, SAVE_PATH)
-	#if err != OK:
-		#push_error("Failed to save stats: %s" % err)
-	#else:
-		#Log.pr("QuoteBook saved")
+	var dir := DirAccess.open("user://")
+	if not dir.dir_exists("save"):
+		dir.make_dir("save")
+		
+	var err = ResourceSaver.save(self, SAVE_PATH)
+	if err != OK:
+		push_error("Failed to save stats: %s" % err)
+	else:
+		Log.pr("QuoteBook saved")
 
 
 func load_book():
@@ -33,6 +33,7 @@ func load_book():
 
 
 func add_quote(text: String, author: String, solve_time: String) -> void:
+	Log.pr("quotes size(before): ", quotes.size())
 	var new_entry = QuoteEntry.new()
 	new_entry.author = author
 	new_entry.text = text
@@ -48,9 +49,10 @@ func add_quote(text: String, author: String, solve_time: String) -> void:
 		#for tag in tags:
 			#if not prev_tags.has(tag):
 				#prev_tags.append(tag)
-
+	
 	quotes.append(new_entry)
 	save()
+	Log.pr("quotes size(after): ", quotes.size())
 
 func remove_entry(entry: QuoteEntry):
 	quotes.erase(entry)

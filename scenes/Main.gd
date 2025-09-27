@@ -15,7 +15,7 @@ func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
-	texture_rect.texture = ThemeManager.active_theme.bg_texture
+	#texture_rect.texture = ThemeManager.active_theme.bg_texture
 	set_panel_styling()
 	game_over_display.visible = false
 	EventHub.game.new_game.connect(_on_new_game)

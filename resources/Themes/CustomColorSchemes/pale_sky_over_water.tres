@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ColorTheme" load_steps=3 format=3 uid="uid://gnr6boqv27nk"]
+
+[ext_resource type="Script" uid="uid://dnnxh0xn6bfbg" path="res://resources/Themes/ColorTheme/ColorTheme.gd" id="1_tfhbk"]
+[ext_resource type="Texture2D" uid="uid://cwfvlch4kkhhl" path="res://assets/bg_images/Pale Sky Blue Water.png" id="1_yamdg"]
+
+[resource]
+script = ExtResource("1_tfhbk")
+theme_name = "Pale Sky Over Blue Water"
+base_color = Color(0.65098, 0.72549, 0.760784, 1)
+focus_color = Color(0.878431, 0.886275, 0.866667, 1)
+alt_focus_color = Color(0.819608, 0.858824, 0.87451, 1)
+basic_ui_color = Color(0.207843, 0.396078, 0.470588, 1)
+panel_color = Color(0.127215, 0.28045, 0.367188, 1)
+addtl_accent_color = Color(0.134766, 0.490057, 0.539062, 1)
+font_color = Color(0, 0, 0, 1)
+warning_color = Color(1, 0, 0.227451, 1)
+bg_texture = ExtResource("1_yamdg")
+metadata/_custom_type_script = "uid://dnnxh0xn6bfbg"

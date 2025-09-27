@@ -37,6 +37,9 @@ func _ready():
 	EventHub.game.game_over.connect(_on_game_over)
 
 	quote_book = QuoteBook.new().load_book()
+	Log.pr("size: ", quote_book.quotes.size())
+	#for q in quote_book.quotes:
+		#Log.pr(q.text)
 
 #region APPLY THEME STYLING
 func apply_theme_styling() -> void:
@@ -66,11 +69,11 @@ func apply_theme_styling() -> void:
 	avg_time_value.add_theme_color_override("font_color", theme_font_color)
 
 
-func _on_theme_changed(theme: ColorTheme):
-	button_hover = theme.basic_ui_color
-	button_normal = theme.basic_ui_color
-	button_pressed = theme.addtl_accent_color
-	theme_font_color = theme.font_color
+func _on_theme_changed(_theme: ColorTheme):
+	button_hover = _theme.basic_ui_color
+	button_normal = _theme.basic_ui_color
+	button_pressed = _theme.addtl_accent_color
+	theme_font_color = _theme.font_color
 #endregion
 func _on_game_over(time, puzzle):
 	finished_puzzle = puzzle

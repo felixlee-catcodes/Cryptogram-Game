@@ -31,7 +31,7 @@ func _on_timer_timeout():
 
 func _update_progress(cell: LetterCell, key: String):
 	var cipher_letter = cell.encoded_letter
-	var correct_key = current_cipher.find_key(cipher_letter)
+	#var correct_key = current_cipher.find_key(cipher_letter)
 	
 	if key == "Clear":
 		cell_states.erase(cipher_letter)
