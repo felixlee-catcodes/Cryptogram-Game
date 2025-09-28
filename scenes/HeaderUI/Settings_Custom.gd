@@ -23,6 +23,8 @@ func _ready():
 func _on_id_pressed(id):
 	match id:
 		MenuItems.NEW_GAME:
+			get_tree().change_scene_to_file("res://scenes/Main.tscn")
+			#await get_tree().process_frame
 			EventHub.game.new_game.emit()
 		MenuItems.CHANGE_THEME:
 			ThemeManager.next_theme()

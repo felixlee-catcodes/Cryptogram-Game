@@ -8,7 +8,7 @@ func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
-		
+	
 	set_header_styling()
 
 

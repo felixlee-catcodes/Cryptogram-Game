@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu2j1q7hqlx4u"]
+[gd_scene load_steps=7 format=3 uid="uid://cu2j1q7hqlx4u"]
 
 [ext_resource type="Texture2D" uid="uid://ccfoe21ry6gvt" path="res://assets/ui-icons/account_circle_100.png" id="1_2i62g"]
 [ext_resource type="Script" uid="uid://3rlp8fhn242" path="res://scenes/HeaderUI/HeaderUi.gd" id="1_6qeqc"]
 [ext_resource type="Texture2D" uid="uid://c03exp0q4o2fn" path="res://assets/ui-icons/menu_100.png" id="2_6qeqc"]
+[ext_resource type="Script" uid="uid://c1doaj5v1e7wl" path="res://scenes/HeaderUI/UserAccountMenu.gd" id="2_tfxx0"]
 [ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="3_tfxx0"]
 [ext_resource type="Script" uid="uid://1dfltqej1qkh" path="res://scenes/HeaderUI/SettingsMenuButton.gd" id="4_sflaj"]
 
@@ -19,10 +20,12 @@ layout_mode = 2
 theme_override_constants/separation = 195
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="UIContainer"]
+[node name="UserAccount" type="MenuButton" parent="UIContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource("1_2i62g")
+theme = ExtResource("3_tfxx0")
+icon = ExtResource("1_2i62g")
+script = ExtResource("2_tfxx0")
 
 [node name="TimerDisplay" type="Label" parent="UIContainer"]
 custom_minimum_size = Vector2(128, 0)

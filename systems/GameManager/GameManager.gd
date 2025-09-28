@@ -20,6 +20,7 @@ func _ready():
 
 
 func start_game():
+	Log.pr("current scene? ",get_tree().current_scene)
 	InputManager.letter_to_groups.clear()
 	timer.start()
 
