@@ -75,6 +75,7 @@ func _on_theme_changed(_theme: ColorTheme):
 	button_pressed = _theme.addtl_accent_color
 	theme_font_color = _theme.font_color
 #endregion
+
 func _on_game_over(time, puzzle):
 	finished_puzzle = puzzle
 	solved_quote.text = "\"%s\"" % puzzle["plainText"]
@@ -100,4 +101,4 @@ func _on_save_text_pressed():
 	var quote = finished_puzzle["plainText"]
 	var author = finished_puzzle["author"]
 	
-	quote_book.add_quote(quote, author, curr_time_value.text)
+	quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"])

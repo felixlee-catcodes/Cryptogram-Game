@@ -32,7 +32,7 @@ func load_book():
 		return new_book
 
 
-func add_quote(text: String, author: String, solve_time: String) -> void:
+func add_quote(text: String, author: String, solve_time: String, hints_used: int) -> void:
 	Log.pr("quotes size(before): ", quotes.size())
 	var new_entry = QuoteEntry.new()
 	new_entry.author = author
@@ -43,6 +43,7 @@ func add_quote(text: String, author: String, solve_time: String) -> void:
 		Time.get_datetime_dict_from_system()["day"]
 	]
 	new_entry.solve_time = solve_time
+	new_entry.hints_used = hints_used
 	#new_entry.tags = []
 	
 	#if new_entry.tags > 0:

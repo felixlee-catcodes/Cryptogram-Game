@@ -6,3 +6,4 @@ class_name QuoteEntry
 @export var date_added : String
 #@export var tags : Array[String] = []
 @export var solve_time : int
+@export var hints_used : int

@@ -23,7 +23,6 @@ func _ready():
 	menu.id_pressed.connect(_on_id_pressed)
 
 func _on_id_pressed(id):
-	var now = Time.get_ticks_msec() / 1000.0
 	match id:
 		MenuItems.SAVES:
 			get_tree().change_scene_to_file("res://scenes/Carousel/Carousel.tscn")

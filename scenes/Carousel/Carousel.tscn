@@ -42,7 +42,10 @@ layout_mode = 2
 
 [node name="Scroll" type="ScrollContainer" parent="MainVBox"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
+vertical_scroll_mode = 0
 
 [node name="Pages" type="HBoxContainer" parent="MainVBox/Scroll"]
 layout_mode = 2
@@ -52,4 +55,9 @@ theme_override_constants/separation = 100
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_constants/separation = 15
 alignment = 1
+
+[node name="BottomSpacer" type="Control" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2

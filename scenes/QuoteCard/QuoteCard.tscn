@@ -27,7 +27,7 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 25
 
 [node name="TextLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
@@ -42,10 +42,34 @@ autowrap_mode = 3
 [node name="SourceLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
-text = "- Unknown
-"
+text = "- Unknown"
 horizontal_alignment = 1
-autowrap_mode = 3
+vertical_alignment = 1
+
+[node name="StatsBar" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Date" type="Label" parent="CenterContainer/VBoxContainer/StatsBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Date: Sept. 25, 2025"
+
+[node name="Time" type="Label" parent="CenterContainer/VBoxContainer/StatsBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Solved in 2min 42s"
+
+[node name="Hints" type="Label" parent="CenterContainer/VBoxContainer/StatsBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "No hints used!"
