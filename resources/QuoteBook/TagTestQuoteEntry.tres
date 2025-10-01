@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuoteEntry" load_steps=2 format=3 uid="uid://bp2pfdfydxck2"]
+
+[ext_resource type="Script" uid="uid://beb12ff0ucu4n" path="res://resources/QuoteBook/QuoteEntry.gd" id="1_tks0a"]
+
+[resource]
+script = ExtResource("1_tks0a")
+text = "Text goes here...\""
+author = "SourceName"
+date_added = "9/30/2025"
+tags = Array[String](["Philosohy", "Nature", "success"])
+solve_time = 111
+hints_used = 1
+metadata/_custom_type_script = "uid://beb12ff0ucu4n"

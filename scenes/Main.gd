@@ -50,6 +50,7 @@ func _on_new_game():
 
 
 func _on_game_over(_time, puzzle):
+	keyboard_panel_container.visible = false
 	quote_scene.visible = false
 	game_over_display.finished_puzzle = puzzle
 	game_over_display.visible = true

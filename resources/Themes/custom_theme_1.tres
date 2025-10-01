@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://sbgo36eq0lw0"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://sbgo36eq0lw0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yh33"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_505x8"]
 bg_color = Color(0.396078, 0.478431, 0.521569, 1)
@@ -23,7 +25,11 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.121519, 0.121519, 0.121519, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw67d"]
+bg_color = Color(0.964063, 0.964063, 0.964063, 1)
+
 [resource]
+CheckBox/styles/normal = SubResource("StyleBoxFlat_7yh33")
 HeaderPanel/styles/PanelContainer = SubResource("StyleBoxFlat_505x8")
 LineEdit/colors/font_color = Color(0.0562918, 0.0562915, 0.0562916, 1)
 LineEdit/colors/font_uneditable_color = Color(0.0145219, 0.0817525, 0.0775458, 1)
@@ -39,4 +45,5 @@ PopupMenu/font_sizes/font_separator_size = 28
 PopupMenu/font_sizes/font_size = 32
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_qapan")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_tyqih")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_iw67d")
 VBoxContainer/constants/separation = 30

@@ -132,7 +132,7 @@ func play_input_animation() -> void:
 	#t_font.set_parallel(true)
 	
 	# scale pop
-	var base_size : int = 32
+	var _base_size : int = 32
 	#t_font.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size + 10, 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	#t_font.tween_property(decoded_letter_input, "theme_override_font_sizes/font_size", base_size, 0.15)
 	

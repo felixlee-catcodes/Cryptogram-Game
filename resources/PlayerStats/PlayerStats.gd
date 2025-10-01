@@ -24,3 +24,9 @@ func all_time_avg_calc() -> int:
 	all_time_avg = int(total_time/completion_record.size())
 	
 	return all_time_avg
+
+
+func reset_stats() -> void:
+	total_games = 0
+	best_time = 0
+	all_time_avg = 0

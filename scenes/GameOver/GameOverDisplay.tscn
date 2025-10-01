@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://guasebrnvr6r"]
+[gd_scene load_steps=8 format=3 uid="uid://guasebrnvr6r"]
 
 [ext_resource type="Script" uid="uid://cge5j2vnp37q" path="res://scenes/GameOver/GameOverDisplay.gd" id="1_apt3b"]
 [ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="2_ru2gw"]
+[ext_resource type="Script" uid="uid://but6188ohjm7t" path="res://scenes/GameOver/SaveTextOptions.gd" id="3_w0mki"]
+[ext_resource type="PackedScene" uid="uid://ch4j23ma3207" path="res://scenes/TagScene/TagsScene.tscn" id="4_i0ldv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjhg6"]
 content_margin_left = 10.0
@@ -56,11 +58,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ru2gw")
 script = ExtResource("1_apt3b")
-finished_puzzle = null
-button_normal = null
-button_hover = null
-button_pressed = null
-theme_font_color = null
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -148,13 +145,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_la8sq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_o3dcf")
 text = "NEW GAME"
 
-[node name="SaveText" type="Button" parent="VBoxContainer/Buttons"]
+[node name="SaveText" type="MenuButton" parent="VBoxContainer/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_ru2gw")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/hover = SubResource("StyleBoxFlat_kjhg6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_la8sq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_o3dcf")
 text = "SAVE QUOTE"
+script = ExtResource("3_w0mki")
+custom_popup = ExtResource("4_i0ldv")
 
 [node name="QuotesLeft" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -170,4 +171,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Buttons/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/SaveText" to="." method="_on_save_text_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/SaveText" to="VBoxContainer/Buttons/SaveText" method="_on_pressed"]

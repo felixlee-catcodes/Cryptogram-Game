@@ -36,6 +36,7 @@ func _on_id_pressed(id):
 		MenuItems.RESET_GAME:
 			EventHub.game.reset_game.emit()
 		MenuItems.GET_HINT: 
+			menu.hide()
 			if now - last_hint_time >= hint_cooldown:
 				EventHub.game.get_hint.emit()
 				last_hint_time = now

@@ -31,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="HeaderUI" parent="MainVBox" instance=ExtResource("2_7jvm2")]
@@ -39,6 +40,29 @@ layout_mode = 2
 [node name="Control" type="Control" parent="MainVBox"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
+
+[node name="SearchBar" type="LineEdit" parent="MainVBox/Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 146.0
+offset_top = -28.5
+offset_right = -142.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+placeholder_text = "Search"
+alignment = 1
+
+[node name="NoResultsLabel" type="Label" parent="MainVBox"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "No Results Found"
+horizontal_alignment = 1
 
 [node name="Scroll" type="ScrollContainer" parent="MainVBox"]
 layout_mode = 2
@@ -59,5 +83,7 @@ theme_override_constants/separation = 15
 alignment = 1
 
 [node name="BottomSpacer" type="Control" parent="MainVBox"]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+
+[connection signal="text_changed" from="MainVBox/Control/SearchBar" to="." method="_on_search_bar_text_changed"]

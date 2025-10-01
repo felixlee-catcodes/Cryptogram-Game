@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://gqg1urq1up6"]
+[gd_scene load_steps=4 format=3 uid="uid://gqg1urq1up6"]
 
 [ext_resource type="Script" uid="uid://6vlqt8hpdcwu" path="res://scenes/QuoteCard/QuoteCard.gd" id="1_ddmun"]
 
@@ -7,6 +7,16 @@ content_margin_top = 20.0
 bg_color = Color(0.929412, 0.929412, 0.929412, 0.878431)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddmun"]
+content_margin_top = 2.0
+content_margin_bottom = 3.0
+bg_color = Color(0.6, 0.6, 0.6, 0.545098)
+border_width_top = 1
+border_color = Color(0.635938, 0.635938, 0.635938, 1)
+border_blend = true
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
@@ -27,20 +37,19 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 20
 
 [node name="TextLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(525, 0)
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
-text = "\" Life is like riding a bicycle. To keep your balance you must keep moving.\"
-"
+text = "\" Half the world is composed of people who have something to say and can't, and the other half who have nothing to say and keep on saying it.\""
 autowrap_mode = 3
 
 [node name="SourceLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(525, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -50,26 +59,37 @@ text = "- Unknown"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsBar" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="StatsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ddmun")
+
+[node name="StatsBar" type="HBoxContainer" parent="StatsPanel"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Date" type="Label" parent="CenterContainer/VBoxContainer/StatsBar"]
+[node name="Date" type="Label" parent="StatsPanel/StatsBar"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "Date: Sept. 25, 2025"
 
-[node name="Time" type="Label" parent="CenterContainer/VBoxContainer/StatsBar"]
+[node name="Time" type="Label" parent="StatsPanel/StatsBar"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "Solved in 2min 42s"
 
-[node name="Hints" type="Label" parent="CenterContainer/VBoxContainer/StatsBar"]
+[node name="Hints" type="Label" parent="StatsPanel/StatsBar"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "No hints used!"

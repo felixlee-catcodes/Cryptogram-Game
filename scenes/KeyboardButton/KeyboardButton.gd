@@ -35,7 +35,6 @@ func _on_input_changed(key):
 		button_pressed = false
 
 func _on_toggled(toggled_on):
-	Log.pr("toggled state: ", toggled_on)
 	if toggled_on and not Input.is_physical_key_pressed(OS.find_keycode_from_string(key)):
 		EventHub.keys.keyboard_input.emit(key)
 	elif not toggled_on: button_pressed = false

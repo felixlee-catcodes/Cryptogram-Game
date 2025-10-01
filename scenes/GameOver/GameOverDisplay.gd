@@ -19,7 +19,7 @@ extends CenterContainer
 @onready var quotes_left = $VBoxContainer/QuotesLeft
 
 @onready var new_game : Button = $VBoxContainer/Buttons/NewGame
-@onready var save_text : Button = $VBoxContainer/Buttons/SaveText
+@onready var save_text : MenuButton = $VBoxContainer/Buttons/SaveText
 
 @export var button_normal : Color
 @export var button_hover : Color
@@ -27,19 +27,22 @@ extends CenterContainer
 @export var theme_font_color : Color
 
 var quote_book : QuoteBook
+var tags : Array[String] = []
 
 func _ready():
+	save_text.button_pressed = false
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
 
 	apply_theme_styling()
 	EventHub.game.game_over.connect(_on_game_over)
+	#EventHub.ui_events.transmit_tags.connect(_on_save_text_pressed)
 
 	quote_book = QuoteBook.new().load_book()
 	Log.pr("size: ", quote_book.quotes.size())
-	#for q in quote_book.quotes:
-		#Log.pr(q.text)
+	Log.pr(quote_book.prev_tags)
+
 
 #region APPLY THEME STYLING
 func apply_theme_styling() -> void:
@@ -95,10 +98,10 @@ func _convert_time(time) -> String:
 
 func _on_new_game_pressed():
 	EventHub.game.new_game.emit()
-
-
-func _on_save_text_pressed():
-	var quote = finished_puzzle["plainText"]
-	var author = finished_puzzle["author"]
-	
-	quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"])
+#
+#
+#func _on_save_text_pressed():
+	#var quote = finished_puzzle["plainText"]
+	#var author = finished_puzzle["author"]
+	#
+	#quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"])

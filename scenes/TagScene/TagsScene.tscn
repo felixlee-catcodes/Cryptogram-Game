@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch4j23ma3207"]
+
+[ext_resource type="Script" uid="uid://dpcsys6dxh1yo" path="res://scenes/TagScene/TagsScene.gd" id="1_asoax"]
+[ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="2_rtaky"]
+
+[node name="TagsScene" type="PopupPanel"]
+title = "Tags"
+size = Vector2i(200, 174)
+visible = true
+always_on_top = true
+theme = ExtResource("2_rtaky")
+script = ExtResource("1_asoax")
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 200.0
+offset_bottom = 174.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme = ExtResource("2_rtaky")
+theme_override_constants/separation = 0
+
+[node name="TagSearch" type="LineEdit" parent="MainContainer"]
+layout_mode = 2
+placeholder_text = "search tag"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_scroll_mode = 0
+
+[node name="TagContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="CheckBox2" type="CheckBox" parent="MainContainer/ScrollContainer/TagContainer"]
+layout_mode = 2
+text = "Check 2"
+
+[node name="CheckBox3" type="CheckBox" parent="MainContainer/ScrollContainer/TagContainer"]
+layout_mode = 2
+
+[node name="CheckBox4" type="CheckBox" parent="MainContainer/ScrollContainer/TagContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+placeholder_text = "add new tag"
+
+[node name="Button" type="Button" parent="MainContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[connection signal="pressed" from="MainContainer/Button" to="." method="_on_button_pressed"]

@@ -23,12 +23,14 @@ func _input(event):
 		var code = event.keycode
 		if code >= KEY_A and code <= KEY_Z:
 			var key = OS.get_keycode_string(code)
-			EventHub.keys.keyboard_input.emit(key)
-			EventHub.inputs.simulate_input.emit(key)
+			if cell_in_focus:
+				EventHub.keys.keyboard_input.emit(key)
+				EventHub.inputs.simulate_input.emit(key)
 
 		if event.is_action_pressed("ui_text_backspace"):
-			EventHub.keys.keyboard_input.emit("Clear")
-			Log.pr(prev_cell_in_focus.decoded_letter_input.text)
+			if cell_in_focus:
+				EventHub.keys.keyboard_input.emit("Clear")
+				Log.pr(prev_cell_in_focus.decoded_letter_input.text)
 
 		if event.is_action_pressed("ui_right"):
 			if cell_in_focus:
@@ -76,7 +78,7 @@ func get_prev(cell: LetterCell) -> LetterCell:
 #endregion
 
 func _register_key(key_text):
-	Log.pr("key: ", key_text)
+	#Log.pr("key: ", key_text)
 	if not cell_in_focus:
 		return
 	SoundManager.play_typing()

@@ -4,7 +4,7 @@ class_name QuoteBook
 const SAVE_PATH : String = "user://save/QuoteBook.tres"
 
 @export var quotes : Array[QuoteEntry] = []
-@export var prev_tags : Array = []
+@export var prev_tags : Array[String] = []
 
 func save() -> void:
 	Log.pr("save quote")

@@ -79,7 +79,7 @@ func check_completion():
 		EventHub.game.game_over.emit(elapsed_time, current_puzzle)
 		update_player_stats(elapsed_time, hints_used)
 		#Log.pr(SaveManager.stats.completion_record)
-		QuoteApiManager.mark_quote_solved(raw_data)
+		#QuoteApiManager.mark_quote_solved(raw_data)
 		cell_states.clear()
 
 

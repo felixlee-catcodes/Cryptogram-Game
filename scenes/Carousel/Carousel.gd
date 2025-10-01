@@ -1,4 +1,3 @@
-@tool
 extends Control
 
 @export var	bg_texture : Texture2D
@@ -7,9 +6,14 @@ extends Control
 @export var quotes_per_page : int = 3
 
 @onready var background: TextureRect = $Background
+@onready var searchbar = $MainVBox/Control/SearchBar
 @onready var scroll : ScrollContainer = $MainVBox/Scroll
 @onready var pages: HBoxContainer = $MainVBox/Scroll/Pages
 @onready var dots = $MainVBox/PageIndicators
+
+var matches : Array = []
+var all_entries : Array = []
+var show_stats : bool = false
 
 var current_page : int = 0
 var page_width : int = 0
@@ -19,24 +23,10 @@ var drag_start_x : float = 0.0
 var dragging : bool = false
 const SWIPE_THRESHOLD : float = 100.0
 
-#region OG _READY()
-#func _ready():
-	#quote_book = QuoteBook.new().load_book()
-	#populate_pages()
-	#_set_bg_texture()
-	### wait for 1st frame for layout to be ready
-	#await get_tree().process_frame
-	#if pages.get_child_count() > 0:
-		##page_width = pages.get_child(0).size.x
-		#page_width = pages.get_child(0).size.x + pages.get_theme_constant("separation")
-		#Log.pr("page width: ", page_width)
-		#
-	#
-	#update_dots()
-#endregion
+
 func _ready():
 	quote_book = QuoteBook.new().load_book()
-	_set_bg_texture()
+	_apply_custom_styles()
 	
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -44,8 +34,32 @@ func _ready():
 	scroll.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	_build_pages()
+	#Log.pr("total cards: ", all_cards.size())
+
+
+func _apply_custom_styles() -> void :
+	bg_texture = ThemeManager.active_theme.bg_texture
+	background.set_texture(bg_texture)
+	
+	var search_sb = StyleBoxFlat.new()
+	search_sb.bg_color = ThemeManager.active_theme.basic_ui_color
+	search_sb.set_corner_radius_all(20)
+	
+	var focus_sb = StyleBoxFlat.new()
+	focus_sb.bg_color = ThemeManager.active_theme.basic_ui_color
+	focus_sb.border_color = ThemeManager.active_theme.focus_color
+	focus_sb.set_border_width_all(5)
+	focus_sb.border_blend = true
+	focus_sb.set_corner_radius_all(20)
+	
+	searchbar.add_theme_stylebox_override("normal", search_sb)
+	searchbar.add_theme_stylebox_override("focus", focus_sb)
+	searchbar.add_theme_color_override("font_color", ThemeManager.active_theme.font_color)
+
+
 #region HANDLE INPUT:
-# --- swipe handling ---
+
+## --- swipe handling ---
 func _gui_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed) \
 	or (event is InputEventScreenTouch and event.pressed):
@@ -106,7 +120,7 @@ func _build_pages() -> void:
 		page.custom_minimum_size = Vector2(scroll.size.x, 0)
 
 		var page_stack = VBoxContainer.new()
-		page_stack.add_theme_constant_override("separation", 50)
+		page_stack.add_theme_constant_override("separation", 40)
 		page_stack.alignment = VBoxContainer.ALIGNMENT_CENTER
 		page.add_child(page_stack)
 		
@@ -118,7 +132,13 @@ func _build_pages() -> void:
 			
 			var card = quote_card_scene.instantiate()
 			card.set_quote_text(entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used)
+			Log.pr(typeof(card), card)
+			
 			page_stack.add_child(card)
+			card.set_stats_visible(show_stats)
+			#all_entries.append(entry)
+			Log.pr(card, card.text)
+			
 		
 		pages.add_child(page)
 		
@@ -150,17 +170,13 @@ func _build_page_indicators(page_count: int) -> void:
 
 func _make_dot_style(active : bool) -> StyleBoxFlat:
 	var sb = StyleBoxFlat.new()
-	sb.bg_color = Color.WHITE if active else Color.GRAY
+	sb.bg_color = ThemeManager.active_theme.basic_ui_color if active else Color.WHITE
 	sb.set_corner_radius_all(10)
 	sb.content_margin_left = 0
 	sb.content_margin_bottom = 0
 	sb.content_margin_top = 0
 	sb.content_margin_right = 0
 	return sb
-
-func _set_bg_texture() -> void :
-	bg_texture = ThemeManager.active_theme.bg_texture
-	background.set_texture(bg_texture)
 
 
 func update_dots() -> void:
@@ -169,3 +185,60 @@ func update_dots() -> void:
 		if i == current_page:
 			dot.modulate = Color.WEB_GRAY
 		else: dot.modulate = Color.WHITE_SMOKE
+
+
+func _on_search_bar_text_changed(new_text: String):
+	new_text = new_text.strip_edges().to_lower()
+	
+	if new_text == "":
+		display_search_matches(quote_book.quotes)
+		return
+	
+	var matches : Array = []
+	for entry in quote_book.quotes:
+		if new_text in entry.text.to_lower() or new_text in entry.author.to_lower():
+			matches.append(entry)
+	
+	display_search_matches(matches)
+
+
+func display_search_matches(data_list: Array) -> void:
+	for p in pages.get_children():
+		p.queue_free()
+		
+	if data_list.is_empty():
+		Log.pr("no results found")
+		$MainVBox/NoResultsLabel.visible = true
+		return
+	else: 
+		$MainVBox/NoResultsLabel.visible = false
+	var total_pages = int(ceil(float(data_list.size())/ quotes_per_page))
+	
+	for page_idx in range(total_pages):
+		var page = CenterContainer.new()
+		page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		page.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		page.custom_minimum_size = Vector2(scroll.size.x, 0)
+		
+		var page_stack = VBoxContainer.new()
+		page_stack.add_theme_constant_override("separation", 40)
+		page_stack.alignment = VBoxContainer.ALIGNMENT_CENTER
+		page.add_child(page_stack)
+		
+		for j in range(quotes_per_page):
+			var idx = page_idx * quotes_per_page + j
+			if idx >= data_list.size():
+				break
+
+			var entry = data_list[idx]
+			var card = quote_card_scene.instantiate()
+			card.set_quote_text(entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used)
+			card.set_stats_visible(show_stats)
+			page_stack.add_child(card)
+
+			Log.pr(card, card.text)
+		
+		pages.add_child(page)
+		
+		
+	_build_page_indicators(total_pages)
