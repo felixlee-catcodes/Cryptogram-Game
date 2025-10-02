@@ -32,9 +32,11 @@ func load_book():
 		return new_book
 
 
-func add_quote(text: String, author: String, solve_time: String, hints_used: int) -> void:
+func add_quote(text: String, author: String, solve_time: String, hints_used: int, tags : Array) -> void:
 	Log.pr("quotes size(before): ", quotes.size())
+	Log.prn("tags: ", tags)
 	var new_entry = QuoteEntry.new()
+	Log.prn("new entry: ", new_entry)
 	new_entry.author = author
 	new_entry.text = text
 	new_entry.date_added = "%d-%02d-%02d" % [
@@ -44,16 +46,17 @@ func add_quote(text: String, author: String, solve_time: String, hints_used: int
 	]
 	new_entry.solve_time = solve_time
 	new_entry.hints_used = hints_used
-	#new_entry.tags = []
 	
-	#if new_entry.tags > 0:
-		#for tag in tags:
-			#if not prev_tags.has(tag):
-				#prev_tags.append(tag)
+	if not tags.is_empty():
+		new_entry.tags = tags
+		for tag in tags:
+			if not tag in prev_tags:
+				prev_tags.append(tag)
 	
 	quotes.append(new_entry)
 	save()
 	Log.pr("quotes size(after): ", quotes.size())
+
 
 func remove_entry(entry: QuoteEntry):
 	quotes.erase(entry)

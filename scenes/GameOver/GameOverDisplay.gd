@@ -37,11 +37,9 @@ func _ready():
 
 	apply_theme_styling()
 	EventHub.game.game_over.connect(_on_game_over)
-	#EventHub.ui_events.transmit_tags.connect(_on_save_text_pressed)
+	EventHub.ui_events.transmit_tags.connect(_on_transmit_tags)
 
 	quote_book = QuoteBook.new().load_book()
-	Log.pr("size: ", quote_book.quotes.size())
-	Log.pr(quote_book.prev_tags)
 
 
 #region APPLY THEME STYLING
@@ -89,7 +87,7 @@ func _on_game_over(time, puzzle):
 	hints_used.text = "Hints used: %02d" % puzzle["hints_used"]
 
 
-func _convert_time(time) -> String:
+func _convert_time(time: int) -> String:
 	var m = int(time / 60.0)
 	var s = time - m * 60
 	var t = "%02d:%02d" % [m, s]
@@ -98,10 +96,9 @@ func _convert_time(time) -> String:
 
 func _on_new_game_pressed():
 	EventHub.game.new_game.emit()
-#
-#
-#func _on_save_text_pressed():
-	#var quote = finished_puzzle["plainText"]
-	#var author = finished_puzzle["author"]
-	#
-	#quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"])
+
+func _on_transmit_tags(tags: Array):
+	var quote : String = finished_puzzle["plainText"]
+	var author : String = finished_puzzle["author"]
+	
+	quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"], tags)

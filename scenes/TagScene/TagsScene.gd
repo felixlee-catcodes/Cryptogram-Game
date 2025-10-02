@@ -2,8 +2,8 @@ extends PopupPanel
 ##TAG EDITOR POP SCENE
 
 ## later this will be a reference to the QuoteBook resource's tag list
-@onready var tag_test = load("res://resources/QuoteBook/TagTestQuoteEntry.tres")
-@onready var qb = load("res://resources/QuoteBook/QuoteBook.tres")
+#@onready var tag_test = load("res://resources/QuoteBook/TagTestQuoteEntry.tres")
+@onready var quote_book : QuoteBook
 
 @onready var main_container = $MainContainer
 @onready var tag_container = $MainContainer/ScrollContainer/TagContainer
@@ -17,6 +17,8 @@ var tags : Dictionary
 
 func _ready():
 	#main_container.theme = "res://resources/Themes/custom_theme_1.tres"
+	quote_book = QuoteBook.new().load_book()
+	Log.prn("prev tags: ", quote_book.prev_tags)
 	line_edit.text_submitted.connect(update_tag_list)
 	tag_search.text_changed.connect(_on_search_bar_text_changed)
 	tags_to_dict()
@@ -24,7 +26,7 @@ func _ready():
 
 
 func tags_to_dict() -> void:
-	for t in tag_test.tags:
+	for t in quote_book.prev_tags:
 		tags[t] = {"checked": false}
 
 
