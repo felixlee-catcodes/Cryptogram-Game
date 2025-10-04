@@ -9,19 +9,30 @@ class_name QuoteCard
 @onready var bar_1 = $StatsPanel/ScrollContainer/StatsBar/Bar1
 @onready var stats_bar = $StatsPanel/ScrollContainer/StatsBar
 @onready var scroll_container = $StatsPanel/ScrollContainer
+@onready var delete_quote : TextureButton = $DeleteQuote
 
 var total_width : float
 
 var text : String
 var source : String
+@export var card_data : QuoteEntry
 
 func _ready():
+	delete_quote.pressed.connect(_on_clicked.bind(card_data))
+	Log.pr(QuoteBook.new().load_book().quotes.size())
 	var _duplicate = bar_1.duplicate()
 	_duplicate.name = "Bar2"
 	stats_bar.add_child(_duplicate)
 	await get_tree().process_frame  # wait for layout
 	total_width = bar_1.size.x * 2
 	Log.pr("total width: ", total_width, " times 2: ", total_width * 2)
+
+func _on_clicked(data: QuoteEntry):
+	var qb = QuoteBook.new().load_book()
+	Log.pr("data? ", data)
+	qb.remove_entry(data)
+	Log.pr(QuoteBook.new().load_book().quotes.size())
+	EventHub.inputs.update_archive.emit()
 
 
 func _process(delta):
@@ -39,9 +50,10 @@ func set_stats_visible(_visible: bool):
 	$StatsPanel.visible = _visible
 
 
-func set_quote_text(_text: String, _source: String, date, solve_time: int, num_hints: int, tags: Array) -> void:
-	Log.prn("tags: ", tags)
-	text = _text
+func set_quote_text(entry: QuoteEntry) -> void:
+	card_data = entry
+	Log.prn("tags: ", entry.tags)
+	text = entry.text
 	source = source
 	var text_label : Label = $CenterContainer/VBoxContainer.get_node("TextLabel")
 	var source_label : Label = $CenterContainer/VBoxContainer.get_node("SourceLabel")
@@ -49,7 +61,7 @@ func set_quote_text(_text: String, _source: String, date, solve_time: int, num_h
 	var date_label : Label = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("Date")
 	var time_label : Label = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("Time")
 	var hints_label : Label = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("Hints")
-	var date_time_dict = convert_date_time(date, solve_time)
+	var date_time_dict = convert_date_time(entry.date_added, entry.solve_time)
 	
 	
 	text_label.add_theme_font_size_override("font_size", 32)
@@ -58,12 +70,12 @@ func set_quote_text(_text: String, _source: String, date, solve_time: int, num_h
 	source_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	source_label.add_theme_color_override("font_color", ThemeManager.active_theme.panel_color)
 	
-	text_label.text = "\"%s\"" % _text
-	source_label.text = "- %s" % _source
+	text_label.text = "\"%s\"" % entry.text
+	source_label.text = "- %s" % entry.author
 	date_label.text = date_time_dict["date"]
 	time_label.text = "Solved in %s" % date_time_dict["time"]
-	hints_label.text = "No hints used!" if num_hints == 0 else "%d Hints Used" % num_hints
-	populate_tags(tags)
+	hints_label.text = "No hints used!" if entry.hints_used == 0 else "%d Hints Used" % entry.hints_used
+	populate_tags(entry.tags)
 	print("Before frame: ", stats_bar.size.x)
 	await get_tree().process_frame
 	
@@ -114,7 +126,7 @@ func update_ticker() -> void:
 
 		# Measure the width of the original bar (this is the distance to wrap)
 		# Use combined minimum size which accounts for children and their margins
-		total_width = bar_1.size.x * 2
+		total_width = bar_1.get_combined_minimum_size().x
 
 		# Debug — remove or comment out if not needed
 		print_debug("Ticker widths -> total_width:", total_width, "viewport:", scroll_container.size.x)

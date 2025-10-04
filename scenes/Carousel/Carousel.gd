@@ -13,7 +13,7 @@ extends Control
 
 #var matches : Array = []
 var all_entries : Array = []
-var show_stats : bool = true
+var show_stats : bool = false
 
 var current_page : int = 0
 var page_width : int = 0
@@ -26,6 +26,7 @@ const SWIPE_THRESHOLD : float = 100.0
 
 func _ready():
 	EventHub.ui_events.show_stats.connect(_on_stats_toggled)
+	EventHub.inputs.update_archive.connect(_on_update_archive)
 	quote_book = QuoteBook.new().load_book()
 	_apply_custom_styles()
 	
@@ -36,6 +37,9 @@ func _ready():
 
 	_build_pages()
 	#Log.pr("total cards: ", all_cards.size())
+
+func _on_update_archive():
+	_build_pages()
 
 
 func _apply_custom_styles() -> void :
@@ -132,7 +136,8 @@ func _build_pages() -> void:
 			var entry = quotes[idx]
 			
 			var card = quote_card_scene.instantiate()
-			card.call_deferred("set_quote_text",entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used, entry.tags)
+			card.card_data = entry
+			card.call_deferred("set_quote_text", entry)
 			
 			page_stack.add_child(card)
 			card.set_stats_visible(show_stats)

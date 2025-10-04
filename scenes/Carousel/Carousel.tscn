@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_4orwo")
 quote_book = ExtResource("2_ac1cd")
 quote_card_scene = ExtResource("2_5088m")

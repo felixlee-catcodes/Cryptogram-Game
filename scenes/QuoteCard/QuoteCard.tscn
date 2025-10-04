@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://gqg1urq1up6"]
+[gd_scene load_steps=5 format=3 uid="uid://gqg1urq1up6"]
 
 [ext_resource type="Script" uid="uid://6vlqt8hpdcwu" path="res://scenes/QuoteCard/QuoteCard.gd" id="1_ddmun"]
+[ext_resource type="Texture2D" uid="uid://c36dn2iduobu5" path="res://assets/ui-icons/delete_25dp.png" id="2_i5uqg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5uqg"]
 content_margin_top = 20.0
@@ -22,8 +23,8 @@ corner_radius_bottom_left = 10
 
 [node name="QuoteCard" type="Panel"]
 custom_minimum_size = Vector2(650, 300)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 650.0
+offset_bottom = 307.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i5uqg")
 script = ExtResource("1_ddmun")
 
@@ -111,3 +112,21 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Tags: none"
+
+[node name="DeleteQuote" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = 8.0
+offset_right = -11.0
+offset_bottom = 33.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_i5uqg")
+texture_pressed = ExtResource("2_i5uqg")
+texture_hover = ExtResource("2_i5uqg")
