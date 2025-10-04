@@ -3,29 +3,36 @@ class_name QuoteCard
 
 @export var scroll_speed: float = 60.0 # pixels per second
 
-@onready var text_label = $CenterContainer/VBoxContainer/TextLabel
-@onready var source_label = $CenterContainer/VBoxContainer/SourceLabel
+#@onready var text_label = $CenterContainer/VBoxContainer/TextLabel
+#@onready var source_label = $CenterContainer/VBoxContainer/SourceLabel
 @onready var stats_panel = $StatsPanel
 @onready var bar_1 = $StatsPanel/ScrollContainer/StatsBar/Bar1
 @onready var stats_bar = $StatsPanel/ScrollContainer/StatsBar
+@onready var scroll_container = $StatsPanel/ScrollContainer
+
+var total_width : float
 
 var text : String
 var source : String
 
 func _ready():
-	var scroll_container : ScrollContainer = $StatsPanel.get_node("ScrollContainer")
-	var duplicate = bar_1.duplicate()
-	duplicate.name = "Bar_2"
-	stats_bar.add_child(duplicate)
-	
+	var _duplicate = bar_1.duplicate()
+	_duplicate.name = "Bar2"
+	stats_bar.add_child(_duplicate)
+	await get_tree().process_frame  # wait for layout
+	total_width = bar_1.size.x * 2
+	Log.pr("total width: ", total_width, " times 2: ", total_width * 2)
+
 
 func _process(delta):
 	var scroll_container : ScrollContainer = $StatsPanel/ScrollContainer
+	
+
 	scroll_container.scroll_horizontal += scroll_speed * delta
 	
-	var total_width = stats_bar.size.x
+	#var total_width = stats_bar.size.x
 	if scroll_container.scroll_horizontal >= total_width:
-		scroll_container.scroll_horizontal  = 0
+		scroll_container.scroll_horizontal -= total_width
 
 
 func set_stats_visible(_visible: bool):
@@ -57,6 +64,11 @@ func set_quote_text(_text: String, _source: String, date, solve_time: int, num_h
 	time_label.text = "Solved in %s" % date_time_dict["time"]
 	hints_label.text = "No hints used!" if num_hints == 0 else "%d Hints Used" % num_hints
 	populate_tags(tags)
+	print("Before frame: ", stats_bar.size.x)
+	await get_tree().process_frame
+	
+	await update_ticker()
+	print("After frame: ", stats_bar.size.x)
 
 
 func populate_tags(tagArr: Array):
@@ -78,6 +90,38 @@ func populate_tags(tagArr: Array):
 			label.add_theme_color_override("font_color", Color.BLACK)
 			
 			tag_container.add_child(label)
+	
+	
+	
+
+func update_ticker() -> void:
+	if stats_bar == null or bar_1 == null:
+		await get_tree().process_frame
+		if stats_bar == null or bar_1 == null:
+			return  # still not ready, bail out
+	# Remove old duplicate if present
+	if stats_bar.has_node("Bar2"):
+		stats_bar.get_node("Bar2").queue_free()
+
+		# Duplicate Bar1 so Bar2 matches current content
+		var _duplicate = bar_1.duplicate()
+		_duplicate.name = "Bar2"
+		stats_bar.add_child(_duplicate)
+
+		# Wait for layout to run (sometimes you need two frames to be safe)
+		await get_tree().process_frame
+		await get_tree().process_frame
+
+		# Measure the width of the original bar (this is the distance to wrap)
+		# Use combined minimum size which accounts for children and their margins
+		total_width = bar_1.size.x * 2
+
+		# Debug — remove or comment out if not needed
+		print_debug("Ticker widths -> total_width:", total_width, "viewport:", scroll_container.size.x)
+
+		# If the content now fits the viewport, reset the scroll
+	if total_width <= scroll_container.size.x:
+		scroll_container.scroll_horizontal = 0
 
 
 func convert_date_time(date, _time) -> Dictionary:

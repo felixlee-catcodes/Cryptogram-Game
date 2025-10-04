@@ -11,9 +11,9 @@ extends Control
 @onready var pages: HBoxContainer = $MainVBox/Scroll/Pages
 @onready var dots = $MainVBox/PageIndicators
 
-var matches : Array = []
+#var matches : Array = []
 var all_entries : Array = []
-var show_stats : bool = false
+var show_stats : bool = true
 
 var current_page : int = 0
 var page_width : int = 0
@@ -132,7 +132,7 @@ func _build_pages() -> void:
 			var entry = quotes[idx]
 			
 			var card = quote_card_scene.instantiate()
-			card.set_quote_text(entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used, entry.tags)
+			card.call_deferred("set_quote_text",entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used, entry.tags)
 			
 			page_stack.add_child(card)
 			card.set_stats_visible(show_stats)
@@ -245,7 +245,7 @@ func display_search_matches(data_list: Array) -> void:
 	_build_page_indicators(total_pages)
 
 
-func _on_stats_toggled(show : bool) -> void:
-	show_stats = show
+func _on_stats_toggled(_show : bool) -> void:
+	show_stats = _show
 	_build_pages()
 	Log.pr("showing stats? ", show_stats)
