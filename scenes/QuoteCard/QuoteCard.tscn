@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://gqg1urq1up6"]
+[gd_scene load_steps=5 format=3 uid="uid://gqg1urq1up6"]
 
 [ext_resource type="Script" uid="uid://6vlqt8hpdcwu" path="res://scenes/QuoteCard/QuoteCard.gd" id="1_ddmun"]
 
@@ -17,6 +17,13 @@ bg_color = Color(0.6, 0.6, 0.6, 0.545098)
 border_width_top = 1
 border_color = Color(0.635938, 0.635938, 0.635938, 1)
 border_blend = true
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykqxy"]
+bg_color = Color(0.526638, 0.628125, 0.526638, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
@@ -70,26 +77,66 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ddmun")
 
-[node name="StatsBar" type="HBoxContainer" parent="StatsPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="StatsPanel"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="StatsBar" type="HBoxContainer" parent="StatsPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Date" type="Label" parent="StatsPanel/StatsBar"]
+[node name="Bar1" type="HBoxContainer" parent="StatsPanel/ScrollContainer/StatsBar"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Date" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Date: Sept. 25, 2025"
 
-[node name="Time" type="Label" parent="StatsPanel/StatsBar"]
+[node name="Time" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Solved in 2min 42s"
 
-[node name="Hints" type="Label" parent="StatsPanel/StatsBar"]
+[node name="Hints" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "No hints used!"
+
+[node name="TagContainer" type="HBoxContainer" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Tags" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1/TagContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Tags:"
+
+[node name="Label" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1/TagContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ykqxy")
+text = "Example"
+
+[node name="Label2" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1/TagContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ykqxy")
+text = "Example"
+
+[node name="Label3" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1/TagContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ykqxy")
+text = "Example"

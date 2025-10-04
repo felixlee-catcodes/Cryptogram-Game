@@ -11,8 +11,7 @@ bg_color = Color(0.45098, 0.905882, 0.521569, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvcl8"]
 bg_color = Color(0.847059, 0.972549, 0.745098, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vrlf"]
-bg_color = Color(0.368627, 0.615686, 0.415686, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tyqih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qapan"]
 bg_color = Color(0.73468, 0.73468, 0.73468, 1)
@@ -26,9 +25,10 @@ border_width_bottom = 1
 border_color = Color(0.121519, 0.121519, 0.121519, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw67d"]
-bg_color = Color(0.964063, 0.964063, 0.964063, 1)
+bg_color = Color(0.913725, 0.913725, 0.913725, 1)
 
 [resource]
+CheckBox/font_sizes/font_size = 32
 CheckBox/styles/normal = SubResource("StyleBoxFlat_7yh33")
 HeaderPanel/styles/PanelContainer = SubResource("StyleBoxFlat_505x8")
 LineEdit/colors/font_color = Color(0.0562918, 0.0562915, 0.0562916, 1)
@@ -36,7 +36,7 @@ LineEdit/colors/font_uneditable_color = Color(0.0145219, 0.0817525, 0.0775458, 1
 LineEdit/font_sizes/font_size = 24
 LineEdit/styles/focus = SubResource("StyleBoxFlat_35p66")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_gvcl8")
-LineEdit/styles/read_only = SubResource("StyleBoxFlat_3vrlf")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_tyqih")
 PopupMenu/colors/font_color = Color(0.0439521, 0.0439519, 0.0439519, 1)
 PopupMenu/colors/font_hover_color = Color(0.0807835, 0.0807833, 0.0807833, 1)
 PopupMenu/colors/font_separator_color = Color(0.0402689, 0.0402687, 0.0402688, 1)

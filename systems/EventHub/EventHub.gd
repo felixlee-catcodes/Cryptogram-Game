@@ -26,6 +26,7 @@ class InputEvents:
 class UserInterfaceEvents: 
 	signal update_timer(time)
 	signal transmit_tags(tags: Array)
+	signal show_stats(show: bool)
 
 
 class GameEvents:

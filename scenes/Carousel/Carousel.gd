@@ -25,6 +25,7 @@ const SWIPE_THRESHOLD : float = 100.0
 
 
 func _ready():
+	EventHub.ui_events.show_stats.connect(_on_stats_toggled)
 	quote_book = QuoteBook.new().load_book()
 	_apply_custom_styles()
 	
@@ -131,8 +132,7 @@ func _build_pages() -> void:
 			var entry = quotes[idx]
 			
 			var card = quote_card_scene.instantiate()
-			card.set_quote_text(entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used)
-			Log.pr(typeof(card), card)
+			card.set_quote_text(entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used, entry.tags)
 			
 			page_stack.add_child(card)
 			card.set_stats_visible(show_stats)
@@ -168,6 +168,7 @@ func _build_page_indicators(page_count: int) -> void:
 		
 		dots.add_child(dot)
 
+
 func _make_dot_style(active : bool) -> StyleBoxFlat:
 	var sb = StyleBoxFlat.new()
 	sb.bg_color = ThemeManager.active_theme.basic_ui_color if active else Color.WHITE
@@ -183,7 +184,7 @@ func update_dots() -> void:
 	for i in range(dots.get_child_count()):
 		var dot = dots.get_child(i)
 		if i == current_page:
-			dot.modulate = Color.WEB_GRAY
+			dot.modulate = ThemeManager.active_theme.basic_ui_color
 		else: dot.modulate = Color.WHITE_SMOKE
 
 
@@ -242,3 +243,9 @@ func display_search_matches(data_list: Array) -> void:
 		
 		
 	_build_page_indicators(total_pages)
+
+
+func _on_stats_toggled(show : bool) -> void:
+	show_stats = show
+	_build_pages()
+	Log.pr("showing stats? ", show_stats)

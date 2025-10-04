@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://br34xyldlj28u"]
+
+[ext_resource type="Theme" uid="uid://7yhqtiwbm0pj" path="res://resources/Themes/popup_menu_custom.tres" id="1_r5k48"]
+[ext_resource type="Script" uid="uid://bos4epf21hhes" path="res://scenes/HeaderUI/QBPopupPanel/QbSettingsPopup.gd" id="2_urxr7"]
+
+[node name="QBSettingsPopup" type="PopupPanel"]
+size = Vector2i(142, 132)
+visible = true
+theme = ExtResource("1_r5k48")
+script = ExtResource("2_urxr7")
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 142.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_r5k48")
+
+[node name="Title" type="HBoxContainer" parent="MainVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainVBox/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title2" type="Label" parent="MainVBox/Title"]
+layout_mode = 2
+text = "Options"
+
+[node name="HSeparator2" type="HSeparator" parent="MainVBox/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="MainVBox"]
+layout_mode = 2
+theme = ExtResource("1_r5k48")
+text = "Show Stats"
+
+[node name="Button" type="Button" parent="MainVBox"]
+layout_mode = 2
+text = "Edit Quote Book"
+
+[node name="NewGame" type="Button" parent="MainVBox"]
+layout_mode = 2
+text = "New Game"
+
+[node name="QuitToHome" type="Button" parent="MainVBox"]
+layout_mode = 2
+text = "Home"
+
+[connection signal="toggled" from="MainVBox/CheckButton" to="." method="_on_check_button_toggled"]

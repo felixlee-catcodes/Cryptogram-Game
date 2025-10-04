@@ -1,30 +1,32 @@
 extends MenuButton
-@onready var settings = $"."
+@onready var qb_menu_button : MenuButton = $"."
 
-enum MenuItems {
-	SETTINGS, 
-	NEW_GAME, 
-	CHANGE_THEME,
-	QUIT_GAME
-}
+@export var custom_popup : PackedScene # my TagScene with a PopupPanel as root
+@export var quote_book : QuoteBook
 
-var menu : PopupMenu
+var qb_options_scene : PopupPanel
+
+#enum MenuItems { 
+	#SHOW_STATS,
+	#NEW_GAME, 
+	#CHANGE_THEME,
+	#QUIT_GAME
+#}
 
 func _ready():
 	button_pressed = false
-	menu = get_popup()
-	menu.add_separator("Settings", MenuItems.SETTINGS)
-	menu.add_item("New Game", MenuItems.NEW_GAME)
-	menu.add_item("Switch Theme", MenuItems.CHANGE_THEME)
-	menu.add_item("Quit Game", MenuItems.QUIT_GAME)
-	menu.hide_on_item_selection = false
-	menu.id_pressed.connect(_on_id_pressed)
+	qb_options_scene = custom_popup.instantiate()
+	qb_menu_button.add_child(qb_options_scene)
+	qb_options_scene.hide()
+	
 
 func _on_id_pressed(id):
 	match id:
-		MenuItems.NEW_GAME:
-			get_tree().change_scene_to_file("res://scenes/Main.tscn")
-			#await get_tree().process_frame
-			EventHub.game.new_game.emit()
-		MenuItems.CHANGE_THEME:
-			ThemeManager.next_theme()
+		pass
+
+
+func _on_pressed():
+	var offset = global_position + Vector2(0, 108)
+	var rect = Rect2(offset, size)
+	Log.pr(rect)
+	qb_options_scene.popup(rect)
