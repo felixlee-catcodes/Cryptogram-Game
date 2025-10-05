@@ -1,4 +1,5 @@
 extends PopupPanel
+class_name TagScene
 ##TAG EDITOR POP SCENE
 
 ## later this will be a reference to the QuoteBook resource's tag list
@@ -18,7 +19,7 @@ var tags : Dictionary
 func _ready():
 	#main_container.theme = "res://resources/Themes/custom_theme_1.tres"
 	quote_book = QuoteBook.new().load_book()
-	Log.prn("prev tags: ", quote_book.prev_tags)
+	#Log.prn("prev tags: ", quote_book.prev_tags)
 	line_edit.text_submitted.connect(update_tag_list)
 	tag_search.text_changed.connect(_on_search_bar_text_changed)
 	tags_to_dict()
@@ -38,6 +39,18 @@ func populate_tags(data_list) -> void:
 
 	for t in data_list:
 		var cb : CheckBox = CheckBox.new()
+		var cb_normal = StyleBoxFlat.new()
+		var cb_pressed = StyleBoxFlat.new()
+		var cb_hover_pressed = StyleBoxFlat.new()
+		var cb_focus = StyleBoxFlat.new()
+		cb_focus.bg_color = ThemeManager.active_theme.basic_ui_color
+		cb_normal.bg_color = Color("e9e9e9")
+		cb_hover_pressed.bg_color = ThemeManager.active_theme.addtl_accent_color
+		cb_pressed.bg_color = ThemeManager.active_theme.base_color
+		cb.add_theme_stylebox_override("focus", cb_focus)
+		cb.add_theme_stylebox_override("normal", cb_normal)
+		cb.add_theme_stylebox_override("pressed", cb_pressed)
+		cb.add_theme_stylebox_override("hover_pressed", cb_hover_pressed)
 		cb.text = t
 		cb.toggle_mode = true
 		cb.toggled.connect(_on_checked.bind(t))

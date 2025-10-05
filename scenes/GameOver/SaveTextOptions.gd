@@ -8,7 +8,6 @@ extends MenuButton
 @export var quote_book : QuoteBook
 
 var tag_scene : PopupPanel
-var current_tags : Array = ["inpsiration", "philosophy", "nature", "art"]
 
 func _ready():
 	button_pressed = false
@@ -22,7 +21,7 @@ func _ready():
 
 
 func _on_pressed():
-	var offset = global_position + Vector2(0, 75)
+	var offset = global_position + Vector2(0, -150)
 	var rect = Rect2(offset, size)
 	Log.pr(rect)
 	tag_scene.popup(rect)

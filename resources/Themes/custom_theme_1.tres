@@ -28,8 +28,14 @@ border_color = Color(0.121519, 0.121519, 0.121519, 1)
 bg_color = Color(0.913725, 0.913725, 0.913725, 1)
 
 [resource]
+AcceptDialog/colors/title_color = Color(0, 0, 0, 1)
+AcceptDialog/colors/title_outline_modulate = Color(0, 0, 0, 1)
+AcceptDialog/font_sizes/title_font_size = 32
 CheckBox/font_sizes/font_size = 32
 CheckBox/styles/normal = SubResource("StyleBoxFlat_7yh33")
+DialogLabel/colors/font_color = Color(0, 0, 0, 1)
+DialogLabel/font_sizes/font_size = 24
+DialogLabel/fonts/font = null
 HeaderPanel/styles/PanelContainer = SubResource("StyleBoxFlat_505x8")
 LineEdit/colors/font_color = Color(0.0562918, 0.0562915, 0.0562916, 1)
 LineEdit/colors/font_uneditable_color = Color(0.0145219, 0.0817525, 0.0775458, 1)

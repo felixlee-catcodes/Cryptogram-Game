@@ -36,7 +36,6 @@ func _ready():
 	scroll.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	_build_pages()
-	#Log.pr("total cards: ", all_cards.size())
 
 func _on_update_archive():
 	_build_pages()
@@ -106,17 +105,15 @@ func _build_pages() -> void:
 	await get_tree().process_frame
 	for page in pages.get_children():
 		page.custom_minimum_size.x = scroll.size.x
-		Log.pr("scroll size: ", scroll.size.x)
+		#Log.pr("scroll size: ", scroll.size.x)
 
 	##clear out old children if rebuilding:
 	for p in pages.get_children():
 		p.queue_free()
-	#for dot in dots.get_children():
-		#dot.queue_free()
+
 	
 	var quotes = quote_book.quotes
 	var total_pages = int(ceil(float(quotes.size())/ quotes_per_page))
-	#Log.pr("PAGE COUNT: ", total_pages)
 	
 	for page_index in range(total_pages):
 		var page = CenterContainer.new()
@@ -142,7 +139,7 @@ func _build_pages() -> void:
 			page_stack.add_child(card)
 			card.set_stats_visible(show_stats)
 			#all_entries.append(entry)
-			Log.pr(card, card.text)
+			#Log.pr(card, card.text)
 			
 		
 		pages.add_child(page)
@@ -238,7 +235,7 @@ func display_search_matches(data_list: Array) -> void:
 
 			var entry = data_list[idx]
 			var card = quote_card_scene.instantiate()
-			card.set_quote_text(entry.text, entry.author, entry.date_added, entry.solve_time, entry.hints_used)
+			card.set_quote_text(entry)
 			card.set_stats_visible(show_stats)
 			page_stack.add_child(card)
 
@@ -253,4 +250,4 @@ func display_search_matches(data_list: Array) -> void:
 func _on_stats_toggled(_show : bool) -> void:
 	show_stats = _show
 	_build_pages()
-	Log.pr("showing stats? ", show_stats)
+	#Log.pr("showing stats? ", show_stats)

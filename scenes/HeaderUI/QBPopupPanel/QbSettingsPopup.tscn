@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bos4epf21hhes" path="res://scenes/HeaderUI/QBPopupPanel/QbSettingsPopup.gd" id="2_urxr7"]
 
 [node name="QBSettingsPopup" type="PopupPanel"]
-size = Vector2i(142, 132)
+size = Vector2i(260, 235)
 visible = true
 theme = ExtResource("1_r5k48")
 script = ExtResource("2_urxr7")
@@ -13,8 +13,9 @@ script = ExtResource("2_urxr7")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 142.0
-offset_bottom = 132.0
+offset_left = 5.0
+offset_right = 255.0
+offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -55,3 +56,4 @@ layout_mode = 2
 text = "Home"
 
 [connection signal="toggled" from="MainVBox/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="MainVBox/NewGame" to="." method="_on_new_game_pressed"]

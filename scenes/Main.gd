@@ -47,7 +47,7 @@ func setup_puzzle():
 
 func _on_new_game():
 	get_tree().reload_current_scene()
-
+	Log.pr("signal recieved")
 
 func _on_game_over(_time, puzzle):
 	keyboard_panel_container.visible = false

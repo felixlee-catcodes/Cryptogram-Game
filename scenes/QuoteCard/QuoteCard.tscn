@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://gqg1urq1up6"]
+[gd_scene load_steps=7 format=3 uid="uid://gqg1urq1up6"]
 
 [ext_resource type="Script" uid="uid://6vlqt8hpdcwu" path="res://scenes/QuoteCard/QuoteCard.gd" id="1_ddmun"]
-[ext_resource type="Texture2D" uid="uid://c36dn2iduobu5" path="res://assets/ui-icons/delete_25dp.png" id="2_i5uqg"]
+[ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="2_btnss"]
+[ext_resource type="Texture2D" uid="uid://cg2yy6fa0t2wn" path="res://assets/ui-icons/more_horiz_28dp.png" id="2_i5uqg"]
+[ext_resource type="Script" uid="uid://bimski1qqdund" path="res://scenes/QuoteCard/CardOptions.gd" id="3_ykqxy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5uqg"]
 content_margin_top = 20.0
@@ -23,8 +25,13 @@ corner_radius_bottom_left = 10
 
 [node name="QuoteCard" type="Panel"]
 custom_minimum_size = Vector2(650, 300)
-offset_right = 650.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -325.0
+offset_right = 325.0
 offset_bottom = 307.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_i5uqg")
 script = ExtResource("1_ddmun")
 
@@ -111,22 +118,18 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "Tags: none"
+text = "Tags:"
 
-[node name="DeleteQuote" type="TextureButton" parent="."]
+[node name="CardOptions" type="MenuButton" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -36.0
-offset_top = 8.0
-offset_right = -11.0
-offset_bottom = 33.0
+offset_left = -42.0
+offset_top = 3.0
+offset_right = -6.0
+offset_bottom = 39.0
 grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 2
-mouse_force_pass_scroll_events = false
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_i5uqg")
-texture_pressed = ExtResource("2_i5uqg")
-texture_hover = ExtResource("2_i5uqg")
+theme = ExtResource("2_btnss")
+icon = ExtResource("2_i5uqg")
+script = ExtResource("3_ykqxy")

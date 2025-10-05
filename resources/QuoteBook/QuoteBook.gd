@@ -63,5 +63,11 @@ func remove_entry(entry: QuoteEntry):
 	save()
 
 
+func update_tags(entry: QuoteEntry, tags: Array) -> void:
+	if quotes.has(entry):
+		entry.tags = tags
+		save()
+
+
 func find_by_author(author: String) -> Array[QuoteEntry]:
 	return quotes.filter(func(a): a.author == author)

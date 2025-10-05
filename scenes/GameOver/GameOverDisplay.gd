@@ -44,6 +44,8 @@ func _ready():
 
 #region APPLY THEME STYLING
 func apply_theme_styling() -> void:
+	save_text.flat = false
+	var inner_button = save_text.get_children()
 	var normal_style = StyleBoxFlat.new()
 	normal_style.bg_color = button_normal
 	normal_style.set_content_margin_all(15)

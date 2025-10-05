@@ -22,6 +22,7 @@ class InputEvents:
 	signal input_changed(key: String)
 	signal simulate_input(key: String)
 	signal update_archive
+	signal update_entry(entry: QuoteEntry, tags: Array)
 
 
 class UserInterfaceEvents: 

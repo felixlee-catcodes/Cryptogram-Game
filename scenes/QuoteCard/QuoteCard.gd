@@ -9,7 +9,6 @@ class_name QuoteCard
 @onready var bar_1 = $StatsPanel/ScrollContainer/StatsBar/Bar1
 @onready var stats_bar = $StatsPanel/ScrollContainer/StatsBar
 @onready var scroll_container = $StatsPanel/ScrollContainer
-@onready var delete_quote : TextureButton = $DeleteQuote
 
 var total_width : float
 
@@ -18,18 +17,14 @@ var source : String
 @export var card_data : QuoteEntry
 
 func _ready():
-	delete_quote.pressed.connect(_on_clicked.bind(card_data))
-	Log.pr(QuoteBook.new().load_book().quotes.size())
 	var _duplicate = bar_1.duplicate()
 	_duplicate.name = "Bar2"
 	stats_bar.add_child(_duplicate)
 	await get_tree().process_frame  # wait for layout
 	total_width = bar_1.size.x * 2
-	Log.pr("total width: ", total_width, " times 2: ", total_width * 2)
 
 func _on_clicked(data: QuoteEntry):
 	var qb = QuoteBook.new().load_book()
-	Log.pr("data? ", data)
 	qb.remove_entry(data)
 	Log.pr(QuoteBook.new().load_book().quotes.size())
 	EventHub.inputs.update_archive.emit()
@@ -52,7 +47,6 @@ func set_stats_visible(_visible: bool):
 
 func set_quote_text(entry: QuoteEntry) -> void:
 	card_data = entry
-	Log.prn("tags: ", entry.tags)
 	text = entry.text
 	source = source
 	var text_label : Label = $CenterContainer/VBoxContainer.get_node("TextLabel")
@@ -76,19 +70,18 @@ func set_quote_text(entry: QuoteEntry) -> void:
 	time_label.text = "Solved in %s" % date_time_dict["time"]
 	hints_label.text = "No hints used!" if entry.hints_used == 0 else "%d Hints Used" % entry.hints_used
 	populate_tags(entry.tags)
-	print("Before frame: ", stats_bar.size.x)
 	await get_tree().process_frame
 	
 	await update_ticker()
-	print("After frame: ", stats_bar.size.x)
+	#print("After frame: ", stats_bar.size.x)
 
 
 func populate_tags(tagArr: Array):
 	var tag_container : HBoxContainer = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("TagContainer")
-
+	var tag_style = StyleBoxFlat.new()
+	
 	if not tagArr.is_empty():
 		for tag in tagArr:
-			var tag_style = StyleBoxFlat.new()
 			tag_style.set_corner_radius_all(10)
 			tag_style.content_margin_left = 7
 			tag_style.content_margin_top = 2
@@ -102,9 +95,17 @@ func populate_tags(tagArr: Array):
 			label.add_theme_color_override("font_color", Color.BLACK)
 			
 			tag_container.add_child(label)
-	
-	
-	
+	else: 
+		var no_tags = Label.new()
+		no_tags.text = " none "
+		no_tags.add_theme_stylebox_override("normal", tag_style)
+		no_tags.add_theme_font_size_override("font_size", 20)
+		no_tags.add_theme_color_override("font_color", Color.BLACK)
+		tag_container.add_child(no_tags)
+		
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(100, 0)
+	tag_container.add_child(spacer)
 
 func update_ticker() -> void:
 	if stats_bar == null or bar_1 == null:
@@ -129,7 +130,7 @@ func update_ticker() -> void:
 		total_width = bar_1.get_combined_minimum_size().x
 
 		# Debug — remove or comment out if not needed
-		print_debug("Ticker widths -> total_width:", total_width, "viewport:", scroll_container.size.x)
+		#print_debug("Ticker widths -> total_width:", total_width, "viewport:", scroll_container.size.x)
 
 		# If the content now fits the viewport, reset the scroll
 	if total_width <= scroll_container.size.x:

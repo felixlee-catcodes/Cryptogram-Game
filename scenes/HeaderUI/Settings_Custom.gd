@@ -6,12 +6,6 @@ extends MenuButton
 
 var qb_options_scene : PopupPanel
 
-#enum MenuItems { 
-	#SHOW_STATS,
-	#NEW_GAME, 
-	#CHANGE_THEME,
-	#QUIT_GAME
-#}
 
 func _ready():
 	button_pressed = false

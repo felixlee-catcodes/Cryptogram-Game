@@ -6,7 +6,7 @@
 
 [node name="TagsScene" type="PopupPanel"]
 title = "Tags"
-size = Vector2i(200, 190)
+size = Vector2i(200, 301)
 visible = true
 always_on_top = true
 theme = ExtResource("1_bue27")
@@ -15,8 +15,9 @@ script = ExtResource("1_asoax")
 [node name="MainContainer" type="VBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = 200.0
-offset_bottom = 190.0
+offset_left = 5.0
+offset_right = 195.0
+offset_bottom = 301.0
 grow_horizontal = 2
 size_flags_vertical = 0
 theme = ExtResource("2_rtaky")
@@ -28,7 +29,7 @@ theme = ExtResource("1_bue27")
 placeholder_text = " search tag"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainContainer"]
-custom_minimum_size = Vector2(0, 75)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 8
 horizontal_scroll_mode = 0
@@ -44,14 +45,6 @@ theme_override_constants/separation = 0
 layout_mode = 2
 theme = ExtResource("1_bue27")
 text = "Check 2"
-
-[node name="CheckBox3" type="CheckBox" parent="MainContainer/ScrollContainer/TagContainer"]
-layout_mode = 2
-theme = ExtResource("1_bue27")
-
-[node name="CheckBox4" type="CheckBox" parent="MainContainer/ScrollContainer/TagContainer"]
-layout_mode = 2
-theme = ExtResource("1_bue27")
 
 [node name="LineEdit" type="LineEdit" parent="MainContainer"]
 layout_mode = 2
