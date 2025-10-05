@@ -66,7 +66,12 @@ func remove_entry(entry: QuoteEntry):
 func update_tags(entry: QuoteEntry, tags: Array) -> void:
 	if quotes.has(entry):
 		entry.tags = tags
-		save()
+		
+		if not tags.is_empty():
+			for tag in tags:
+				if not tag in prev_tags:
+					prev_tags.append(tag)
+	save()
 
 
 func find_by_author(author: String) -> Array[QuoteEntry]:

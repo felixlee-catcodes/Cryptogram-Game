@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://13t1qff03byd"]
+[gd_scene load_steps=7 format=3 uid="uid://13t1qff03byd"]
 
 [ext_resource type="Script" uid="uid://dxw5n82tvtvxt" path="res://scenes/Carousel/Carousel.gd" id="1_4orwo"]
 [ext_resource type="PackedScene" uid="uid://d0k44oci1f8e3" path="res://scenes/HeaderUI/HeaderUI_QB.tscn" id="2_7jvm2"]
 [ext_resource type="PackedScene" uid="uid://gqg1urq1up6" path="res://scenes/QuoteCard/QuoteCard.tscn" id="2_5088m"]
 [ext_resource type="Resource" path="user://save/QuoteBook.tres" id="2_ac1cd"]
+[ext_resource type="Texture2D" uid="uid://y5gqywwsasta" path="res://assets/ui-icons/keyboard_double_arrow_right_45dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="4_dhlb2"]
+[ext_resource type="Texture2D" uid="uid://c26ri8033kspk" path="res://assets/ui-icons/keyboard_double_arrow_left_45dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.png" id="5_5y6v0"]
 
 [node name="Carousel" type="Control"]
 layout_mode = 3
@@ -16,6 +18,8 @@ mouse_filter = 1
 script = ExtResource("1_4orwo")
 quote_book = ExtResource("2_ac1cd")
 quote_card_scene = ExtResource("2_5088m")
+next_texture = ExtResource("4_dhlb2")
+prev_texture = ExtResource("5_5y6v0")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -70,6 +74,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
+horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
 [node name="Pages" type="HBoxContainer" parent="MainVBox/Scroll"]
