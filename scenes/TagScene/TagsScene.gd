@@ -51,10 +51,12 @@ func populate_tags(data_list) -> void:
 		cb.add_theme_stylebox_override("normal", cb_normal)
 		cb.add_theme_stylebox_override("pressed", cb_pressed)
 		cb.add_theme_stylebox_override("hover_pressed", cb_hover_pressed)
+		cb.add_theme_font_size_override("font_size", 40)
 		cb.text = t
 		cb.toggle_mode = true
 		cb.toggled.connect(_on_checked.bind(t))
 		cb.set_pressed_no_signal(data_list[t]["checked"])
+		cb.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		tag_container.add_child(cb)
 
 

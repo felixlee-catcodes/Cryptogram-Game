@@ -6,7 +6,7 @@
 
 [node name="TagsScene" type="PopupPanel"]
 title = "Tags"
-size = Vector2i(200, 301)
+size = Vector2i(400, 321)
 visible = true
 always_on_top = true
 theme = ExtResource("1_bue27")
@@ -16,8 +16,8 @@ script = ExtResource("1_asoax")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 5.0
-offset_right = 195.0
-offset_bottom = 301.0
+offset_right = 395.0
+offset_bottom = 321.0
 grow_horizontal = 2
 size_flags_vertical = 0
 theme = ExtResource("2_rtaky")
@@ -43,6 +43,7 @@ theme_override_constants/separation = 0
 
 [node name="CheckBox2" type="CheckBox" parent="MainContainer/ScrollContainer/TagContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("1_bue27")
 text = "Check 2"
 

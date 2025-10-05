@@ -7,6 +7,7 @@ enum MenuItems {
 	RESET_STATS
 }
 
+const CUSTOM_THEME = preload("res://resources/Themes/popup_menu_custom.tres")
 var menu : PopupMenu
 var last_hint_time : float = 0.0
 var hint_cooldown : float = 5.0
@@ -14,6 +15,7 @@ var hint_cooldown : float = 5.0
 func _ready():
 	button_pressed = false
 	menu = get_popup()
+	menu.theme = CUSTOM_THEME
 	menu.add_separator("User", MenuItems.USER)
 	menu.add_item("Saves", MenuItems.SAVES)
 	menu.add_item("Reset Stats", MenuItems.RESET_STATS)
