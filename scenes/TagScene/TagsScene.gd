@@ -13,7 +13,7 @@ class_name TagScene
 
 var newest_tag : String = ""
 var tags : Dictionary
-#var matches : Array
+var matches : Array
 
 
 func _ready():

@@ -15,7 +15,7 @@ func _ready():
 	var tags : Array = quote_book.prev_tags
 
 	tag_scene = custom_popup.instantiate()
-
+	#tag_scene.size = Vector2(500, 300)
 	save_text.add_child(tag_scene)
 	tag_scene.hide()
 
@@ -24,4 +24,4 @@ func _on_pressed():
 	var offset = global_position + Vector2(0, -150)
 	var rect = Rect2(offset, size)
 	Log.pr(rect)
-	tag_scene.popup(rect)
+	tag_scene.popup_centered()

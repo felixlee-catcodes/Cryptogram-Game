@@ -1,27 +1,31 @@
 extends PopupPanel
 class_name EditTagsScene
 
-@export var entry_data : QuoteEntry
+@export var entry_data : QuoteEntry = null
 
 @onready var quote_book : QuoteBook
-@onready var tag_container = $MainContainer/TagContainer
+@onready var tag_container = $MainContainer/ScrollContainer/TagContainer
 @onready var line_edit = $MainContainer/LineEdit
 
 var tags : Dictionary
 var prev_tags : Array
+var data_null : bool
 
 func _ready():
+	data_null = (entry_data == null)
 	quote_book = QuoteBook.new().load_book()
 	prev_tags = quote_book.prev_tags
 	line_edit.text_submitted.connect(update_tag_list)
-	Log.prn(entry_data.tags)
+	if entry_data == null:
+		pass
 	tags_to_dict()
 	populate_tags(tags)
 
 
 func tags_to_dict():
-	for t in entry_data.tags:
-		tags[t] = {"checked": true}
+	if not data_null:
+		for t in entry_data.tags:
+			tags[t] = {"checked": true}
 	
 	for t in prev_tags:
 		if not tags.has(t):
@@ -72,6 +76,9 @@ func update_tag_list(new_text) -> void:
 func _on_save_changes_pressed():
 	var checked = tags.keys().filter(func(t):
 		return tags[t]["checked"])
-	quote_book.update_tags(entry_data, checked)
-	EventHub.inputs.update_archive.emit()
+	if not data_null:
+		quote_book.update_tags(entry_data, checked)
+		EventHub.inputs.update_archive.emit()
+	else: EventHub.ui_events.transmit_tags.emit(checked)
+
 	hide()

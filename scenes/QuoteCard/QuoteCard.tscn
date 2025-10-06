@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6vlqt8hpdcwu" path="res://scenes/QuoteCard/QuoteCard.gd" id="1_ddmun"]
 [ext_resource type="Theme" uid="uid://sbgo36eq0lw0" path="res://resources/Themes/custom_theme_1.tres" id="2_btnss"]
-[ext_resource type="Texture2D" uid="uid://cg2yy6fa0t2wn" path="res://assets/ui-icons/more_horiz_28dp.png" id="2_i5uqg"]
+[ext_resource type="Texture2D" uid="uid://bhbk4vtyv14y1" path="res://assets/ui-icons/more_horiz_45dp.png" id="3_btnss"]
 [ext_resource type="Script" uid="uid://bimski1qqdund" path="res://scenes/QuoteCard/CardOptions.gd" id="3_ykqxy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5uqg"]
@@ -12,6 +12,9 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.533333)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddmun"]
 content_margin_top = 2.0
@@ -131,5 +134,5 @@ offset_right = -6.0
 offset_bottom = 39.0
 grow_horizontal = 0
 theme = ExtResource("2_btnss")
-icon = ExtResource("2_i5uqg")
+icon = ExtResource("3_btnss")
 script = ExtResource("3_ykqxy")

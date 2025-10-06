@@ -4,20 +4,34 @@
 [ext_resource type="Script" uid="uid://c5ivsfkk40sw4" path="res://scenes/TagScene/EditTagsScene.gd" id="1_oajq6"]
 
 [node name="EditTagsScene" type="PopupPanel"]
-size = Vector2i(500, 158)
+size = Vector2i(616, 322)
 visible = true
 theme = ExtResource("1_hjevh")
 script = ExtResource("1_oajq6")
 
 [node name="MainContainer" type="VBoxContainer" parent="."]
-offset_left = 5.0
-offset_right = 495.0
-offset_bottom = 158.0
-alignment = 1
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 608.0
+offset_bottom = 317.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 
-[node name="TagContainer" type="FlowContainer" parent="MainContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
+horizontal_scroll_mode = 0
+
+[node name="TagContainer" type="FlowContainer" parent="MainContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 25
 

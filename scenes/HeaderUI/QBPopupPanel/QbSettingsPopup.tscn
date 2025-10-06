@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bos4epf21hhes" path="res://scenes/HeaderUI/QBPopupPanel/QbSettingsPopup.gd" id="2_urxr7"]
 
 [node name="QBSettingsPopup" type="PopupPanel"]
-size = Vector2i(260, 235)
+size = Vector2i(266, 241)
 visible = true
 theme = ExtResource("1_r5k48")
 script = ExtResource("2_urxr7")
@@ -13,9 +13,10 @@ script = ExtResource("2_urxr7")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_right = 255.0
-offset_bottom = 235.0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 258.0
+offset_bottom = 236.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
