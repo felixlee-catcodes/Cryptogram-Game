@@ -3,25 +3,27 @@ class_name QuoteCard
 
 @export var scroll_speed: float = 60.0 # pixels per second
 
-#@onready var text_label = $CenterContainer/VBoxContainer/TextLabel
-#@onready var source_label = $CenterContainer/VBoxContainer/SourceLabel
-@onready var stats_panel = $StatsPanel
-@onready var bar_1 = $StatsPanel/ScrollContainer/StatsBar/Bar1
-@onready var stats_bar = $StatsPanel/ScrollContainer/StatsBar
+@onready var stats_panel = $StatsContainer/StatsPanel
+@onready var bar_1 = $MarginContainer/ScrollContainer/TagContainer
 @onready var scroll_container = $StatsPanel/ScrollContainer
+@onready var tag_container = $MarginContainer/ScrollContainer/TagContainer
+@onready var stats_container = $StatsContainer
 
 var total_width : float
-
 var text : String
 var source : String
 @export var card_data : QuoteEntry
 
 func _ready():
-	var _duplicate = bar_1.duplicate()
-	_duplicate.name = "Bar2"
-	stats_bar.add_child(_duplicate)
+	#var _duplicate = bar_1.duplicate()
+	#_duplicate.name = "Bar2"
+	#tag_container.add_child(_duplicate)
 	await get_tree().process_frame  # wait for layout
 	total_width = bar_1.size.x * 2
+	var stats_card_diff = self.size.x - stats_container.size.x
+	var stats_margin = stats_card_diff / 2
+	stats_container.add_theme_constant_override("margin_left", stats_margin)
+
 
 func _on_clicked(data: QuoteEntry):
 	var qb = QuoteBook.new().load_book()
@@ -31,9 +33,8 @@ func _on_clicked(data: QuoteEntry):
 
 
 func _process(delta):
-	var scroll_container : ScrollContainer = $StatsPanel/ScrollContainer
+	var scroll_container : ScrollContainer = $MarginContainer/ScrollContainer
 	
-
 	scroll_container.scroll_horizontal += scroll_speed * delta
 	
 	#var total_width = stats_bar.size.x
@@ -42,19 +43,19 @@ func _process(delta):
 
 
 func set_stats_visible(_visible: bool):
-	$StatsPanel.visible = _visible
+	$StatsContainer.visible = _visible
 
 
 func set_quote_text(entry: QuoteEntry) -> void:
 	card_data = entry
 	text = entry.text
 	source = source
-	var text_label : Label = $CenterContainer/VBoxContainer.get_node("TextLabel")
+	var text_label : Label = $CenterContainer/VBoxContainer/ScrollContainer.get_node("TextLabel")
 	var source_label : Label = $CenterContainer/VBoxContainer.get_node("SourceLabel")
 	
-	var date_label : Label = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("Date")
-	var time_label : Label = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("Time")
-	var hints_label : Label = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("Hints")
+	var date_label : Label = $StatsContainer/StatsPanel/Bar1.get_node("Date")
+	var time_label : Label = $StatsContainer/StatsPanel/Bar1.get_node("Time")
+	var hints_label : Label = $StatsContainer/StatsPanel/Bar1.get_node("Hints")
 	var date_time_dict = convert_date_time(entry.date_added, entry.solve_time)
 	
 	
@@ -72,12 +73,12 @@ func set_quote_text(entry: QuoteEntry) -> void:
 	populate_tags(entry.tags)
 	await get_tree().process_frame
 	
-	await update_ticker()
+	#await update_ticker()
 	#print("After frame: ", stats_bar.size.x)
 
 
 func populate_tags(tagArr: Array):
-	var tag_container : HBoxContainer = $StatsPanel/ScrollContainer/StatsBar/Bar1.get_node("TagContainer")
+	var tag_container : HBoxContainer = $MarginContainer/ScrollContainer.get_node("TagContainer")
 	var tag_style = StyleBoxFlat.new()
 	
 	if not tagArr.is_empty():
@@ -97,29 +98,32 @@ func populate_tags(tagArr: Array):
 			tag_container.add_child(label)
 	else: 
 		var no_tags = Label.new()
+		var no_tags_style = StyleBoxFlat.new()
+		no_tags_style.set_corner_radius_all(10)
 		no_tags.text = " none "
-		no_tags.add_theme_stylebox_override("normal", tag_style)
+		no_tags.add_theme_stylebox_override("normal", no_tags_style)
 		no_tags.add_theme_font_size_override("font_size", 20)
 		no_tags.add_theme_color_override("font_color", Color.BLACK)
+		
 		tag_container.add_child(no_tags)
 		
-	var spacer = Control.new()
-	spacer.custom_minimum_size = Vector2(100, 0)
-	tag_container.add_child(spacer)
+	#var spacer = Control.new()
+	#spacer.custom_minimum_size = Vector2(100, 0)
+	#tag_container.add_child(spacer)
 
 func update_ticker() -> void:
-	if stats_bar == null or bar_1 == null:
+	if tag_container == null or bar_1 == null:
 		await get_tree().process_frame
-		if stats_bar == null or bar_1 == null:
+		if tag_container == null or bar_1 == null:
 			return  # still not ready, bail out
 	# Remove old duplicate if present
-	if stats_bar.has_node("Bar2"):
-		stats_bar.get_node("Bar2").queue_free()
+	if tag_container.has_node("Bar2"):
+		tag_container.get_node("Bar2").queue_free()
 
 		# Duplicate Bar1 so Bar2 matches current content
 		var _duplicate = bar_1.duplicate()
 		_duplicate.name = "Bar2"
-		stats_bar.add_child(_duplicate)
+		tag_container.add_child(_duplicate)
 
 		# Wait for layout to run (sometimes you need two frames to be safe)
 		await get_tree().process_frame

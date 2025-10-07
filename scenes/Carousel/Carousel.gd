@@ -134,7 +134,7 @@ func _build_pages() -> void:
 		page.custom_minimum_size = Vector2(scroll.size.x, 0)
 
 		var page_stack = VBoxContainer.new()
-		page_stack.add_theme_constant_override("separation", 40)
+		page_stack.add_theme_constant_override("separation", 30)
 		page_stack.alignment = VBoxContainer.ALIGNMENT_CENTER
 		page.add_child(page_stack)
 		

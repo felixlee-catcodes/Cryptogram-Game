@@ -17,9 +17,11 @@ shadow_size = 2
 shadow_offset = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddmun"]
+content_margin_left = 5.0
 content_margin_top = 2.0
+content_margin_right = 6.0
 content_margin_bottom = 3.0
-bg_color = Color(0.6, 0.6, 0.6, 0.545098)
+bg_color = Color(0.6, 0.6, 0.6, 0.45098)
 border_width_top = 1
 border_color = Color(0.635938, 0.635938, 0.635938, 1)
 border_blend = true
@@ -50,7 +52,12 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(550, 170)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="TextLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -70,69 +77,74 @@ text = "- Unknown"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsPanel" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="StatsContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_bottom = 12
+
+[node name="StatsPanel" type="PanelContainer" parent="StatsContainer"]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ddmun")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="StatsPanel"]
-layout_mode = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
-
-[node name="StatsBar" type="HBoxContainer" parent="StatsPanel/ScrollContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-alignment = 1
-
-[node name="Bar1" type="HBoxContainer" parent="StatsPanel/ScrollContainer/StatsBar"]
+[node name="Bar1" type="HBoxContainer" parent="StatsContainer/StatsPanel"]
 layout_mode = 2
 theme_override_constants/separation = 15
+alignment = 1
 
-[node name="Date" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
+[node name="Date" type="Label" parent="StatsContainer/StatsPanel/Bar1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Date: Sept. 25, 2025"
 
-[node name="Time" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
+[node name="Time" type="Label" parent="StatsContainer/StatsPanel/Bar1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Solved in 2min 42s"
 
-[node name="Hints" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
+[node name="Hints" type="Label" parent="StatsContainer/StatsPanel/Bar1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "No hints used!"
-
-[node name="TagContainer" type="HBoxContainer" parent="StatsPanel/ScrollContainer/StatsBar/Bar1"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Tags" type="Label" parent="StatsPanel/ScrollContainer/StatsBar/Bar1/TagContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Tags:"
 
 [node name="CardOptions" type="MenuButton" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -42.0
-offset_top = 3.0
-offset_right = -6.0
-offset_bottom = 39.0
+offset_left = -53.0
+offset_bottom = 53.0
 grow_horizontal = 0
 theme = ExtResource("2_btnss")
 icon = ExtResource("3_btnss")
 script = ExtResource("3_ykqxy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_bottom = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="TagContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Tags" type="Label" parent="MarginContainer/ScrollContainer/TagContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Tags:"
