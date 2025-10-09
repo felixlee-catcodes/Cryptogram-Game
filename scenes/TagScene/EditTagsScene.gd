@@ -39,7 +39,7 @@ func populate_tags(data_list) -> void:
 
 	for t in data_list:
 		var cb : CheckBox = CheckBox.new()
-
+		style_checkbox(cb)
 		cb.text = t
 		cb.toggle_mode = true
 		cb.toggled.connect(_on_checked.bind(t))
