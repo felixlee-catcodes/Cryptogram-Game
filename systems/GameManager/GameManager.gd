@@ -2,6 +2,7 @@ extends Node
 class_name GameManager
 
 @onready var timer = $Timer
+@onready var all_correct_scene = preload("res://scenes/AllCorrectPopup/AllCorrectPopup.tscn")
 
 enum CellStatus {EMPTY, CORRECT, INCORRECT}
 
@@ -47,6 +48,8 @@ func _update_progress(cell: LetterCell, key: String):
 
 
 func get_incorrect_cells() -> Array:
+	if cell_states.keys().is_empty():
+		Log.pr("handle check game, no cell input")
 	return cell_states.keys().filter(func(k):
 		return cell_states[k].status == CellStatus.INCORRECT)
 
@@ -70,7 +73,18 @@ func _on_check_game():
 	var incorrect_cells = get_incorrect_cells()
 	for c in incorrect_cells:
 		get_tree().call_group(c, "show_incorrect")
+	if incorrect_cells.is_empty():
+		show_popup()
 
+func show_popup() -> void:
+	var all_correct_popup = all_correct_scene.instantiate()
+	var fadeout : Tween = create_tween()
+	
+	var parent_node = find_parent("Main")
+	parent_node.add_child(all_correct_popup)
+	fadeout.tween_property(all_correct_popup, "modulate:a", 0.0, 5.0)
+	await get_tree().create_timer(2.0).timeout
+	all_correct_popup.queue_free()
 
 func check_completion():
 	if cell_states.size() == current_cipher.size():

@@ -106,10 +106,7 @@ func populate_tags(tagArr: Array):
 		no_tags.add_theme_color_override("font_color", Color.BLACK)
 		
 		tag_container.add_child(no_tags)
-		
-	#var spacer = Control.new()
-	#spacer.custom_minimum_size = Vector2(100, 0)
-	#tag_container.add_child(spacer)
+
 
 func update_ticker() -> void:
 	if tag_container == null or bar_1 == null:
