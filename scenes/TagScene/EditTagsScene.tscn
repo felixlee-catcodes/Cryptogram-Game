@@ -16,8 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 1.0
-offset_right = 608.0
-offset_bottom = 317.0
+offset_right = -8.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -45,4 +45,5 @@ size_flags_horizontal = 4
 text = "Save Changes"
 
 [connection signal="focus_entered" from="MainContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="MainContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="pressed" from="MainContainer/SaveChanges" to="." method="_on_save_changes_pressed"]

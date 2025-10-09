@@ -99,8 +99,10 @@ func _on_line_edit_focus_entered():
 	
 	if popup_bttm > visible_bttm:
 		var offset = popup_bttm - visible_bttm
-		Log.pr("offset: ", offset)
-		Log.pr("popup bttm: ", popup_bttm)
-		Log.pr("vis bttm: ",visible_bttm)
 		var tween : Tween = create_tween()
 		tween.tween_property(self, "position:y", visible_bttm/2, 0.25)
+
+
+func _on_line_edit_focus_exited():
+	var tween : Tween = create_tween()
+	tween.tween_property(self, "position:y", 0, 0.25)
