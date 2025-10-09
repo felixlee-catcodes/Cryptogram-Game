@@ -33,13 +33,21 @@ func tags_to_dict():
 
 
 func populate_tags(data_list) -> void:
-	#clear any existing children:
 	for t in tag_container.get_children():
 		tag_container.remove_child(t)
 		t.queue_free()
 
 	for t in data_list:
 		var cb : CheckBox = CheckBox.new()
+
+		cb.text = t
+		cb.toggle_mode = true
+		cb.toggled.connect(_on_checked.bind(t))
+		cb.set_pressed_no_signal(data_list[t]["checked"])
+		tag_container.add_child(cb)
+
+
+func style_checkbox(node: CheckBox) -> void:
 		var cb_normal = StyleBoxFlat.new()
 		var cb_pressed = StyleBoxFlat.new()
 		var cb_hover_pressed = StyleBoxFlat.new()
@@ -53,15 +61,11 @@ func populate_tags(data_list) -> void:
 		cb_pressed.set_corner_radius_all(12)
 		cb_pressed.set_expand_margin_all(5)
 		cb_pressed.bg_color = ThemeManager.active_theme.base_color
-		cb.add_theme_stylebox_override("focus", cb_focus)
-		cb.add_theme_stylebox_override("normal", cb_normal)
-		cb.add_theme_stylebox_override("pressed", cb_pressed)
-		cb.add_theme_stylebox_override("hover_pressed", cb_hover_pressed)
-		cb.text = t
-		cb.toggle_mode = true
-		cb.toggled.connect(_on_checked.bind(t))
-		cb.set_pressed_no_signal(data_list[t]["checked"])
-		tag_container.add_child(cb)
+		node.add_theme_stylebox_override("focus", cb_focus)
+		node.add_theme_stylebox_override("normal", cb_normal)
+		node.add_theme_stylebox_override("pressed", cb_pressed)
+		node.add_theme_stylebox_override("hover_pressed", cb_hover_pressed)
+
 
 func _on_checked(toggle_mode: bool, tag: String) -> void:
 	tags[tag]["checked"] = toggle_mode

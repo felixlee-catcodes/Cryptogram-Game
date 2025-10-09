@@ -86,6 +86,7 @@ func show_popup() -> void:
 	await get_tree().create_timer(2.0).timeout
 	all_correct_popup.queue_free()
 
+
 func check_completion():
 	if cell_states.size() == current_cipher.size():
 		timer.stop()
