@@ -44,4 +44,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Save Changes"
 
+[connection signal="focus_entered" from="MainContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
 [connection signal="pressed" from="MainContainer/SaveChanges" to="." method="_on_save_changes_pressed"]

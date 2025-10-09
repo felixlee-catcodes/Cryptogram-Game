@@ -99,8 +99,8 @@ func _convert_time(time: int) -> String:
 func _on_new_game_pressed():
 	EventHub.game.new_game.emit()
 
-func _on_transmit_tags(tags: Array):
+func _on_transmit_tags(_tags: Array):
 	var quote : String = finished_puzzle["plainText"]
 	var author : String = finished_puzzle["author"]
 	
-	quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"], tags)
+	quote_book.add_quote(quote, author, curr_time_value.text, finished_puzzle["hints_used"], _tags)

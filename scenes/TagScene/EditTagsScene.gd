@@ -86,3 +86,21 @@ func _on_save_changes_pressed():
 	else: EventHub.ui_events.transmit_tags.emit(checked)
 
 	hide()
+
+
+func _on_line_edit_focus_entered():
+	await get_tree().process_frame
+	var parent = get_tree().root.get_child(0)
+	var keyboard_height = DisplayServer.virtual_keyboard_get_height()
+	var screen_height = parent.get_viewport().get_visible_rect().size.y
+	
+	var popup_bttm = self.get_size_with_decorations().y + self.get_position_with_decorations().y
+	var visible_bttm = screen_height - 520
+	
+	if popup_bttm > visible_bttm:
+		var offset = popup_bttm - visible_bttm
+		Log.pr("offset: ", offset)
+		Log.pr("popup bttm: ", popup_bttm)
+		Log.pr("vis bttm: ",visible_bttm)
+		var tween : Tween = create_tween()
+		tween.tween_property(self, "position:y", visible_bttm/2, 0.25)

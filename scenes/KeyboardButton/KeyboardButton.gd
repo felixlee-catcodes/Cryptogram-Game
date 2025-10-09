@@ -30,8 +30,8 @@ func _on_pressed():
 		return
 
 
-func _on_input_changed(key):
-	if self.key == key:
+func _on_input_changed(_key):
+	if self.key == _key:
 		button_pressed = false
 
 func _on_toggled(toggled_on):

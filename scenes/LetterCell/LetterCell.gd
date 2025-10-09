@@ -34,12 +34,12 @@ func _ready():
 	set_focus_styling()
 
 
-func _on_theme_changed(theme : ColorTheme):
-	base_color = theme.base_color
-	focus_color = theme.focus_color
-	alt_focus_color = theme.alt_focus_color
-	font_color = theme.font_color
-	warning_color = theme.warning_color
+func _on_theme_changed(_theme : ColorTheme):
+	base_color = _theme.base_color
+	focus_color = _theme.focus_color
+	alt_focus_color = _theme.alt_focus_color
+	font_color = _theme.font_color
+	warning_color = _theme.warning_color
 
 
 func set_focus_styling():

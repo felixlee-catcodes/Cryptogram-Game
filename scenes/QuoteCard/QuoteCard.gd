@@ -5,7 +5,7 @@ class_name QuoteCard
 
 @onready var stats_panel = $StatsContainer/StatsPanel
 @onready var bar_1 = $MarginContainer/ScrollContainer/TagContainer
-@onready var scroll_container = $StatsPanel/ScrollContainer
+#@onready var scroll_container = $StatsPanel/ScrollContainer
 @onready var tag_container = $MarginContainer/ScrollContainer/TagContainer
 @onready var stats_container = $StatsContainer
 
@@ -32,15 +32,15 @@ func _on_clicked(data: QuoteEntry):
 	EventHub.inputs.update_archive.emit()
 
 
-func _process(delta):
-	var scroll_container : ScrollContainer = $MarginContainer/ScrollContainer
-	
-	scroll_container.scroll_horizontal += scroll_speed * delta
-	
-	#var total_width = stats_bar.size.x
-	if scroll_container.scroll_horizontal >= total_width:
-		scroll_container.scroll_horizontal -= total_width
-
+#func _process(delta):
+	#var scroll_container : ScrollContainer = $MarginContainer/ScrollContainer
+	#
+	#scroll_container.scroll_horizontal += scroll_speed * delta
+	#
+	##var total_width = stats_bar.size.x
+	#if scroll_container.scroll_horizontal >= total_width:
+		#scroll_container.scroll_horizontal -= total_width
+#
 
 func set_stats_visible(_visible: bool):
 	$StatsContainer.visible = _visible
@@ -134,8 +134,8 @@ func update_ticker() -> void:
 		#print_debug("Ticker widths -> total_width:", total_width, "viewport:", scroll_container.size.x)
 
 		# If the content now fits the viewport, reset the scroll
-	if total_width <= scroll_container.size.x:
-		scroll_container.scroll_horizontal = 0
+	#if total_width <= scroll_container.size.x:
+		#scroll_container.scroll_horizontal = 0
 
 
 func convert_date_time(date, _time) -> Dictionary:

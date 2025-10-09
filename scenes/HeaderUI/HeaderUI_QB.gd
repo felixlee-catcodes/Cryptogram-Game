@@ -1,7 +1,6 @@
 extends PanelContainer
 
 @onready var ui_container = $UIContainer
-@onready var settings : MenuButton = $UIContainer/Settings
 @export var header_color : Color
 
 func _ready():

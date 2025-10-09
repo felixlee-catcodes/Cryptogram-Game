@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0rv5mwxnvp1t"]
+
+[ext_resource type="Script" uid="uid://dhbwo1fpcyuri" path="res://scenes/Helpers/KeyboardResponder/KeyboardResponder.gd" id="1_ybi5x"]
+
+[node name="KeyboardResponder" type="Node"]
+script = ExtResource("1_ybi5x")

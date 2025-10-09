@@ -11,8 +11,8 @@ var tag_scene : PopupPanel
 
 func _ready():
 	button_pressed = false
-	quote_book = QuoteBook.new().load_book()
-	var tags : Array = quote_book.prev_tags
+	#quote_book = QuoteBook.new().load_book()
+	#var tags : Array = quote_book.prev_tags
 
 	tag_scene = custom_popup.instantiate()
 	#tag_scene.size = Vector2(500, 300)
@@ -21,7 +21,7 @@ func _ready():
 
 
 func _on_pressed():
-	var offset = global_position + Vector2(0, -150)
-	var rect = Rect2(offset, size)
-	Log.pr(rect)
+	#var offset = global_position + Vector2(0, -150)
+	#var rect = Rect2(offset, size)
+	#Log.pr(rect)
 	tag_scene.popup_centered()
