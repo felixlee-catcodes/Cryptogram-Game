@@ -95,7 +95,7 @@ func _on_line_edit_focus_entered():
 	var screen_height = parent.get_viewport().get_visible_rect().size.y
 	
 	var popup_bttm = self.get_size_with_decorations().y + self.get_position_with_decorations().y
-	var visible_bttm = screen_height - 520
+	var visible_bttm = screen_height - keyboard_height
 	
 	if popup_bttm > visible_bttm:
 		var offset = popup_bttm - visible_bttm
