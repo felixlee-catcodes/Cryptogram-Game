@@ -7,21 +7,26 @@ extends Node
 @onready var game_over_display = $UILayer/GameOverDisplay
 @onready var keyboard_panel_container : PanelContainer = $KeyboardPanelContainer
 @onready var texture_rect: TextureRect = $TextureRect
+@onready var transition_image : TextureRect = $TransitionImage
+@onready var header_ui = $UILayer/HeaderUI
 
 @export var bg_image_texture : Texture2D
+@export var transition_texture : Texture2D
 @export var keyboard_panel_color : Color
 
 func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
-	#texture_rect.texture = ThemeManager.active_theme.bg_texture
 	set_panel_styling()
 	game_over_display.visible = false
+	#header_ui.visible = false
 	EventHub.game.new_game.connect(_on_new_game)
 	EventHub.game.game_over.connect(_on_game_over)
 	setup_puzzle()
-	game_manager.start_game()
+	$TransitionAnim.play("Transition1")
+	$TransitionAnim.animation_finished
+	
 
 
 func set_panel_styling() -> void:
@@ -29,10 +34,12 @@ func set_panel_styling() -> void:
 	style.bg_color = keyboard_panel_color
 	keyboard_panel_container.add_theme_stylebox_override("panel", style)
 	texture_rect.set_texture(bg_image_texture)
+	transition_image.set_texture(transition_texture)
 
 func _on_theme_changed(theme: ColorTheme):
 	bg_image_texture = theme.bg_texture
 	keyboard_panel_color = theme.panel_color
+	transition_texture = theme.bg_texture
 
 
 func setup_puzzle():
@@ -49,6 +56,7 @@ func _on_new_game():
 	get_tree().reload_current_scene()
 	Log.pr("signal recieved")
 
+
 func _on_game_over(_time, puzzle):
 	keyboard_panel_container.visible = false
 	quote_scene.visible = false
@@ -58,3 +66,7 @@ func _on_game_over(_time, puzzle):
 
 func split_text(quote: String) -> Array:
 	return quote.split(" ")
+
+
+func _on_transition_anim_animation_finished(anim_name):
+	game_manager.start_game()
