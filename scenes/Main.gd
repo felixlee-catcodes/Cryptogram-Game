@@ -14,7 +14,7 @@ extends Node
 @export var transition_texture : Texture2D
 @export var keyboard_panel_color : Color
 
-var transition_animations : Array = ["Transition1", "Transition2"]
+var transition_animations : Array = ["Transition1", "Transition2", "Transition3"]
 
 func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
@@ -47,7 +47,7 @@ func set_panel_styling() -> void:
 func _on_theme_changed(theme: ColorTheme):
 	bg_image_texture = theme.bg_texture
 	keyboard_panel_color = theme.panel_color
-	transition_texture = theme.bg_texture
+	#transition_texture = theme.bg_texture
 
 
 func setup_puzzle():
@@ -76,4 +76,5 @@ func split_text(quote: String) -> Array:
 
 
 func _on_transition_anim_animation_finished(anim_name):
+	transition_image.queue_free()
 	game_manager.start_game()
