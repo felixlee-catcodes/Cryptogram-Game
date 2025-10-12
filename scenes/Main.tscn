@@ -665,7 +665,6 @@ layout_mode = 2
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverDisplay" parent="UILayer" instance=ExtResource("6_c01mt")]
-visible = false
 offset_bottom = 1.0
 
 [node name="HeaderUI" parent="UILayer" instance=ExtResource("5_vcsgt")]
