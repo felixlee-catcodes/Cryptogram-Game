@@ -13,7 +13,7 @@ config_version=5
 config/name="Crypt-O-Grams"
 run/main_scene="uid://dkiygmqaod1tf"
 config/features=PackedStringArray("4.4", "Mobile")
-boot_splash/bg_color=Color(0, 0.628893, 0.703541, 1)
+boot_splash/image="uid://cno5eog8u8571"
 config/icon="uid://d2dryaryxtkw0"
 boot_splash/minimum_display_time=4
 
