@@ -10,7 +10,7 @@ class_name GameOverScene
 @onready var solved_quote = $VBoxContainer/QuoteContainer/CenterContainer/VBoxContainer/SolvedQuote
 @onready var source = $VBoxContainer/QuoteContainer/CenterContainer/VBoxContainer/Source
 
-# need reference to the quote book for saving@onready var curr_time_label = $StatsDisplay/CurrentTime/CurrTimeLabel
+@onready var stats_display = $VBoxContainer/StatsDisplay
 @onready var curr_time_value = $VBoxContainer/StatsDisplay/CurrentTime/CurrTimeValue
 @onready var best_time_value = $VBoxContainer/StatsDisplay/BestTime/BestTimeValue
 @onready var avg_time_value = $VBoxContainer/StatsDisplay/AverageTime/AvgTimeValue
@@ -87,21 +87,36 @@ func _on_theme_changed(_theme: ColorTheme):
 
 
 func _set_stats() -> void:
-	Log.pr(finished_puzzle["author"])
-	solved_quote.visible_ratio = 0
-	source.visible_ratio = 0
+	animate_text()
 	solved_quote.text = "\"%s\"" % finished_puzzle["plainText"]
 	source.text = "- %s" % finished_puzzle["author"]
-	var tween_text : Tween = create_tween()
-	tween_text.tween_property(solved_quote, "visible_ratio", 1.0, 2.5)
-	tween_text.tween_property(source, "visible_ratio", 1.0, 1.5)
-	
 	
 	curr_time_value.text = _convert_time(curr_time)
 	best_time_value.text = _convert_time(SaveManager.stats.best_time)
 	avg_time_value.text = _convert_time(SaveManager.stats.all_time_avg)
 	quotes_left.text = "Quotes left: %02d" % QuoteApiManager.cached_quotes.size()
 	hints_used.text = "Hints used: %02d" % finished_puzzle["hints_used"]
+
+
+func animate_text() -> void:
+	var tween_text : Tween = create_tween()
+	solved_quote.visible_ratio = 0
+	source.visible_ratio = 0
+	curr_time_label.visible_ratio = 0
+	curr_time_value.visible_ratio = 0
+	best_time_label.visible_ratio = 0
+	best_time_value.visible_ratio = 0
+	avg_time_label.visible_ratio = 0
+	avg_time_value.visible_ratio = 0
+	
+	tween_text.tween_property(solved_quote, "visible_ratio", 1.0, 2.5)
+	tween_text.tween_property(source, "visible_ratio", 1.0, 1.5)
+
+	for stat_section in stats_display.get_children():
+		for label in stat_section.get_children():
+			tween_text.tween_property(label, "visible_ratio", 1.0, 0.5)
+			get_tree().create_timer(0.5)
+	
 
 
 func _convert_time(time: int) -> String:
