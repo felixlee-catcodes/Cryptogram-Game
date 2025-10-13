@@ -4,7 +4,7 @@ extends Node
 @onready var game_manager = $GameManager
 @onready var quote_scene = %QuoteScene
 @onready var encrypted_message_display = $EncryptedMessageDisplay
-@onready var game_over_display = $UILayer/GameOverDisplay
+#@onready var game_over_scene : GameOverScene 
 @onready var keyboard_panel_container : PanelContainer = $KeyboardPanelContainer
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var transition_image : TextureRect = $TransitionImage
@@ -21,7 +21,6 @@ func _ready():
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
 	set_panel_styling()
-	game_over_display.visible = false
 	EventHub.game.new_game.connect(_on_new_game)
 	EventHub.game.game_over.connect(_on_game_over)
 	setup_puzzle()
@@ -65,10 +64,13 @@ func _on_new_game():
 
 
 func _on_game_over(_time, puzzle):
-	keyboard_panel_container.visible = false
-	quote_scene.visible = false
-	game_over_display.finished_puzzle = puzzle
-	game_over_display.visible = true
+	var game_over_scene = load("res://scenes/GameOver/GameOverDisplay.tscn").instantiate()
+	game_over_scene.finished_puzzle = puzzle
+	game_over_scene.curr_time = _time
+	
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(game_over_scene)
+	get_tree().current_scene = game_over_scene
 
 
 func split_text(quote: String) -> Array:

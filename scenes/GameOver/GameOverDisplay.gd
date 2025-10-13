@@ -1,10 +1,14 @@
-extends CenterContainer
+extends Control
 #GAME OVER SCENE
+class_name GameOverScene
 
 # need access to finished puzzle data: author, quote, solve -> send via signal?
 @export var finished_puzzle : Dictionary
+@export var curr_time : int = 0
+
 # need access to stats: best and average times
-@onready var solved_quote = $VBoxContainer/SolvedQuote
+@onready var solved_quote = $VBoxContainer/QuoteContainer/CenterContainer/VBoxContainer/SolvedQuote
+@onready var source = $VBoxContainer/QuoteContainer/CenterContainer/VBoxContainer/Source
 
 # need reference to the quote book for saving@onready var curr_time_label = $StatsDisplay/CurrentTime/CurrTimeLabel
 @onready var curr_time_value = $VBoxContainer/StatsDisplay/CurrentTime/CurrTimeValue
@@ -34,16 +38,18 @@ func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
 	if ThemeManager.active_theme != null:
 		_on_theme_changed(ThemeManager.active_theme)
-
-	apply_theme_styling()
-	EventHub.game.game_over.connect(_on_game_over)
+	_set_stats()
+	_apply_theme_styling()
 	EventHub.ui_events.transmit_tags.connect(_on_transmit_tags)
 
 	quote_book = QuoteBook.new().load_book()
+	Log.pr("finished puzz? ", finished_puzzle)
+	Log.pr("curr time: ", curr_time)
+
 
 
 #region APPLY THEME STYLING
-func apply_theme_styling() -> void:
+func _apply_theme_styling() -> void:
 	save_text.flat = false
 	var inner_button = save_text.get_children()
 	var normal_style = StyleBoxFlat.new()
@@ -63,7 +69,7 @@ func apply_theme_styling() -> void:
 	new_game.add_theme_stylebox_override("pressed", pressed_style)
 	save_text.add_theme_stylebox_override("pressed", pressed_style)
 	
-	solved_quote.add_theme_color_override("font_color", theme_font_color)
+	#solved_quote.add_theme_color_override("font_color", theme_font_color)
 	curr_time_label.add_theme_color_override("font_color", theme_font_color)
 	best_time_label.add_theme_color_override("font_color", theme_font_color)
 	avg_time_label.add_theme_color_override("font_color", theme_font_color)
@@ -79,14 +85,23 @@ func _on_theme_changed(_theme: ColorTheme):
 	theme_font_color = _theme.font_color
 #endregion
 
-func _on_game_over(time, puzzle):
-	finished_puzzle = puzzle
-	solved_quote.text = "\"%s\"" % puzzle["plainText"]
-	curr_time_value.text = _convert_time(time)
+
+func _set_stats() -> void:
+	Log.pr(finished_puzzle["author"])
+	solved_quote.visible_ratio = 0
+	source.visible_ratio = 0
+	solved_quote.text = "\"%s\"" % finished_puzzle["plainText"]
+	source.text = "- %s" % finished_puzzle["author"]
+	var tween_text : Tween = create_tween()
+	tween_text.tween_property(solved_quote, "visible_ratio", 1.0, 2.5)
+	tween_text.tween_property(source, "visible_ratio", 1.0, 1.5)
+	
+	
+	curr_time_value.text = _convert_time(curr_time)
 	best_time_value.text = _convert_time(SaveManager.stats.best_time)
 	avg_time_value.text = _convert_time(SaveManager.stats.all_time_avg)
 	quotes_left.text = "Quotes left: %02d" % QuoteApiManager.cached_quotes.size()
-	hints_used.text = "Hints used: %02d" % puzzle["hints_used"]
+	hints_used.text = "Hints used: %02d" % finished_puzzle["hints_used"]
 
 
 func _convert_time(time: int) -> String:
@@ -98,6 +113,7 @@ func _convert_time(time: int) -> String:
 
 func _on_new_game_pressed():
 	EventHub.game.new_game.emit()
+
 
 func _on_transmit_tags(_tags: Array):
 	var quote : String = finished_puzzle["plainText"]
