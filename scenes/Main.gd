@@ -7,14 +7,10 @@ extends Node
 #@onready var game_over_scene : GameOverScene 
 @onready var keyboard_panel_container : PanelContainer = $KeyboardPanelContainer
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var transition_image : TextureRect = $TransitionImage
 @onready var header_ui = $UILayer/HeaderUI
 
 @export var bg_image_texture : Texture2D
-@export var transition_texture : Texture2D
 @export var keyboard_panel_color : Color
-
-var transition_animations : Array = ["Transition1", "Transition2", "Transition3"]
 
 func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))
@@ -23,16 +19,10 @@ func _ready():
 	set_panel_styling()
 	EventHub.game.new_game.connect(_on_new_game)
 	EventHub.game.game_over.connect(_on_game_over)
+	EventHub.game.transition_ended.connect(_on_transition_ended)
 	setup_puzzle()
-	play_transition_anim()
-
-
-func play_transition_anim() -> void:
-	var rand_idx = randi_range(0, transition_animations.size() - 1)
-	var rand_anim = transition_animations[rand_idx]
-	Log.pr("anim name: ", rand_anim)
-	$TransitionAnim.play("Transition2")
-	$TransitionAnim.animation_finished
+	
+	TransitionManager.play_transition(TransitionManager.transitions["6_grid_clock"], TransitionManager.Direction.IN)
 
 
 func set_panel_styling() -> void:
@@ -40,7 +30,6 @@ func set_panel_styling() -> void:
 	style.bg_color = keyboard_panel_color
 	keyboard_panel_container.add_theme_stylebox_override("panel", style)
 	texture_rect.set_texture(bg_image_texture)
-	transition_image.set_texture(transition_texture)
 
 
 func _on_theme_changed(theme: ColorTheme):
@@ -62,6 +51,9 @@ func setup_puzzle():
 func _on_new_game():
 	get_tree().reload_current_scene()
 
+func _on_transition_ended():
+	game_manager.start_game()
+
 
 func _on_game_over(_time, puzzle):
 	var game_over_scene = load("res://scenes/GameOver/GameOverDisplay.tscn").instantiate()
@@ -75,8 +67,3 @@ func _on_game_over(_time, puzzle):
 
 func split_text(quote: String) -> Array:
 	return quote.split(" ")
-
-
-func _on_transition_anim_animation_finished(anim_name):
-	transition_image.queue_free()
-	game_manager.start_game()

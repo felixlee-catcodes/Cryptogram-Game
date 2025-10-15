@@ -26,6 +26,7 @@ PuzzleManager="*res://systems/PuzzleManager/PuzzleManager.tscn"
 SaveManager="*res://systems/SaveManager/SaveManager.gd"
 SoundManager="*res://systems/SoundManager/SoundManager.tscn"
 ThemeManager="*res://systems/ThemeManager/ThemeManager.tscn"
+TransitionManager="*res://systems/TransitionManager/TransitionManager.tscn"
 
 [display]
 

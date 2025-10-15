@@ -203,5 +203,5 @@ duration = 2.0
 params = {
 "progress": [0.0, 1.0]
 }
-description = ""
+description = "grid of 6-sector clocks"
 metadata/_custom_type_script = "uid://cj15o3pdqv2ir"
