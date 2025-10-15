@@ -31,7 +31,7 @@ func play_transition_anim() -> void:
 	var rand_idx = randi_range(0, transition_animations.size() - 1)
 	var rand_anim = transition_animations[rand_idx]
 	Log.pr("anim name: ", rand_anim)
-	$TransitionAnim.play(rand_anim)
+	$TransitionAnim.play("Transition2")
 	$TransitionAnim.animation_finished
 
 
