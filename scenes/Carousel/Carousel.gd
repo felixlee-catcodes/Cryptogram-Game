@@ -6,6 +6,8 @@ extends Control
 @export var quotes_per_page : int = 3
 @export var next_texture : Texture2D
 @export var prev_texture : Texture2D
+@export var last_page_texture : Texture2D
+@export var first_page_texture : Texture2D
 
 
 @onready var background: TextureRect = $Background
@@ -94,7 +96,7 @@ func _gui_input(event: InputEvent) -> void:
 		# optional: live dragging (scroll moves with finger)
 		scroll.scroll_horizontal -= int(event.relative.x)
 
-	
+
 func snap_to_nearest_page(page_index: int) -> void:
 	if page_index < 0 or page_index >= pages.get_child_count():
 		return
@@ -166,13 +168,21 @@ func _build_page_indicators() -> void:
 	
 	if page_window_start > 0:
 		var prev = Button.new()
+		var first_pg = Button.new()
 		#prev.text = "<"
+		first_pg.icon = first_page_texture
+		first_pg.focus_mode = Control.FOCUS_NONE
+		first_pg.pressed.connect(func():
+			page_window_start = 0
+			_build_page_indicators()
+			)
 		prev.icon = prev_texture
 		prev.focus_mode = Control.FOCUS_NONE
 		prev.pressed.connect(func():
 			page_window_start = max(page_window_start - MAX_DOTS_VISIBLE, 0)
 			_build_page_indicators()
 			)
+		dots.add_child(first_pg)
 		dots.add_child(prev)
 	var window_end = min(page_window_start + MAX_DOTS_VISIBLE, total_pages)
 	for i in range(page_window_start, window_end):
@@ -198,6 +208,13 @@ func _build_page_indicators() -> void:
 	
 	if window_end < total_pages:
 		var next = Button.new()
+		var last_pg = Button.new()
+		last_pg.icon = last_page_texture
+		last_pg.focus_mode = Control.FOCUS_NONE
+		last_pg.pressed.connect(func():
+			page_window_start = total_pages - MAX_DOTS_VISIBLE
+			_build_page_indicators()
+			)
 		next.icon = next_texture
 		next.focus_mode = Control.FOCUS_NONE
 		next.pressed.connect(func():
@@ -205,6 +222,7 @@ func _build_page_indicators() -> void:
 			_build_page_indicators()
 			)
 		dots.add_child(next)
+		dots.add_child(last_pg)
 
 func _make_dot_style(active : bool) -> StyleBoxFlat:
 	var sb = StyleBoxFlat.new()

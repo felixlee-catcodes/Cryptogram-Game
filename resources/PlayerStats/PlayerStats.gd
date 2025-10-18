@@ -17,12 +17,14 @@ func get_daily_averages():
 
 
 func all_time_avg_calc() -> int:
-	Log.pr("calculate avg called")
+	Log.pr("total games: ", total_games)
+	Log.pr("completion record: ", completion_record.size())
 	var total_time : int = 0
 	for record in completion_record:
 		total_time += record["time"]
 	all_time_avg = int(total_time/completion_record.size())
-	
+	Log.pr("total time: ", total_time)
+	Log.pr("avg time: ", all_time_avg)
 	return all_time_avg
 
 
@@ -30,3 +32,4 @@ func reset_stats() -> void:
 	total_games = 0
 	best_time = 0
 	all_time_avg = 0
+	completion_record.clear()

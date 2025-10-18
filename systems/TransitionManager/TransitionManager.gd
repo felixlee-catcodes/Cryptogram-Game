@@ -8,7 +8,9 @@ var transition_parameters : Dictionary
 var transitions : Dictionary = {
 	"grid_flip": preload("res://resources/Transitions/grid_flip_test.tres"),
 	"6_grid_clock": preload("res://resources/Transitions/6_grid_clock.tres"),
-	"square_grid_rotate": preload("res://resources/Transitions/square_grid_rotate.tres")
+	"square_grid_rotate": preload("res://resources/Transitions/square_grid_rotate.tres"),
+	"top_left_btm_right_diagonal_swipe": preload("res://resources/Transitions/tlbr_diagonal_swipe.tres"),
+	"top_right_btm_left_diagonal_swipe": preload("res://resources/Transitions/trbl_diagonal_swipe.tres")
 }
 func _ready():
 	transition_texture.visible = true
@@ -83,8 +85,7 @@ func play_transition(effect: TransitionEffect, dir: Direction) -> Signal:
 		tween.tween_property(transition_texture.material, "shader_parameter/%s" % param, start_value, 0.0)
 		tween.tween_property(transition_texture.material, "shader_parameter/%s" % param, end_value, duration)
 		tween.finished.connect(func():
-			_on_transition_ended(dir)
-			Log.pr("tween finished for %s" % param))
+			_on_transition_ended(dir))
 
 	await tween.finished
 	transition_texture.visible = false

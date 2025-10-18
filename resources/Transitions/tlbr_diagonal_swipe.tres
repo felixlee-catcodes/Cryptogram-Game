@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="TransitionEffect" load_steps=5 format=3 uid="uid://bhpl20s83pjm3"]
+
+[ext_resource type="Script" uid="uid://cj15o3pdqv2ir" path="res://resources/Transitions/TransitonEffect.gd" id="1_ataye"]
+[ext_resource type="Shader" uid="uid://bwk8c2kjnojru" path="res://tools/transition.gdshader" id="2_p7wln"]
+[ext_resource type="Texture2D" uid="uid://cno5eog8u8571" path="res://assets/bg_images/Black Sands.png" id="3_uixp6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_njtsv"]
+shader = ExtResource("2_p7wln")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_type = 0
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 45.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 0.0
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[resource]
+script = ExtResource("1_ataye")
+x_texture = ExtResource("3_uixp6")
+shader = SubResource("ShaderMaterial_njtsv")
+duration = 1.5
+params = {
+"progress": [-1.0, 3.0]
+}
+description = ""
+metadata/_custom_type_script = "uid://cj15o3pdqv2ir"

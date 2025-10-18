@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="TransitionEffect" load_steps=5 format=3 uid="uid://d0f0hsofih61f"]
+[gd_resource type="Resource" script_class="TransitionEffect" load_steps=5 format=3 uid="uid://clcul8cqjoggx"]
 
-[ext_resource type="Script" uid="uid://cj15o3pdqv2ir" path="res://resources/Transitions/TransitonEffect.gd" id="1_yu87r"]
-[ext_resource type="Texture2D" uid="uid://cno5eog8u8571" path="res://assets/bg_images/Black Sands.png" id="2_va7rn"]
+[ext_resource type="Script" uid="uid://cj15o3pdqv2ir" path="res://resources/Transitions/TransitonEffect.gd" id="1_11sd3"]
+[ext_resource type="Texture2D" uid="uid://cno5eog8u8571" path="res://assets/bg_images/Black Sands.png" id="2_xm4pk"]
 
-[sub_resource type="Shader" id="Shader_va7rn"]
+[sub_resource type="Shader" id="Shader_nm2mm"]
 code = "shader_type canvas_item;
 
 uniform bool use_sprite_alpha = true;
@@ -173,16 +173,16 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xu53l"]
-shader = SubResource("Shader_va7rn")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8u81"]
+shader = SubResource("Shader_nm2mm")
 shader_parameter/use_sprite_alpha = true
 shader_parameter/use_transition_texture = false
 shader_parameter/transition_type = 0
-shader_parameter/position = Vector2(0.5, 0.5)
-shader_parameter/invert = true
-shader_parameter/grid_size = Vector2(5, 10)
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(-1, 1)
 shader_parameter/rotation_angle = 45.0
-shader_parameter/stagger = Vector2(1, 0)
+shader_parameter/stagger = Vector2(0, 0)
 shader_parameter/stagger_frequency = Vector2i(2, 2)
 shader_parameter/flip_frequency = Vector2i(1, 1)
 shader_parameter/basic_feather = 0.0
@@ -192,17 +192,16 @@ shader_parameter/edges = 6
 shader_parameter/shape_feather = 0.1
 shader_parameter/sectors = 1
 shader_parameter/clock_feather = 0.0
-shader_parameter/progress = 2.0
-shader_parameter/progress_bias = Vector2(0.5, 0)
+shader_parameter/progress = 0.0
+shader_parameter/progress_bias = Vector2(0, 0)
 
 [resource]
-script = ExtResource("1_yu87r")
-x_texture = ExtResource("2_va7rn")
-shader = SubResource("ShaderMaterial_xu53l")
+script = ExtResource("1_11sd3")
+x_texture = ExtResource("2_xm4pk")
+shader = SubResource("ShaderMaterial_t8u81")
 duration = 1.5
 params = {
-"progress": [0.0, 1.5],
-"rotation_angle": [45.0, 0.0]
+"progress": [0.0, 3.3]
 }
 description = ""
 metadata/_custom_type_script = "uid://cj15o3pdqv2ir"

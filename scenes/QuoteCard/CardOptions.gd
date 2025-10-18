@@ -33,6 +33,7 @@ func _on_id_pressed(id):
 				quotebook.remove_entry(parent_node.card_data)
 				EventHub.inputs.update_archive.emit())
 
+
 func create_tag_scene() -> EditTagsScene:
 	var tag_scene : EditTagsScene = edit_tag_scene.instantiate()
 	tag_scene.entry_data = parent_node.card_data

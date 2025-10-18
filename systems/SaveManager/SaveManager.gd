@@ -39,8 +39,8 @@ func record_solve(solve_time: int, num_hints: int) -> void:
 	
 	var record : Dictionary = {"date": date, "time": solve_time}
 	stats.completion_record.append(record)
-	stats.all_time_avg_calc()
 	stats.total_games += 1
+	stats.all_time_avg_calc()
 	stats.hints_used += num_hints
 	stats.update_best_time(solve_time)
 	save_stats()

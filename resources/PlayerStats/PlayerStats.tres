@@ -5,3 +5,8 @@
 [resource]
 resource_name = "PlayerStats"
 script = ExtResource("1_bpwev")
+total_games = 0
+completion_record = Array[Dictionary]([])
+best_time = 0
+all_time_avg = 0
+hints_used = 0

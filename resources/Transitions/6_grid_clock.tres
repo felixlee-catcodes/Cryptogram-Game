@@ -201,7 +201,7 @@ x_texture = ExtResource("2_6cu38")
 shader = SubResource("ShaderMaterial_pkg0g")
 duration = 1.5
 params = {
-"progress": [0.0, 1.0]
+"progress": [0.0, 1.5]
 }
 description = "grid of 6-sector clocks"
 metadata/_custom_type_script = "uid://cj15o3pdqv2ir"
