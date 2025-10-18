@@ -20,15 +20,19 @@ func _ready():
 		#Log.pr("rotation: ", transition_texture.material.get_shader_parameter("rotation_angle"))
 	#
 	
-func transition_to_scene(scene_path, effect_in: TransitionEffect, effect_out: TransitionEffect = null) -> void:
+func transition_to_scene(scene_path, effect_in: TransitionEffect = null, effect_out: TransitionEffect = null, random_effect: bool = false) -> void:
 	if effect_out == null:
 		effect_out = effect_in
+
+	if random_effect:
+		effect_in = get_rand_effect()
+		effect_out = get_rand_effect()
+
 	var new_scene
 	if typeof(scene_path) == TYPE_STRING:
 		new_scene = load(scene_path).instantiate()
 	else: new_scene = scene_path
 	
-	Log.pr("new scene: ", new_scene)
 	##TRANSITION OUT
 	await play_transition(effect_out, Direction.OUT)
 	
@@ -43,6 +47,14 @@ func transition_to_scene(scene_path, effect_in: TransitionEffect, effect_out: Tr
 	await  play_transition(effect_in, Direction.IN)
 	
 	transition_texture.visible = false
+
+
+func get_rand_effect()-> TransitionEffect:
+	var rand_effect = transitions.keys().pick_random()
+	var effect: TransitionEffect = transitions[rand_effect]
+	Log.pr("random effect: ", effect.resource_path)
+	return effect
+
 
 func play_transition(effect: TransitionEffect, dir: Direction) -> Signal:
 	var clock_type = effect.shader.get_shader_parameter("transition_type") == 3
@@ -66,13 +78,14 @@ func play_transition(effect: TransitionEffect, dir: Direction) -> Signal:
 		var start_value = transition_parameters[param][0]
 		var end_value = transition_parameters[param][1]
 		var duration = current_effect.duration
-		transition_texture.material.set_shader_parameter(param, start_value)		
+		transition_texture.material.set_shader_parameter(param, start_value)
+
 		tween.tween_property(transition_texture.material, "shader_parameter/%s" % param, start_value, 0.0)
 		tween.tween_property(transition_texture.material, "shader_parameter/%s" % param, end_value, duration)
 		tween.finished.connect(func():
 			_on_transition_ended(dir)
 			Log.pr("tween finished for %s" % param))
-	
+
 	await tween.finished
 	transition_texture.visible = false
 	return tween.finished

@@ -34,7 +34,7 @@ func _on_id_pressed(id):
 		MenuItems.NEW_GAME:
 			menu.hide()
 			var new_game_scene = load("res://scenes/Main.tscn").instantiate()
-			await TransitionManager.transition_to_scene(new_game_scene, TransitionManager.transitions["6_grid_clock"])
+			await TransitionManager.transition_to_scene(new_game_scene,null, null, true)
 			EventHub.game.new_game.emit()
 		MenuItems.RESET_GAME:
 			EventHub.game.reset_game.emit()

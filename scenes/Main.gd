@@ -60,7 +60,7 @@ func _on_game_over(_time, puzzle):
 	var effect_in = TransitionManager.transitions["square_grid_rotate"]
 	var effect_out = TransitionManager.transitions["grid_flip"]
 
-	await TransitionManager.transition_to_scene(game_over_scene, effect_in, effect_out)
+	await TransitionManager.transition_to_scene(game_over_scene,null, null, true)
 
 
 
