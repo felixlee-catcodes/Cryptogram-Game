@@ -2,6 +2,7 @@ extends PanelContainer
 
 @onready var ui_container = $UIContainer
 @export var header_color : Color
+@onready var options_drop_down = $UIContainer/OptionsDropDown
 
 func _ready():
 	ThemeManager.connect("theme_changed", Callable(self, "_on_theme_changed"))

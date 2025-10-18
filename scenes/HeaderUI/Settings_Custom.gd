@@ -21,6 +21,7 @@ func _on_id_pressed(id):
 		pass
 
 
+
 func _on_pressed():
 	var offset = global_position + Vector2(0, 108)
 	var rect = Rect2(offset, size)

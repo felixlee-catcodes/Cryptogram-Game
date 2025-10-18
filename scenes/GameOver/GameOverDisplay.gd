@@ -43,9 +43,6 @@ func _ready():
 	EventHub.ui_events.transmit_tags.connect(_on_transmit_tags)
 
 	quote_book = QuoteBook.new().load_book()
-	Log.pr("finished puzz? ", finished_puzzle)
-	Log.pr("curr time: ", curr_time)
-
 
 
 #region APPLY THEME STYLING
@@ -115,7 +112,7 @@ func animate_text() -> void:
 	for stat_section in stats_display.get_children():
 		for label in stat_section.get_children():
 			tween_text.tween_property(label, "visible_ratio", 1.0, 0.5)
-			get_tree().create_timer(0.5)
+			get_tree().create_timer(0.25)
 	
 
 
@@ -127,7 +124,10 @@ func _convert_time(time: int) -> String:
 
 
 func _on_new_game_pressed():
+	var new_game_scene = load("res://scenes/Main.tscn").instantiate()
+	await TransitionManager.transition_to_scene(new_game_scene, TransitionManager.transitions["grid_flip"])
 	EventHub.game.new_game.emit()
+	Log.pr("new game button clicked")
 
 
 func _on_transmit_tags(_tags: Array):

@@ -37,4 +37,5 @@ class GameEvents:
 	signal reset_game
 	signal get_hint
 	signal check_game
-	signal transition_ended
+	signal transition_in_ended
+	signal transition_out_ended

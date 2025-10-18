@@ -32,6 +32,9 @@ func _on_id_pressed(id):
 	var now = Time.get_ticks_msec() / 1000.0
 	match id:
 		MenuItems.NEW_GAME:
+			menu.hide()
+			var new_game_scene = load("res://scenes/Main.tscn").instantiate()
+			await TransitionManager.transition_to_scene(new_game_scene, TransitionManager.transitions["6_grid_clock"])
 			EventHub.game.new_game.emit()
 		MenuItems.RESET_GAME:
 			EventHub.game.reset_game.emit()

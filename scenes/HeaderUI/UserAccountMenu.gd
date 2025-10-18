@@ -21,12 +21,13 @@ func _ready():
 	menu.add_item("Reset Stats", MenuItems.RESET_STATS)
 	
 
-	menu.hide_on_item_selection = false
+	menu.hide_on_item_selection = true
 	menu.id_pressed.connect(_on_id_pressed)
 
 func _on_id_pressed(id):
 	match id:
 		MenuItems.SAVES:
-			get_tree().change_scene_to_file("res://scenes/Carousel/Carousel.tscn")
+			TransitionManager.transition_to_scene("res://scenes/Carousel/Carousel.tscn", TransitionManager.transitions["square_grid_rotate"])
+			#get_tree().change_scene_to_file("res://scenes/Carousel/Carousel.tscn")
 		MenuItems.RESET_STATS:
 			EventHub.game.reset_game.emit()

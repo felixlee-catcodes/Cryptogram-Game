@@ -26,7 +26,7 @@ func _ready():
 func _on_id_pressed(id):
 	match id:
 		MenuItems.EDIT_TAGS:
-			var edit_tags_scene = await create_tag_scene()
+			var _edit_tags_scene = await create_tag_scene()
 		MenuItems.DELETE_QUOTE:
 			var dialog : AcceptDialog = await create_dialog()
 			dialog.confirmed.connect(func():

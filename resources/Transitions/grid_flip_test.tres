@@ -179,7 +179,7 @@ shader_parameter/use_sprite_alpha = true
 shader_parameter/use_transition_texture = false
 shader_parameter/transition_type = 0
 shader_parameter/position = Vector2(0.5, 0.5)
-shader_parameter/invert = false
+shader_parameter/invert = true
 shader_parameter/grid_size = Vector2(5, 10)
 shader_parameter/rotation_angle = 0.0
 shader_parameter/stagger = Vector2(0, 0)
@@ -192,14 +192,14 @@ shader_parameter/edges = 6
 shader_parameter/shape_feather = 0.1
 shader_parameter/sectors = 1
 shader_parameter/clock_feather = 0.0
-shader_parameter/progress = 0.0
+shader_parameter/progress = 9.0
 shader_parameter/progress_bias = Vector2(5, 5)
 
 [resource]
 script = ExtResource("1_xeu1y")
 x_texture = ExtResource("2_nwsbl")
 shader = SubResource("ShaderMaterial_4ew2b")
-duration = 2.0
+duration = 1.5
 params = {
 "progress": [0.0, 8.0]
 }

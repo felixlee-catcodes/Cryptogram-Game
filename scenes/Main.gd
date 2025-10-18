@@ -4,7 +4,6 @@ extends Node
 @onready var game_manager = $GameManager
 @onready var quote_scene = %QuoteScene
 @onready var encrypted_message_display = $EncryptedMessageDisplay
-#@onready var game_over_scene : GameOverScene 
 @onready var keyboard_panel_container : PanelContainer = $KeyboardPanelContainer
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var header_ui = $UILayer/HeaderUI
@@ -19,7 +18,7 @@ func _ready():
 	set_panel_styling()
 	EventHub.game.new_game.connect(_on_new_game)
 	EventHub.game.game_over.connect(_on_game_over)
-	EventHub.game.transition_ended.connect(_on_transition_ended)
+	EventHub.game.transition_in_ended.connect(_on_transition_in_ended)
 	setup_puzzle()
 	
 	TransitionManager.play_transition(TransitionManager.transitions["6_grid_clock"], TransitionManager.Direction.IN)
@@ -35,7 +34,6 @@ func set_panel_styling() -> void:
 func _on_theme_changed(theme: ColorTheme):
 	bg_image_texture = theme.bg_texture
 	keyboard_panel_color = theme.panel_color
-	#transition_texture = theme.bg_texture
 
 
 func setup_puzzle():
@@ -51,7 +49,7 @@ func setup_puzzle():
 func _on_new_game():
 	get_tree().reload_current_scene()
 
-func _on_transition_ended():
+func _on_transition_in_ended():
 	game_manager.start_game()
 
 
@@ -59,10 +57,11 @@ func _on_game_over(_time, puzzle):
 	var game_over_scene = load("res://scenes/GameOver/GameOverDisplay.tscn").instantiate()
 	game_over_scene.finished_puzzle = puzzle
 	game_over_scene.curr_time = _time
-	
-	get_tree().current_scene.queue_free()
-	get_tree().root.add_child(game_over_scene)
-	get_tree().current_scene = game_over_scene
+	var effect_in = TransitionManager.transitions["square_grid_rotate"]
+	var effect_out = TransitionManager.transitions["grid_flip"]
+
+	await TransitionManager.transition_to_scene(game_over_scene, effect_in, effect_out)
+
 
 
 func split_text(quote: String) -> Array:
